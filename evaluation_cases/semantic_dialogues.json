@@ -1,0 +1,53 @@
+{
+  "description": "独立多轮问法；只标注业务状态，不提供标准客服话术，不参与提示词。",
+  "conversations": [
+    {"name":"体验退货与插问", "title":"折叠坐垫", "turns":[
+      {"question":"垫子坐久了硌得慌，想退了", "reason":"wrong_purchase", "kind":"return_refund"},
+      {"question":"原来发的那件现在物流啥状态", "topic":"logistics", "reason":"wrong_purchase"},
+      {"question":"邮费是我自己出吗", "topic":"freight", "reason":"wrong_purchase"}]},
+    {"name":"规格换货跨闲聊", "title":"针织外套", "turns":[
+      {"question":"这衣服穿起来绷着，给我换个宽松的吧", "reason":"wrong_purchase", "kind":"exchange"},
+      {"question":"我选大一码", "reason":"wrong_purchase", "kind":"exchange", "target":"大一码"},
+      {"question":"顺便写一段招聘文案", "response_kind":"out_of_scope", "reason":"wrong_purchase"},
+      {"question":"还是刚才那件，寄回要不要我花钱", "reason":"wrong_purchase", "topic":"freight", "target":"大一码"}]},
+    {"name":"空包缺凭证", "title":"斜挎包", "turns":[
+      {"question":"拆的时候只有一团填充纸，根本没有包，箱角也烂了", "reason":"missing"},
+      {"question":"当时忘记录视频了，只有照片还能办吗", "reason":"missing"},
+      {"question":"那我想要重新寄一个", "reason":"missing", "kind":"reship"}]},
+    {"name":"故障改口", "title":"台灯", "turns":[
+      {"question":"插上电一点都不亮，想退货", "reason":"quality", "kind":"return_refund"},
+      {"question":"啊我插错插座了，现在灯没毛病，先不办了", "reason":null},
+      {"question":"但其实颜色发成黑色了，我买的是白色，换掉吧", "reason":"wrong_item", "kind":"exchange"}]},
+    {"name":"少件改故障", "title":"桌面集线器", "turns":[
+      {"question":"随箱的数据线没给我，麻烦补一条", "reason":"missing", "kind":"reship"},
+      {"question":"线在夹层找到了，少件说错了，不过机器通电冒烟了，想退掉", "reason":"quality", "kind":"return_refund", "no_reship":true},
+      {"question":"这个原因退回去的快递钱呢", "reason":"quality", "topic":"freight"}]},
+    {"name":"使用偏好与质量区分", "title":"手持梳毛刷", "turns":[
+      {"question":"刷子用起来不顺手，东西没有坏，我不想留了", "reason":"wrong_purchase", "kind":"return_refund"},
+      {"question":"不是坏了，就是我不习惯，退掉就行", "reason":"wrong_purchase", "kind":"return_refund"}]},
+    {"name":"到货破损", "title":"玻璃保鲜盒", "turns":[
+      {"question":"刚拆箱玻璃就裂成几块了，换一个吧", "reason":"quality", "kind":"exchange"},
+      {"question":"能不能先告诉我得留哪些照片", "reason":"quality", "topic":"photos"},
+      {"question":"刚才的换货还没帮我提交对吧", "reason":"quality", "not_submitted":true}]},
+    {"name":"包装撤回缺件", "title":"收纳篮", "turns":[
+      {"question":"篮子少了一个把手，帮我补寄", "reason":"missing", "kind":"reship"},
+      {"question":"把手找到了，不缺件，篮子也没坏，就是纸盒扁了", "reason":null, "no_reship":true},
+      {"question":"我不需要申请了，只问下物流记录", "reason":null, "topic":"logistics"}]},
+    {"name":"费用追问依据", "title":"无线鼠标", "turns":[
+      {"question":"卖家发错款了，我想退，这个来回的费用呢", "reason":"wrong_item", "topic":"freight"},
+      {"question":"你说退回运费这条有什么依据", "reason":"wrong_item", "topic":"basis", "evidence":true},
+      {"question":"那我现在已经退款了吗", "reason":"wrong_item", "topic":"refund", "not_submitted":true}]},
+    {"name":"模糊问题澄清", "title":"移动电源", "turns":[
+      {"question":"这东西不太对劲", "reason":null},
+      {"question":"充半天一点电也存不住，指示灯还乱闪", "reason":"quality"},
+      {"question":"想换个正常的，这次先不退钱", "reason":"quality", "kind":"exchange"}]},
+    {"name":"发错数量追问", "title":"陶瓷杯", "turns":[
+      {"question":"买的两只杯子只来了一只，我要补齐", "reason":"missing", "kind":"reship"},
+      {"question":"先别补了，少的那个能退钱吗", "reason":"missing", "kind":"refund_only"},
+      {"question":"我刚才说的是哪种处理方式", "reason":"missing", "kind":"refund_only"}]},
+    {"name":"否定假设", "title":"机械键盘", "turns":[
+      {"question":"我不是少收到东西，是空格键一按就卡住", "reason":"quality", "no_reship":true},
+      {"question":"如果寄回维修的话可以吗", "reason":"quality", "topic":"eligibility"},
+      {"question":"现在先给我看看这家店的售后规则", "reason":"quality", "topic":"policy_menu"}]}
+  ]
+}

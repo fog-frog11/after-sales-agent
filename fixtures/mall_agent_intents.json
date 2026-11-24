@@ -1,0 +1,20 @@
+[
+  {"id":"H01","question":"能翻翻我在你们这里下过哪些单不？","required":["purchase_history"],"forbidden":["product"]},
+  {"id":"H02","question":"我之前的购买记录能给我过一眼吗","required":["purchase_history"],"forbidden":["product"]},
+  {"id":"P01","question":"这一件当初入手的具体是什么型号","required":["product"],"forbidden":["purchase_history","clarify_order"]},
+  {"id":"P02","question":"这款下单时我选的是哪个颜色来着","required":["product"],"forbidden":["purchase_history","clarify_order"]},
+  {"id":"C01","question":"从刚才那几笔里挑六月下单、价格最低的那款","required":["clarify_order"],"forbidden":["product","freight"],"filters":{"month":6,"price":"lowest"}},
+  {"id":"C02","question":"请帮我缩小一下范围，我说的是2025年十一月买的最贵那件","required":["clarify_order"],"forbidden":["product","freight"],"filters":{"year":2025,"month":11,"price":"highest"}},
+  {"id":"L01","question":"之前店家说给我重寄，新的那个包裹发出来没","required":["outbound"],"forbidden":["logistics","purchase_history"]},
+  {"id":"L02","question":"我下单时寄来的那个原包裹目前走到哪了","required":["logistics"],"forbidden":["outbound","purchase_history"]},
+  {"id":"R01","question":"商家退回来的款子，进账了吗","required":["refund"],"forbidden":["purchase_history","freight","clarify_order"]},
+  {"id":"R02","question":"要是退回去，寄给店家的快递钱得我掏吗","required":["freight"],"forbidden":["original_shipping","purchase_history","clarify_order"]},
+  {"id":"M01","question":"我买的是哪个型号？顺便核实退款有没有进账","required":["product","refund"],"forbidden":["purchase_history","clarify_order"]},
+  {"id":"M02","question":"说下原包裹运到哪儿了，另外纸箱压坏要留哪些凭证","required":["logistics","photos"],"forbidden":["return","outbound","purchase_history"]},
+  {"id":"C03","question":"在刚才那一组里挑六月三号下单、实付最低的那件","required":["clarify_order"],"forbidden":["product","freight"],"filters":{"month":6,"day":3,"price":"lowest"}},
+  {"id":"C04","question":"我指的是二零二五年十一月二十日成交的那件","required":["clarify_order"],"forbidden":["product"],"filters":{"year":2025,"month":11,"day":20}},
+  {"id":"H03","question":"把我在这个商城买过的东西列一下呗","required":["purchase_history"],"forbidden":["product"]},
+  {"id":"L03","question":"替换给我的那件是不是已经交给快递公司了","required":["outbound"],"forbidden":["logistics","purchase_history"]},
+  {"id":"R03","question":"上次下单结算的时候给快递付了几块钱","required":["original_shipping"],"forbidden":["freight","refund","purchase_history"]},
+  {"id":"M03","question":"退款进银行卡了吗，换给我的货又寄到哪儿了","required":["refund","outbound"],"forbidden":["logistics","purchase_history"]}
+]

@@ -1,0 +1,190 @@
+<!doctype html>
+<!-- 角色工作台共用订单卡片、售后进度和操作表单。 -->
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>商城售后</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script defer src="/session.js"></script>
+  <script defer src="/mall.js"></script>
+</head>
+<body class="commerce-workbench">
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a id="mall-home" class="brand"><span class="mark" aria-hidden="true">↶</span>商城售后</a>
+      <nav id="mall-nav" class="topbar-tools" aria-label="角色导航">
+        <span id="access-identity"></span>
+        <button id="access-logout" class="text-button" type="button" hidden>退出</button>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <header class="intro"><h1 id="mall-title">商城售后</h1></header>
+    <div class="workspace mall-workbench">
+      <section class="card mall-queue-card" aria-labelledby="mall-list-title">
+        <div class="section-title">
+          <h2 id="mall-list-title">列表</h2>
+          <button class="text-button" type="button" id="mall-refresh">刷新</button>
+        </div>
+        <form id="mall-filter" class="service-form">
+          <label>订单号<input name="order" id="mall-prefix" class="ticket-number" maxlength="13"
+                            placeholder="订单编号或前缀" autocomplete="off"></label>
+          <label><span id="mall-filter-label">状态</span><select name="filter" id="mall-filter-select" class="ticket-number"></select></label>
+          <button class="ticket-button" type="submit">查询</button>
+        </form>
+        <p id="mall-list-message" class="ticket-feedback" role="status"></p>
+        <ul class="service-list mall-list" id="mall-list"></ul>
+        <button class="text-button" type="button" id="mall-more" hidden>加载更多</button>
+      </section>
+      <section class="card mall-content" aria-labelledby="mall-selection-title">
+        <h2 id="mall-selection-title">详情</h2>
+        <p id="mall-detail-message" class="ticket-feedback" role="status">请选择一条记录。</p>
+        <a id="mall-after-sales-link" class="catalog-link" href="/mall/after-sales" hidden>查看我的售后</a>
+        <div id="mall-order-view" hidden>
+          <p id="mall-order-summary"></p>
+          <dl id="mall-order-payment" class="directory-totals" hidden aria-label="购买金额明细"></dl>
+          <p id="mall-order-address" hidden></p>
+          <div id="mall-products" class="mall-products"></div>
+          <details class="mall-terms"><summary id="mall-term-title">下单条款</summary><ul id="mall-terms"></ul></details>
+          <div id="mall-order-cases" class="mall-order-cases"></div>
+          <section id="mall-item-view" class="mall-item-view" aria-labelledby="mall-item-title" hidden>
+            <div class="mall-chat">
+              <header class="mall-chat-header">
+                <span class="mall-chat-icon" aria-hidden="true">↶</span>
+                <div>
+                  <h3 id="mall-item-title">售后咨询</h3>
+                  <p id="mall-chat-store"></p>
+                </div>
+                <a id="mall-chat-apply" class="text-button" href="#mall-application">申请售后</a>
+              </header>
+              <div class="mall-chat-context">
+                <span id="mall-chat-order"></span>
+                <span id="mall-chat-stage" class="service-badge"></span>
+              </div>
+              <div id="mall-chat-scroll" class="mall-chat-scroll">
+                <div id="mall-chat-empty" class="mall-chat-empty">
+                  <p>想了解这件商品的售后？</p>
+                  <div aria-label="常见问题" class="mall-chat-prompts">
+                    <button type="button" class="text-button" data-question="如果退货，运费谁承担？">退货运费</button>
+                    <button type="button" class="text-button" data-question="这件商品的物流到哪了？">查物流</button>
+                    <button type="button" class="text-button" data-question="这件商品的售后办到哪了？">查售后进度</button>
+                  </div>
+                </div>
+                <ol id="mall-dialogue" class="mall-dialogue" aria-label="咨询记录" aria-live="polite"></ol>
+              </div>
+              <form id="mall-consult" class="mall-composer">
+                <label for="mall-question" class="visually-hidden">售后问题</label>
+                <input id="mall-question" name="question" required maxlength="500" class="ticket-number"
+                       placeholder="输入你想问的售后问题…" autocomplete="off">
+                <button class="ticket-button" type="submit">发送 <span aria-hidden="true">↑</span></button>
+              </form>
+            </div>
+            <form id="mall-application" class="service-form mall-application">
+              <h3>申请商品售后</h3>
+              <label>售后原因<select required name="reason" class="ticket-number" id="mall-reason"></select></label>
+              <div id="mall-application-notice" class="service-guidance">
+                <p id="mall-application-message" class="ticket-feedback" role="status"></p>
+                <a id="mall-application-case" class="catalog-link" hidden>查看原售后单</a>
+              </div>
+              <fieldset id="mall-application-fields" hidden disabled>
+                <legend class="visually-hidden">可办理方式和申请信息</legend>
+                <label>办理方式<select required name="kind" class="ticket-number" id="mall-kind"></select></label>
+                <label>申请数量<input required name="quantity" min="1" type="number" value="1" class="ticket-number"></label>
+                <label>申请说明<textarea required name="description" maxlength="500"></textarea></label>
+                <label>照片凭证<input id="mall-application-photos" type="file" accept="image/jpeg,image/png" multiple></label>
+                <small>最多 3 张 JPEG 或 PNG。请遮住包裹标签上的手机号和地址。</small>
+                <button class="submit" type="submit" id="mall-apply">提交给店铺</button>
+              </fieldset>
+            </form>
+          </section>
+        </div>
+        <div id="mall-case-view" hidden>
+          <p id="mall-case-summary"></p>
+          <p id="mall-case-next" class="service-guidance"></p>
+          <section id="mall-intervention" class="service-guidance mall-intervention" aria-label="平台介入" hidden>
+            <p id="mall-intervention-message" aria-live="polite"></p>
+            <button class="ticket-button" type="button" id="mall-intervention-start" hidden>申请平台介入</button>
+          </section>
+          <section id="mall-return-progress" class="service-guidance mall-intervention" aria-label="寄回和收件" hidden>
+            <p id="mall-return-progress-message"></p>
+            <button class="ticket-button" type="button" id="mall-return-progress-action" hidden></button>
+          </section>
+          <p id="mall-case-prompt" class="service-guidance" hidden></p>
+          <section id="mall-case-offer" class="service-guidance" hidden aria-label="协商方案"></section>
+          <p id="mall-case-facts"></p>
+          <section id="mall-outbound" class="service-guidance mall-outbound" aria-labelledby="mall-outbound-title" hidden>
+            <h3 id="mall-outbound-title">店铺寄出的售后包裹</h3>
+            <p id="mall-outbound-summary"></p>
+            <p id="mall-outbound-guidance" hidden></p>
+            <ul id="mall-outbound-history"></ul>
+            <p id="mall-delivery-reply" hidden></p>
+            <section id="mall-delivery-review" aria-labelledby="mall-delivery-review-title" hidden>
+              <h4 id="mall-delivery-review-title"></h4>
+              <p id="mall-delivery-review-meta"></p>
+              <p id="mall-delivery-review-note"></p>
+            </section>
+            <div class="mall-product-actions" id="mall-outbound-actions"></div>
+          </section>
+          <section id="mall-refund-progress" class="service-guidance mall-intervention" aria-label="商品退款进度" hidden>
+            <p id="mall-refund-progress-message"></p>
+            <button class="ticket-button" type="button" id="mall-refund-progress-action" hidden></button>
+          </section>
+          <dl id="mall-case-money" class="facts" hidden aria-label="费用明细"></dl>
+          <details class="mall-terms"><summary id="mall-case-term-title">下单条款</summary><ul id="mall-case-terms"></ul></details>
+          <ol id="mall-timeline" class="catalog-progress" aria-label="售后记录"></ol>
+          <form id="mall-operation" class="service-form">
+            <label>操作<select required name="action" id="mall-action" class="ticket-number"></select></label>
+            <label>给各方的说明<textarea required name="note" maxlength="500"></textarea></label>
+            <fieldset id="mall-offer-fields" hidden disabled>
+              <legend>店铺处理方案</legend>
+              <label>办理方式<select required id="mall-offer-kind" class="ticket-number"></select></label>
+              <label>方案件数<input type="number" min="1" required id="mall-offer-quantity" class="ticket-number"></label>
+              <label id="mall-offer-amount-label" hidden>退款金额（元）
+                <input type="number" min="0.01" step="0.01" id="mall-offer-amount" class="ticket-number" disabled>
+              </label>
+              <label id="mall-offer-return-label" hidden>寄回说明
+                <textarea id="mall-offer-return" maxlength="500" disabled></textarea>
+              </label>
+              <small id="mall-offer-preview" role="status"></small>
+            </fieldset>
+            <label id="mall-operation-photo-field" hidden>照片凭证
+              <input id="mall-operation-photos" type="file" accept="image/jpeg,image/png" multiple disabled>
+            </label>
+            <fieldset id="mall-shipping" hidden disabled>
+              <legend>寄件信息</legend>
+              <label>快递公司<input required name="carrier" maxlength="30" class="ticket-number"></label>
+              <label>运单号<input required name="tracking" minlength="5" maxlength="40" class="ticket-number"></label>
+            </fieldset>
+            <fieldset id="mall-return-details" hidden disabled>
+              <legend>寄回收件信息</legend>
+              <label>收件人<input required maxlength="80" name="recipient" class="ticket-number"></label>
+              <label>寄回地址<input required minlength="5" maxlength="240" name="address" class="ticket-number"></label>
+              <label>联系电话<input required maxlength="30" type="tel" name="phone" class="ticket-number"></label>
+            </fieldset>
+            <fieldset id="mall-delivery-address" hidden disabled>
+              <legend>买家收货信息</legend>
+              <label>收件人<input required maxlength="80" id="mall-delivery-recipient" class="ticket-number"></label>
+              <label>收货地址<input required minlength="5" maxlength="240" id="mall-delivery-address-value" class="ticket-number"></label>
+              <label>联系电话<input required maxlength="30" type="tel" id="mall-delivery-phone" class="ticket-number"></label>
+              <small id="mall-delivery-address-hint" hidden>收货信息已确认。修改收件人、地址或电话后可以保存。</small>
+            </fieldset>
+            <label id="mall-delivery-problem-field" hidden>包裹问题
+              <select id="mall-delivery-problem" class="ticket-number" required disabled></select>
+            </label>
+            <label id="mall-refund-result-field" hidden>退款处理结果
+              <select id="mall-refund-result" class="ticket-number" required disabled>
+                <option value="">选择结果</option>
+                <option value="succeeded">退款成功</option>
+                <option value="failed">退款失败</option>
+              </select>
+            </label>
+            <button class="submit" type="submit">确认操作</button>
+            <p id="mall-operation-message" class="ticket-feedback" role="status"></p>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,96 @@
+{
+  "source": "https://www.modelscope.cn/datasets/QingshanAI/ecom-after-sale-synthetic",
+  "source_sha256": "b84df0ac6a7408ba17223ed3c0ca1afe8adb2fd9f8beea8edc75f7f35be9cb91",
+  "attribution": "电商售后维权训练语料（合成），青山。用户问法取自原语料，计划由本项目重新标注。",
+  "examples": [
+    {
+      "source_line": 25,
+      "user": "收到的鞋子比预期大，想换个码数。",
+      "plan": {
+        "topics": [
+          "fit_exchange"
+        ]
+      }
+    },
+    {
+      "source_line": 44,
+      "user": "收到的商品和图片不一样，可以换货吗？",
+      "plan": {
+        "topics": [
+          "eligibility"
+        ],
+        "follow_up": {
+          "fact": "expected_vs_actual",
+          "question": "是颜色、款式还是其他地方和图片不一样？"
+        }
+      }
+    },
+    {
+      "source_line": 80,
+      "user": "衣服有瑕疵，我想退货但担心运费问题。",
+      "plan": {
+        "topics": [
+          "eligibility",
+          "freight"
+        ],
+        "possible_reason": "quality"
+      }
+    },
+    {
+      "source_line": 98,
+      "user": "为什么不能给我退换货呢？",
+      "plan": {
+        "topics": [
+          "progress"
+        ]
+      }
+    },
+    {
+      "source_line": 902,
+      "user": "我收到的商品有问题，你们之前答应过补发，但现在还没收到，怎么办？",
+      "plan": {
+        "topics": [
+          "outbound"
+        ]
+      }
+    },
+    {
+      "source_line": 898,
+      "user": "我对这个产品非常不满意，想要给个差评！",
+      "plan": {
+        "topics": [
+          "eligibility"
+        ],
+        "follow_up": {
+          "fact": "expected_vs_actual",
+          "question": "是哪方面让你不满意？可以说说收到或使用时的情况。"
+        }
+      }
+    },
+    {
+      "source_line": 20,
+      "user": "你们发错了地址，到现在还没收到货，我要投诉！",
+      "plan": {
+        "topics": [
+          "logistics",
+          "platform"
+        ],
+        "possible_reason": "not_received"
+      }
+    },
+    {
+      "source_line": 423,
+      "user": "你们的产品质量太差了，我要投诉！",
+      "plan": {
+        "topics": [
+          "platform",
+          "eligibility"
+        ],
+        "follow_up": {
+          "fact": "expected_vs_actual",
+          "question": "你可以说说具体的商品问题，我帮你核对订单上的处理入口。"
+        }
+      }
+    }
+  ]
+}

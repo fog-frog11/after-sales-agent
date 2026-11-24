@@ -1,0 +1,39 @@
+<!doctype html>
+<!-- 买家从独立列表进入已保存的售后会话。 -->
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>售后对话 · 售后工作台</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/session.js" defer></script>
+  <script src="/conversations.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="/conversations"><span class="mark" aria-hidden="true">↶</span>售后工作台</a>
+      <nav class="topbar-tools" aria-label="买家导航">
+        <a class="topbar-link" href="/orders">我的订单</a>
+        <a class="topbar-link current-link" href="/conversations" aria-current="page">售后对话</a>
+        <span id="access-identity"></span>
+        <button id="access-logout" class="text-button" type="button" hidden>退出</button>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap buyer-workbench">
+    <header class="intro buyer-intro conversations-intro">
+      <h1>售后对话</h1>
+      <a class="conversation-new" href="/">新对话</a>
+    </header>
+    <section class="card conversations-card" aria-label="会话列表">
+      <p id="conversations-feedback" class="ticket-feedback" role="status">正在读取会话…</p>
+      <ul id="conversation-list" class="conversation-list"></ul>
+      <nav class="catalog-pages" aria-label="会话分页" id="conversation-pages" hidden>
+        <a id="conversation-first" class="text-button" href="/conversations" hidden>回到第一页</a>
+        <a id="conversation-next" class="text-button" hidden>下一页</a>
+      </nav>
+    </section>
+  </main>
+</body>
+</html>

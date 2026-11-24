@@ -1,0 +1,12 @@
+# 忽略本机配置、Python 缓存和依赖目录。
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.venv/
+.local/
+node_modules/
+web/commerce-build/
+# 仅保留本机的早期 Olist 葡语对照资料，不随求职源码发布。
+/scripts/fixtures/olist-pt-br-public-reference.json

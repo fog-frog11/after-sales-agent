@@ -1,0 +1,171 @@
+{
+  "verified_on": "2026-11-23",
+  "status": "verified",
+  "python_tests": 278,
+  "completed_changes": [
+    "按事实类型装配回复提示",
+    "显式保留任务字段与下一步缺项",
+    "逐问点条款支持状态",
+    "生成重写核对共享12秒阶段预算",
+    "新解包空库检查脚本与初始化兼容"
+  ],
+  "baseline_after_prompt_refactor": {
+    "conversations": 28,
+    "turns": 91,
+    "passed": 91,
+    "generated": 90,
+    "p50_ms": 3468.4691000147723,
+    "p95_ms": 5327.369400009047
+  },
+  "additional_task_dialogues": {
+    "conversations": 3,
+    "turns": 13,
+    "passed": 13,
+    "generated": 13,
+    "p50_ms": 4432.38489999203,
+    "p95_ms": 6570.118200033903
+  },
+  "final_browser": {
+    "passed": true,
+    "turns": 7,
+    "samples": [
+      {
+        "question": "主机插电完全没反应，少了一根数据线，我想退货退款，只退一件。",
+        "answer": "主机插电没反应属于质量问题，少一根数据线属于少件漏发，这两个问题我会分别记录。\n这款桌面集线器目前可以申请退货退款，数量为1件，申请截止日期是2026-12-22。\n请核对一下提交卡片，确认后我再为你提交。",
+        "generation_status": "grounded",
+        "visible_ms": 9745.199999988079,
+        "retrieval_routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ]
+      },
+      {
+        "question": "数据线找到了，主机还是没反应，退货改成两件。",
+        "answer": "数据线已找到，主机仍没反应，退货退款按两件、质量问题处理，目前符合申请条件。\n请核对卡片：桌面集线器 银灰·4口，退货退款，数量2，备注“主机还是没反应”。",
+        "generation_status": "grounded",
+        "visible_ms": 4955,
+        "retrieval_routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ]
+      },
+      {
+        "question": "这个故障退回去的运费谁承担？",
+        "answer": "这笔是质量问题退货，寄回运费需要你先垫付9元，等店铺核实故障属实后会承担返还。\n目前故障还在待核实状态，最终是否由店铺承担要以核实结果为准。",
+        "generation_status": "grounded",
+        "visible_ms": 6966.199999988079,
+        "retrieval_routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ]
+      },
+      {
+        "question": "先别办理了，故障还在，我先想一想。",
+        "answer": "好的，先不办理，你慢慢考虑。\n主机没反应的问题还在，后续想继续处理时随时找我。",
+        "generation_status": "grounded",
+        "visible_ms": 4205.5,
+        "retrieval_routes": []
+      },
+      {
+        "question": "考虑好了，主机还是坏的，退两件。",
+        "answer": "好的，主机故障还在，按质量问题退两件，退货退款可以申请。\n请核对一下提交卡片：桌面集线器 银灰·4口，退货退款，数量2，备注“主机还是坏的”。",
+        "generation_status": "grounded",
+        "visible_ms": 4605.900000035763,
+        "retrieval_routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ]
+      },
+      {
+        "question": "店铺的留货方案我不同意，请拒绝这个方案，我还是想退货。",
+        "answer": "好的，你不同意店铺的留货方案、想继续退货，我明白。售后单#144目前待你确认方案，拒绝后仍按退货退款处理。\n请核对下方卡片：拒绝店铺方案，商品为桌面集线器 银灰·4口，数量2件。确认后我再提交。",
+        "generation_status": "grounded",
+        "visible_ms": 6374.5,
+        "retrieval_routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ]
+      },
+      {
+        "question": "双方没谈拢，请帮我申请平台介入。",
+        "answer": "你已拒绝店铺方案，现在可以在原单144填写说明，申请平台介入。\n请核对申请平台介入的卡片，确认后我再为你提交。",
+        "generation_status": "grounded",
+        "visible_ms": 3589.5,
+        "retrieval_routes": []
+      }
+    ],
+    "case_no": "144",
+    "checks": [
+      "多问题与改件数",
+      "双击只发一个确认请求",
+      "同页展示与刷新恢复回执",
+      "旧申请表收起",
+      "店铺协商",
+      "聊天拒绝方案",
+      "同一原单平台介入"
+    ],
+    "database_rolled_back": true
+  },
+  "limits": [
+    "91轮复测后又补充了多原因与核实边界，最终改动另由自动化及7轮浏览器验证。",
+    "13轮新增案例首次12轮通过；原“寄回依据”问法含混，明确为退货运费后复测13轮通过。原始失败记录保留。",
+    "新问题已经执行，不能再称未见题；状态通过不等于自由文本全部正确。",
+    "12秒只约束回复生成阶段，不包括规划、检索、数据库及连接等待，不是总响应承诺。",
+    "复杂收货地址与运单仍在原单表单核对，没有开放模型自动提交地址。",
+    "新解包目录与新空库已验收通过，复用本机已安装依赖，不代表全新机器依赖安装。"
+  ],
+  "authorized_empty_database_check": {
+    "passed": true,
+    "database": "after_sales_delivery_20261123",
+    "unpack_directory": "D:\\AAA找工作\\电商售后Agent\\.local\\release-unpack-20261123184627",
+    "counts": {
+      "mall_orders": 304,
+      "mall_items": 604,
+      "mall_buyer_profiles": 50,
+      "mall_shop_profiles": 100
+    },
+    "retained": true,
+    "scope": "新解包Python源码与空库初始化；复用已安装依赖，不代表全新机器安装",
+    "full_three_role_browser_passed": true,
+    "configured_app_fresh_accounts_passed": true,
+    "browser_operations_rolled_back": true,
+    "frontend_built_from_unpacked_source": true,
+    "dependencies_reused": true
+  },
+  "deployment_verification": {
+    "restarted": true,
+    "health": {
+      "/login": 200,
+      "/commerce-build/workbench.js": 200,
+      "/commerce-build/workbench.css": 200,
+      "/openapi.json": 200
+    },
+    "new_evidence_coverage_text_in_served_bundle": true,
+    "chat_confirmation_route_present": true
+  }
+}

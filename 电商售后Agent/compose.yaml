@@ -1,0 +1,82 @@
+# 启动本机售后 PostgreSQL 和可选的 Milvus 政策索引。
+name: after-sales-agent
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    pull_policy: never
+    environment:
+      POSTGRES_DB: after_sales
+      POSTGRES_USER: after_sales
+      POSTGRES_PASSWORD: ${AFTER_SALES_POSTGRES_PASSWORD:?Set AFTER_SALES_POSTGRES_PASSWORD in .env}
+    ports:
+      - "127.0.0.1:${AFTER_SALES_POSTGRES_PORT:-55432}:5432"
+    volumes:
+      - orders_data:/var/lib/postgresql/data
+      - ./sql/init_orders.sql:/docker-entrypoint-initdb.d/01_orders.sql:ro
+      - ./sql/apply_shop_policies.sql:/docker-entrypoint-initdb.d/02_shop_policies.sql:ro
+      - ./sql/create_support_tickets.sql:/docker-entrypoint-initdb.d/03_support_tickets.sql:ro
+      - ./sql/add_ticket_resolution.sql:/docker-entrypoint-initdb.d/04_ticket_resolution.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U after_sales -d after_sales"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  milvus:
+    profiles: ["policy-search", "workbench"]
+    image: registry-1.docker.io/milvusdb/milvus:v3.0.0
+    pull_policy: never
+    command: ["milvus", "run", "standalone"]
+    environment:
+      ETCD_USE_EMBED: "true"
+      ETCD_DATA_DIR: /var/lib/milvus/etcd
+      ETCD_CONFIG_PATH: /milvus/configs/embedEtcd.yaml
+      COMMON_STORAGETYPE: local
+      DEPLOY_MODE: STANDALONE
+    ports:
+      - "127.0.0.1:19531:19530"
+    volumes:
+      - policy_index:/var/lib/milvus
+      - ./milvus/embedded_etcd.yaml:/milvus/configs/embedEtcd.yaml:ro
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:9091/healthz"]
+      interval: 4s
+      timeout: 3s
+      retries: 20
+      start_period: 10s
+
+  workbench:
+    profiles: ["workbench"]
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: after-sales-agent-workbench:3.0.0
+    environment:
+      ORDER_DATABASE_URL: postgresql://after_sales:${AFTER_SALES_POSTGRES_PASSWORD:?Set AFTER_SALES_POSTGRES_PASSWORD in .env}@postgres:5432/after_sales
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+      MILVUS_URL: http://milvus:19530
+      MALL_PERSISTENT_DENSE: "1"
+      MALL_WINDOW_RERANK: "1"
+      MALL_E5_MODEL_DIR: /opt/mall-e5
+      AFTER_SALES_BIND_HOST: 0.0.0.0
+    ports:
+      - "127.0.0.1:${AFTER_SALES_DOCKER_PORT:-8766}:8765"
+    volumes:
+      - workbench_state:/app/.local
+    depends_on:
+      postgres:
+        condition: service_healthy
+      milvus:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "from urllib.request import urlopen; urlopen('http://127.0.0.1:8765/login', timeout=3).close()"]
+      interval: 5s
+      timeout: 4s
+      retries: 20
+      start_period: 30s
+
+volumes:
+  orders_data:
+  policy_index:
+  workbench_state:

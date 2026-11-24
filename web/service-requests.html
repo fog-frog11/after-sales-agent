@@ -1,0 +1,84 @@
+<!doctype html>
+<!-- 商品售后申请、详情和客服办理共用工作台。 -->
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>商品售后 · 售后工作台</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/session.js" defer></script>
+  <script src="/service-requests.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="/orders" id="service-home"><span class="mark" aria-hidden="true">↶</span>售后工作台</a>
+      <nav class="topbar-tools" aria-label="售后导航">
+        <a class="topbar-link" href="/orders" id="service-back">我的订单</a>
+        <a class="topbar-link current-link" href="/service-requests" id="service-index" aria-current="page">我的售后</a>
+        <span id="access-identity"></span>
+        <button id="access-logout" type="button" class="text-button" hidden>退出</button>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <header class="intro"><h1 id="service-title">我的售后</h1><p id="service-context" hidden></p></header>
+    <div class="workspace service-workspace">
+      <section class="card" aria-labelledby="service-list-title">
+        <div class="section-title">
+          <h2 id="service-list-title">售后单</h2>
+          <button id="service-refresh" class="text-button" type="button">刷新</button>
+        </div>
+        <label id="service-filter" class="service-field" hidden>办理状态
+          <select id="service-status" class="ticket-number">
+            <option value="">全部</option><option value="submitted">待审核</option>
+            <option value="awaiting_return">待寄回</option><option value="return_sent">待确认收件</option>
+            <option value="received">待办结</option><option value="completed">已办结</option><option value="rejected">审核未通过</option>
+          </select>
+        </label>
+        <p id="service-list-feedback" class="ticket-feedback" role="status"></p>
+        <ul id="service-list" class="service-list"></ul>
+        <button id="service-next" class="text-button" type="button" hidden>加载更多</button>
+      </section>
+      <section class="card" id="service-application" aria-labelledby="service-application-title" hidden>
+        <h2 id="service-application-title">申请售后</h2>
+        <form id="service-form" class="service-form">
+          <label>申请商品<select id="service-item" class="ticket-number" required></select></label>
+          <div class="service-form-row">
+            <label>申请件数<input id="service-quantity" class="ticket-number" type="number" min="1" required value="1"></label>
+            <label>售后类型<select id="service-kind" class="ticket-number" required>
+              <option value="return">退货退款</option><option value="exchange">换货</option><option value="repair">维修</option>
+            </select></label>
+          </div>
+          <label>申请原因<select id="service-reason" class="ticket-number" required>
+            <option value="">选择原因</option><option value="wrong_purchase">买错了或不想要</option>
+            <option value="quality">破损、故障或质量问题</option><option value="wrong_item">发错或少发</option><option value="other">其他原因</option>
+          </select></label>
+          <div id="service-freight" class="service-guidance" role="status" hidden></div>
+          <label>问题说明<textarea id="service-description" maxlength="500" required placeholder="说明商品遇到的问题和希望怎么处理"></textarea></label>
+          <button class="submit" type="submit">提交售后申请</button>
+          <p id="service-form-feedback" class="ticket-feedback" role="status"></p>
+        </form>
+      </section>
+      <section id="service-detail" class="card" aria-labelledby="service-detail-title" hidden>
+        <div class="section-title"><h2 id="service-detail-title">售后进度</h2><span class="service-badge" id="service-detail-status"></span></div>
+        <p id="service-detail-item" class="service-context"></p>
+        <ol id="service-events" class="catalog-progress" aria-label="办理时间线"></ol>
+        <form id="service-shipment" class="service-form" hidden>
+          <h3>登记寄回包裹</h3>
+          <label>快递公司<input id="service-carrier" class="ticket-number" required maxlength="30"></label>
+          <label>运单号<input id="service-tracking" class="ticket-number" required maxlength="40" autocomplete="off"></label>
+          <button class="ticket-button" type="submit">确认登记</button>
+        </form>
+        <form id="service-staff-action" class="service-form" hidden>
+          <label>办理动作<select id="service-next-action" class="ticket-number" required></select></label>
+          <label>给买家的说明<textarea id="service-action-note" required maxlength="500"></textarea></label>
+          <button class="ticket-button" type="submit">保存处理结果</button>
+        </form>
+        <p id="service-action-feedback" class="ticket-feedback" role="status"></p>
+        <p id="service-detail-links" class="service-links"></p>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

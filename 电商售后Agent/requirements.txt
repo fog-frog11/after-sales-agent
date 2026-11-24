@@ -1,0 +1,9 @@
+# 启动售后工作台所需的 Python 依赖。
+psycopg[binary]==3.3.4
+psycopg-pool==3.3.1
+fastapi==0.116.1
+pydantic==2.13.4
+uvicorn==0.52.1
+langgraph==1.2.9
+langgraph-checkpoint-postgres==3.1.0
+tzdata; platform_system == "Windows"

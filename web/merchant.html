@@ -1,0 +1,43 @@
+<!doctype html>
+<!-- 店铺操作员查看本店售后申请并给买家答复。 -->
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>店铺售后 · 售后工作台</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/session.js" defer></script>
+  <script src="/merchant.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="/merchant"><span class="mark" aria-hidden="true">↶</span>店铺售后</a>
+      <div class="topbar-tools">
+        <span id="access-identity"></span>
+        <button id="access-logout" class="text-button" type="button" hidden>退出</button>
+      </div>
+    </div>
+  </header>
+  <main class="wrap staff-workbench">
+    <section class="intro"><h1 id="merchant-shop">店铺售后</h1></section>
+    <section class="card" aria-labelledby="merchant-queue-title">
+      <div class="section-title">
+        <h2 id="merchant-queue-title">售后申请</h2>
+        <button type="button" class="text-button" id="merchant-queue-refresh">刷新</button>
+      </div>
+      <label for="merchant-filter">状态</label>
+      <select class="ticket-number" id="merchant-filter">
+        <option value="false">待答复</option>
+        <option value="true">已答复</option>
+      </select>
+      <p id="merchant-queue-feedback" class="ticket-feedback" role="status"></p>
+      <div id="merchant-requests"></div>
+      <nav class="staff-pages" aria-label="店铺申请分页">
+        <button id="merchant-first" class="text-button" type="button" hidden>返回首页</button>
+        <button id="merchant-next" class="text-button" type="button" hidden>下一页</button>
+      </nav>
+    </section>
+  </main>
+</body>
+</html>

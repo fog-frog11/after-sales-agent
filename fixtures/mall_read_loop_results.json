@@ -1,0 +1,737 @@
+{
+  "verified_on": "2026-11-24",
+  "status": "verified",
+  "python_tests": 287,
+  "dialogue": {
+    "conversations": 3,
+    "turns": 13,
+    "passed": 13,
+    "generated": 13,
+    "p50_ms": 4909.929299959913,
+    "p95_ms": 8090.388199896552,
+    "elapsed_s": 85.61182480002753,
+    "quality_audit": {
+      "passed": 13,
+      "total": 13,
+      "note": "同模型独立提示复核，不能替代人工或外部盲评；不混入状态通过率。"
+    }
+  },
+  "samples": [
+    {
+      "question": "这件穿得太紧，想换宽松一点的",
+      "answer": "这件白色标准款运动外套可以申请换货，换货截止日期是2026-12-08。\n你想换宽松一点的，这个规格需要店铺核对是否有货；另外请告诉我你要换几件，目前最多可换2件。",
+      "state_errors": [],
+      "quality_audit": {
+        "relevant": true,
+        "grounded": true,
+        "task_consistent": true,
+        "issues": []
+      },
+      "retrieval": {
+        "routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ],
+        "candidates": 4,
+        "coverage": "unsupported",
+        "aspects": [
+          {
+            "question": "这件穿得太紧，想换宽松一点的",
+            "label": "clarify",
+            "supported": false,
+            "article_id": null
+          }
+        ],
+        "timings_ms": {
+          "total": 1706.7,
+          "queries": [
+            {
+              "question": "这件穿得太紧，想换宽松一点的",
+              "elapsed_ms": 31.76
+            }
+          ]
+        },
+        "read_loop": {
+          "steps": [
+            {
+              "step": 1,
+              "tool": "search_purchase_policy",
+              "query": "这件穿得太紧，想换宽松一点的",
+              "coverage": "unsupported"
+            }
+          ],
+          "stop_reason": "model_stopped",
+          "elapsed_ms": 3106.92
+        },
+        "used_for_answer": false
+      }
+    },
+    {
+      "question": "想换黑色XL，先只换一件",
+      "answer": "这件运动外套目前可以申请换货，换货截止日期是2026-12-08。\n你想换黑色XL、先换一件，这个需求已经记下；不过黑色XL是否有货，还需要店铺核对。\n请核对一下提交卡片，确认后我再为你提交换货申请。",
+      "state_errors": [],
+      "quality_audit": {
+        "relevant": true,
+        "grounded": true,
+        "task_consistent": true,
+        "issues": []
+      },
+      "retrieval": {
+        "routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ],
+        "candidates": 4,
+        "coverage": "unsupported",
+        "aspects": [
+          {
+            "question": "想换黑色XL，先只换一件",
+            "label": "clarify",
+            "supported": false,
+            "article_id": null
+          }
+        ],
+        "timings_ms": {
+          "total": 43.36,
+          "queries": [
+            {
+              "question": "想换黑色XL，先只换一件",
+              "elapsed_ms": 42.51
+            }
+          ]
+        },
+        "read_loop": {
+          "steps": [
+            {
+              "step": 1,
+              "tool": "search_purchase_policy",
+              "query": "想换黑色XL，先只换一件",
+              "coverage": "unsupported"
+            }
+          ],
+          "stop_reason": "model_stopped",
+          "elapsed_ms": 1523.49
+        },
+        "used_for_answer": false
+      }
+    },
+    {
+      "question": "先等等，帮我看看原先这个快递到没到",
+      "answer": "帮你查了，这件运动外套的快递已经签收，签收时间是2026年11月23日10:46，承运商是商城配送。",
+      "state_errors": [],
+      "quality_audit": {
+        "relevant": true,
+        "grounded": true,
+        "task_consistent": true,
+        "issues": []
+      },
+      "retrieval": null
+    },
+    {
+      "question": "还是刚才说的黑色XL，换一件，继续",
+      "answer": "好的，黑色XL换货一件，信息已保留。\n黑色XL目前还没和店铺核对库存，能否换成要等店铺确认。\n请核对下方申请卡片，确认后我再帮你提交。",
+      "state_errors": [],
+      "quality_audit": {
+        "relevant": true,
+        "grounded": true,
+        "task_consistent": true,
+        "issues": []
+      },
+      "retrieval": {
+        "routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ],
+        "candidates": 4,
+        "coverage": "unsupported",
+        "aspects": [
+          {
+            "question": "还是刚才说的黑色XL，换一件，继续",
+            "label": "clarify",
+            "supported": false,
+            "article_id": null
+          }
+        ],
+        "timings_ms": {
+          "total": 60.63,
+          "queries": [
+            {
+              "question": "还是刚才说的黑色XL，换一件，继续",
+              "elapsed_ms": 59.84
+            }
+          ]
+        },
+        "read_loop": {
+          "steps": [
+            {
+              "step": 1,
+              "tool": "search_purchase_policy",
+              "query": "还是刚才说的黑色XL，换一件，继续",
+              "coverage": "unsupported"
+            }
+          ],
+          "stop_reason": "model_stopped",
+          "elapsed_ms": 1175.36
+        },
+        "used_for_answer": false
+      }
+    },
+    {
+      "question": "少了线，灯也不亮，想退两件",
+      "answer": "你反馈的少线和灯不亮，我先按质量问题帮你核对，这款台灯目前可以申请退货退款，数量2件。\n目前还没有提交售后申请，请核对下方卡片信息，确认无误后我再为你提交。",
+      "state_errors": [],
+      "quality_audit": {
+        "relevant": true,
+        "grounded": true,
+        "task_consistent": true,
+        "issues": []
+      },
+      "retrieval": {
+        "routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ],
+        "candidates": 4,
+        "coverage": "unsupported",
+        "aspects": [
+          {
+            "question": "少了线，灯也不亮，想退两件",
+            "label": "补发配件",
+            "supported": false,
+            "article_id": null
+          }
+        ],
+        "timings_ms": {
+          "total": 57.12,
+          "queries": [
+            {
+              "question": "少了线，灯也不亮，想退两件",
+              "elapsed_ms": 56.81
+            }
+          ]
+        },
+        "read_loop": {
+          "steps": [
+            {
+              "step": 1,
+              "tool": "search_purchase_policy",
+              "query": "少了线，灯也不亮，想退两件",
+              "coverage": "unsupported"
+            }
+          ],
+          "stop_reason": "model_stopped",
+          "elapsed_ms": 1020.48
+        },
+        "used_for_answer": false
+      }
+    },
+    {
+      "question": "线找到了，灯依然不亮",
+      "answer": "线的问题已记录解决，灯依然不亮属于质量问题，这款台灯支持退货退款、换货或维修。\n退货退款申请截止到2026-12-23，两件都在可退数量内，但需商家核实故障情况。\n请核对提交卡片：桌面台灯白色标准款，退货退款，数量2，备注灯依然不亮。",
+      "state_errors": [],
+      "quality_audit": {
+        "relevant": true,
+        "grounded": true,
+        "task_consistent": true,
+        "issues": []
+      },
+      "retrieval": {
+        "routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ],
+        "candidates": 4,
+        "coverage": "unsupported",
+        "aspects": [
+          {
+            "question": "线找到了，灯依然不亮",
+            "label": "clarify",
+            "supported": false,
+            "article_id": null
+          }
+        ],
+        "timings_ms": {
+          "total": 38.71,
+          "queries": [
+            {
+              "question": "线找到了，灯依然不亮",
+              "elapsed_ms": 38.03
+            }
+          ]
+        },
+        "read_loop": {
+          "steps": [
+            {
+              "step": 1,
+              "tool": "search_purchase_policy",
+              "query": "线找到了，灯依然不亮",
+              "coverage": "unsupported"
+            }
+          ],
+          "stop_reason": "model_stopped",
+          "elapsed_ms": 1319.26
+        },
+        "used_for_answer": false
+      }
+    },
+    {
+      "question": "先放着别办，灯还是坏的",
+      "answer": "好的，先不办，灯不亮的问题我记着。\n目前没有提交售后申请，等你想继续时再处理。",
+      "state_errors": [],
+      "quality_audit": {
+        "relevant": true,
+        "grounded": true,
+        "task_consistent": true,
+        "issues": []
+      },
+      "retrieval": null
+    },
+    {
+      "question": "这单有签收记录吗",
+      "answer": "这单物流记录显示已签收，签收时间是2026年11月23日10:46，承运商为商城配送。\n这是已记录的物流信息，并非承运商实时轨迹。",
+      "state_errors": [],
+      "quality_audit": {
+        "relevant": true,
+        "grounded": true,
+        "task_consistent": true,
+        "issues": []
+      },
+      "retrieval": null
+    },
+    {
+      "question": "考虑好了，改成只退一件",
+      "answer": "好的，按质量问题申请退货退款，数量改为1件。\n请核对卡片信息，确认后我再为你提交。",
+      "state_errors": [],
+      "quality_audit": {
+        "relevant": true,
+        "grounded": true,
+        "task_consistent": true,
+        "issues": []
+      },
+      "retrieval": {
+        "routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ],
+        "candidates": 4,
+        "coverage": "unsupported",
+        "aspects": [
+          {
+            "question": "考虑好了，改成只退一件",
+            "label": "clarify",
+            "supported": false,
+            "article_id": null
+          }
+        ],
+        "timings_ms": {
+          "total": 19.04,
+          "queries": [
+            {
+              "question": "考虑好了，改成只退一件",
+              "elapsed_ms": 18.75
+            }
+          ]
+        },
+        "read_loop": {
+          "steps": [
+            {
+              "step": 1,
+              "tool": "search_purchase_policy",
+              "query": "考虑好了，改成只退一件",
+              "coverage": "unsupported"
+            }
+          ],
+          "stop_reason": "model_stopped",
+          "elapsed_ms": 1197.5
+        },
+        "used_for_answer": false
+      }
+    },
+    {
+      "question": "杯子打开就裂了，退一件",
+      "answer": "杯子打开就裂了，按质量问题可以申请退货退款，这件商品还在售后时限内。\n目前还没有提交售后单，请核对下方申请卡片，确认后我再为你提交。",
+      "state_errors": [],
+      "quality_audit": {
+        "relevant": true,
+        "grounded": true,
+        "task_consistent": true,
+        "issues": []
+      },
+      "retrieval": {
+        "routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ],
+        "candidates": 4,
+        "coverage": "unsupported",
+        "aspects": [
+          {
+            "question": "杯子打开就裂了，退一件",
+            "label": "clarify",
+            "supported": false,
+            "article_id": null
+          }
+        ],
+        "timings_ms": {
+          "total": 32.38,
+          "queries": [
+            {
+              "question": "杯子打开就裂了，退一件",
+              "elapsed_ms": 32.09
+            }
+          ]
+        },
+        "read_loop": {
+          "steps": [
+            {
+              "step": 1,
+              "tool": "search_purchase_policy",
+              "query": "杯子打开就裂了，退一件",
+              "coverage": "unsupported"
+            }
+          ],
+          "stop_reason": "model_stopped",
+          "elapsed_ms": 1227.15
+        },
+        "used_for_answer": false
+      }
+    },
+    {
+      "question": "视频找不到了，现在只有照片",
+      "answer": "视频找不到没关系，这次照片和视频都不是必须提供的。\n你手上有照片的话，可以拍商品全貌和杯子裂开的位置，最多3张，JPEG或PNG格式就行。\n视频没有上传入口，你可以在说明里写一下开箱视频找不到的情况。",
+      "state_errors": [],
+      "quality_audit": {
+        "relevant": true,
+        "grounded": true,
+        "task_consistent": true,
+        "issues": []
+      },
+      "retrieval": {
+        "routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ],
+        "candidates": 4,
+        "coverage": "unsupported",
+        "aspects": [
+          {
+            "question": "视频找不到了，现在只有照片",
+            "label": "clarify",
+            "supported": false,
+            "article_id": null
+          }
+        ],
+        "timings_ms": {
+          "total": 19.51,
+          "queries": [
+            {
+              "question": "视频找不到了，现在只有照片",
+              "elapsed_ms": 19.19
+            }
+          ]
+        },
+        "read_loop": {
+          "steps": [
+            {
+              "step": 1,
+              "tool": "search_purchase_policy",
+              "query": "视频找不到了，现在只有照片",
+              "coverage": "unsupported"
+            }
+          ],
+          "stop_reason": "model_stopped",
+          "elapsed_ms": 947.85
+        },
+        "used_for_answer": false
+      }
+    },
+    {
+      "question": "我想看一下退货运费的依据，另外是不是会员终身免邮？",
+      "answer": "退货运费依据是下单条款第1版：无理由退换由买家承担寄回运费，商城寄回报价¥9.00；核实为商品质量或发错时由店铺承担。\n你反馈的是杯子打开就裂了，属于质量问题，但运费最终由谁承担还需店铺核实确认。\n关于会员终身免邮，现有条款里没有这项依据，我无法确认。",
+      "state_errors": [],
+      "quality_audit": {
+        "relevant": true,
+        "grounded": true,
+        "task_consistent": true,
+        "issues": []
+      },
+      "retrieval": {
+        "routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ],
+        "candidates": 4,
+        "coverage": "partial",
+        "aspects": [
+          {
+            "question": "质量问题退货退款的退货运费由谁承担的依据",
+            "label": "寄回运费",
+            "supported": true,
+            "article_id": "freight"
+          },
+          {
+            "question": "会员是否终身免邮",
+            "label": "会员运费权益",
+            "supported": false,
+            "article_id": null
+          }
+        ],
+        "timings_ms": {
+          "total": 63.65,
+          "queries": [
+            {
+              "question": "质量问题退货退款的退货运费由谁承担的依据",
+              "elapsed_ms": 20.63
+            },
+            {
+              "question": "会员是否终身免邮",
+              "elapsed_ms": 42.5
+            }
+          ]
+        },
+        "read_loop": {
+          "steps": [
+            {
+              "step": 1,
+              "tool": "search_purchase_policy",
+              "query": "质量问题退货退款的退货运费由谁承担的依据，以及会员是否终身免邮",
+              "coverage": "partial"
+            }
+          ],
+          "stop_reason": "model_stopped",
+          "elapsed_ms": 1551.78
+        },
+        "used_for_answer": true
+      }
+    },
+    {
+      "question": "算了，不退了，先不用办理，杯子还是裂的",
+      "answer": "好的，先不办理退货，杯子裂了的问题我记下了。\n目前还没有提交售后申请，等你需要时再继续处理。",
+      "state_errors": [],
+      "quality_audit": {
+        "relevant": true,
+        "grounded": true,
+        "task_consistent": true,
+        "issues": []
+      },
+      "retrieval": null
+    }
+  ],
+  "chat_actions": {
+    "passed": true,
+    "turns": 7,
+    "samples": [
+      {
+        "question": "主机插电完全没反应，少了一根数据线，我想退货退款，只退一件。",
+        "answer": "你反馈的主机插电没反应、少一根数据线，已按质量问题记录，可申请退货退款1件。\n请核对下方卡片信息，确认后我再为你提交。",
+        "generation_status": "grounded",
+        "visible_ms": 7568.899999976158,
+        "retrieval_routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ]
+      },
+      {
+        "question": "数据线找到了，主机还是没反应，退货改成两件。",
+        "answer": "数据线已找到，主机仍无反应，按质量问题退货退款两件，目前符合申请条件。\n请核对卡片信息，确认后我再为你提交。",
+        "generation_status": "grounded",
+        "visible_ms": 4213.5,
+        "retrieval_routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ]
+      },
+      {
+        "question": "这个故障退回去的运费谁承担？",
+        "answer": "你这款集线器是按质量问题申请退货的，寄回运费需要你先垫付9元。\n等店铺核实故障属实后，这笔运费会由店铺承担返还给你。",
+        "generation_status": "grounded",
+        "visible_ms": 6120.899999976158,
+        "retrieval_routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ]
+      },
+      {
+        "question": "先别办理了，故障还在，我先想一想。",
+        "answer": "好的，那先不办理了，你慢慢考虑。\n主机没反应的故障问题我先保留着，等你考虑好了随时找我继续处理。",
+        "generation_status": "grounded",
+        "visible_ms": 4650.5,
+        "retrieval_routes": []
+      },
+      {
+        "question": "考虑好了，主机还是坏的，退两件。",
+        "answer": "好的，主机故障仍在，按质量问题退两件，退货退款可以申请。\n请核对一下提交卡片：桌面集线器 银灰·4口，退货退款，数量2，备注“主机还是坏的”。",
+        "generation_status": "grounded",
+        "visible_ms": 4261,
+        "retrieval_routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ]
+      },
+      {
+        "question": "店铺的留货方案我不同意，请拒绝这个方案，我还是想退货。",
+        "answer": "明白，你不同意店铺的留货方案，想拒绝这个方案并继续退货。\n售后单 #145 目前待你确认方案，拒绝后仍按两件退货退款处理。\n请核对拒绝方案卡片，确认后我再为你提交。",
+        "generation_status": "grounded",
+        "visible_ms": 5120.399999976158,
+        "retrieval_routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ]
+      },
+      {
+        "question": "双方没谈拢，请帮我申请平台介入。",
+        "answer": "你已拒绝店铺方案，现在可以在原单145填写说明，申请平台介入。\n请核对申请平台介入的卡片，确认后我再为你提交。",
+        "generation_status": "grounded",
+        "visible_ms": 3819.5,
+        "retrieval_routes": []
+      }
+    ],
+    "case_no": "145",
+    "checks": [
+      "多问题与改件数",
+      "双击只发一个确认请求",
+      "同页展示与刷新恢复回执",
+      "旧申请表收起",
+      "店铺协商",
+      "聊天拒绝方案",
+      "同一原单平台介入"
+    ],
+    "database_rolled_back": true
+  },
+  "live_followup_probe": {
+    "scope": "7d0fb1260a036a72f825058dbaf96ad1f246cb3a",
+    "coverage": "partial",
+    "routes": [
+      "scoped_bm25",
+      "milvus_bm25",
+      "milvus_dense",
+      "e5_dense",
+      "rrf",
+      "evidence_window_rerank",
+      "rrf_prior"
+    ],
+    "aspects": [
+      {
+        "question": "退货运费谁承担",
+        "label": "寄回运费",
+        "supported": true,
+        "article_id": "freight"
+      },
+      {
+        "question": "会员是否终身免邮",
+        "label": "会员运费权益",
+        "supported": false,
+        "article_id": null
+      }
+    ],
+    "read_loop": {
+      "steps": [
+        {
+          "step": 1,
+          "tool": "search_purchase_policy",
+          "query": "退回的相关规定",
+          "coverage": "unsupported"
+        },
+        {
+          "step": 2,
+          "tool": "search_purchase_policy",
+          "query": "退货运费谁承担？会员是否终身免邮？",
+          "coverage": "partial"
+        }
+      ],
+      "stop_reason": "search_limit",
+      "elapsed_ms": 3569.86
+    }
+  },
+  "full_three_role_browser_passed": true,
+  "runtime_recovery": {
+    "docker_started": true,
+    "milvus_initial_failure": "etcdserver: leader changed",
+    "same_container_restart_recovered": true,
+    "data_reset": false
+  },
+  "limits": [
+    "补查循环当前仅覆盖购买范围条款查询，不是任意业务工具自治。",
+    "最多两次检索、一次模型补查决策；结果不足仍可停止或追问，不能制造权益。",
+    "质量审阅使用同一模型的独立提示，不是外部盲评；这批问题已用于回归。",
+    "复杂地址和运单仍由用户在原单表单核对提交，聊天仅协助说明当前缺项。",
+    "模型失败与服务中断测试包括模拟契约和真实Milvus启动故障；未做大规模吞吐压测。",
+    "最初补查提供方JSON契约错误已修复；首次降级联调记录保留，不计为持久化检索通过。"
+  ],
+  "deployment": {
+    "/login": 200,
+    "/commerce-build/workbench.js": 200,
+    "/commerce-build/workbench.css": 200,
+    "/openapi.json": 200
+  }
+}

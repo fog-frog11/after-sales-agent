@@ -1,0 +1,97 @@
+{
+  "conversations": [
+    {
+      "name": "数量确认中插问再恢复",
+      "title": "运动外套",
+      "turns": [
+        {
+          "question": "这件穿得太紧，想换宽松一点的",
+          "reason": "wrong_purchase",
+          "kind": "exchange"
+        },
+        {
+          "question": "想换黑色XL，先只换一件",
+          "reason": "wrong_purchase",
+          "kind": "exchange",
+          "quantity": 1,
+          "target": "XL"
+        },
+        {
+          "question": "先等等，帮我看看原先这个快递到没到",
+          "topic": "logistics",
+          "quantity": 1
+        },
+        {
+          "question": "还是刚才说的黑色XL，换一件，继续",
+          "reason": "wrong_purchase",
+          "kind": "exchange",
+          "quantity": 1,
+          "draft_state": "ready"
+        }
+      ]
+    },
+    {
+      "name": "并存问题纠正后暂停不复活",
+      "title": "桌面台灯",
+      "turns": [
+        {
+          "question": "少了线，灯也不亮，想退两件",
+          "reason": "quality",
+          "quantity": 2
+        },
+        {
+          "question": "线找到了，灯依然不亮",
+          "reason": "quality",
+          "quantity": 2,
+          "active_reasons": [
+            "quality"
+          ]
+        },
+        {
+          "question": "先放着别办，灯还是坏的",
+          "paused": true,
+          "reason": "quality"
+        },
+        {
+          "question": "这单有签收记录吗",
+          "topic": "logistics",
+          "paused": true
+        },
+        {
+          "question": "考虑好了，改成只退一件",
+          "reason": "quality",
+          "quantity": 1,
+          "paused": false,
+          "draft_quantity": 1
+        }
+      ]
+    },
+    {
+      "name": "凭证丢失不改变对象",
+      "title": "玻璃水杯",
+      "turns": [
+        {
+          "question": "杯子打开就裂了，退一件",
+          "reason": "quality",
+          "quantity": 1
+        },
+        {
+          "question": "视频找不到了，现在只有照片",
+          "reported_missing": "unboxing_video",
+          "reported_available": "photos"
+        },
+        {
+          "question": "我想看一下退货运费的依据，另外是不是会员终身免邮？",
+          "topic": "basis",
+          "evidence": true
+        },
+        {
+          "question": "算了，不退了，先不用办理，杯子还是裂的",
+          "paused": true,
+          "reason": "quality",
+          "not_submitted": true
+        }
+      ]
+    }
+  ]
+}

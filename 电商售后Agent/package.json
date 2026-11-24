@@ -1,0 +1,16 @@
+{
+  "name": "after-sales-workbench",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "esbuild web/commerce/main.jsx --bundle --minify --jsx=automatic --outdir=web/commerce-build --entry-names=workbench --target=es2022"
+  },
+  "dependencies": {
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}

@@ -1,0 +1,116 @@
+<!doctype html>
+<!-- 本机客服处理页，展示工单搜索、订单依据和处理表单。 -->
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>平台客服 · 售后工作台</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/session.js" defer></script>
+  <script src="/ticket-handoff.js" defer></script>
+  <script src="/staff.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="/"><span class="mark" aria-hidden="true">↶</span>售后工作台</a>
+      <div class="topbar-tools">
+        <a class="topbar-link" href="/staff/orders">订单查询</a>
+        <a class="topbar-link" href="/staff/service-requests">商品售后办理</a>
+        <a id="buyer-link" class="topbar-link" href="/">返回买家查询</a>
+        <span id="access-identity"></span>
+        <button id="access-logout" class="text-button" type="button" hidden>退出</button>
+      </div>
+    </div>
+  </header>
+  <main class="wrap staff-workbench">
+    <section class="intro">
+      <h1>平台客服</h1>
+    </section>
+    <div class="workspace staff-workspace">
+      <section class="card" aria-labelledby="queue-title">
+        <div class="section-title">
+          <h2 id="queue-title">工单列表</h2>
+          <button id="refresh-queue" class="text-button" type="button">刷新</button>
+        </div>
+        <form id="staff-ticket-search" class="staff-ticket-search">
+          <label for="staff-status-filter">状态</label>
+          <select id="staff-status-filter" class="ticket-number">
+            <option value="all">全部状态</option>
+            <option value="pending">待处理</option>
+            <option value="resolved">已处理</option>
+          </select>
+          <label for="staff-search-number">工单号或订单号</label>
+          <div class="progress-controls">
+            <input id="staff-search-number" class="ticket-number policy-question" maxlength="20" placeholder="输入工单号或订单号">
+            <button class="text-button" type="submit">查询</button>
+          </div>
+        </form>
+        <p id="queue-feedback" class="ticket-feedback" role="status"></p>
+        <ul class="staff-queue" id="ticket-queue"></ul>
+        <nav id="staff-pages" class="staff-pages" aria-label="工单分页" hidden>
+          <button id="staff-prev-page" class="text-button" type="button">上一页</button>
+          <span id="staff-page-label" aria-live="polite"></span>
+          <button id="staff-next-page" class="text-button" type="button">下一页</button>
+        </nav>
+      </section>
+      <section class="card" aria-labelledby="detail-title">
+        <h2 id="detail-title">工单详情</h2>
+        <p id="detail-feedback" class="ticket-feedback" role="status">请选择一张工单。</p>
+        <div id="ticket-detail" hidden>
+          <dl class="facts">
+            <div><dt>工单号</dt><dd id="staff-ticket-no"></dd></div>
+            <div><dt>状态</dt><dd id="staff-status"></dd></div>
+            <div><dt>订单号</dt><dd><a id="staff-order" class="catalog-link"></a></dd></div>
+            <div class="staff-policy-fact"><dt>签收日期</dt><dd id="staff-signed"></dd></div>
+            <div class="staff-policy-fact"><dt>适用条款</dt><dd id="staff-policy"></dd></div>
+            <div class="staff-policy-fact"><dt>签收已过</dt><dd id="staff-elapsed"></dd></div>
+            <div class="staff-logistics-fact" hidden><dt>历史查询日</dt><dd id="staff-logistics-snapshot"></dd></div>
+            <div class="staff-logistics-fact" hidden><dt>预计送达</dt><dd id="staff-logistics-estimated"></dd></div>
+            <div class="staff-logistics-fact" hidden><dt>实际签收</dt><dd id="staff-logistics-delivered"></dd></div>
+          </dl>
+          <p id="staff-evidence" class="ticket-feedback"></p>
+          <section id="staff-olist-items" class="ticket-panel" aria-labelledby="staff-olist-items-title" hidden>
+            <h3 id="staff-olist-items-title">商品明细</h3>
+            <p id="staff-olist-items-summary" class="ticket-feedback"></p>
+            <ul id="staff-olist-items-rows" class="policy-sources"></ul>
+          </section>
+          <div id="staff-request-summary">
+            <h3 class="staff-subtitle">买家提交的原因</h3>
+            <p id="staff-reason" class="ticket-preview"></p>
+          </div>
+          <section id="staff-merchant-request" class="ticket-panel" aria-labelledby="staff-merchant-title" hidden>
+            <h3 id="staff-merchant-title">店铺处理记录</h3>
+            <p id="staff-merchant-reason" class="ticket-preview"></p>
+            <p id="staff-merchant-resolution" class="ticket-feedback"></p>
+          </section>
+          <section id="staff-handoff" class="ticket-handoff" aria-label="买家确认的对话交接" hidden></section>
+          <section id="policy-search-panel" class="ticket-panel" aria-labelledby="policy-search-title" hidden>
+            <h3 id="policy-search-title">查店铺条款</h3>
+            <form id="policy-search-form">
+              <label for="policy-question">想核对的条款问题</label>
+              <div class="progress-controls">
+                <input id="policy-question" class="ticket-number policy-question" type="text" maxlength="300" placeholder="例如：包装破损怎么处理？" required>
+                <button id="policy-submit" class="ticket-button" type="submit">检索条款</button>
+              </div>
+            </form>
+            <p id="policy-answer" class="ticket-feedback policy-answer" role="status"></p>
+            <ul id="policy-sources" class="policy-sources" aria-label="条款出处"></ul>
+          </section>
+          <form id="resolution-form" class="resolution-form">
+            <label for="resolution">处理说明</label>
+            <textarea id="resolution" rows="3" maxlength="300" placeholder="填写给买家查看的处理结果" required></textarea>
+            <button id="resolve-button" class="ticket-button" type="submit">保存处理结果</button>
+          </form>
+          <div id="saved-resolution" hidden>
+            <h3 class="staff-subtitle">处理说明</h3>
+            <p id="saved-note" class="ticket-preview"></p>
+            <p id="saved-time" class="ticket-feedback"></p>
+          </div>
+          <p id="resolution-feedback" class="ticket-feedback" role="status"></p>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,25 @@
+name: Docker fresh install
+
+on: [workflow_dispatch]
+
+permissions:
+  contents: read
+
+jobs:
+  clean-compose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - name: Prepare random local configuration
+        run: python -X utf8 -B -m scripts.init_workbench --prepare-config
+      - name: Start new PostgreSQL, Milvus and workbench volumes
+        run: |
+          docker pull postgres:17-alpine
+          docker pull registry-1.docker.io/milvusdb/milvus:v3.0.0
+          docker compose --profile workbench up -d --build --wait
+      - name: Check three roles and retrieval dependencies
+        run: docker compose --profile workbench exec -T workbench python -X utf8 -B -m scripts.check_container_deploy

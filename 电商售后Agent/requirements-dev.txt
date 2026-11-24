@@ -1,0 +1,3 @@
+# 安装工作台运行依赖和 FastAPI 测试客户端所需的 HTTPX。
+-r requirements.txt
+httpx==0.28.1

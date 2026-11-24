@@ -1,0 +1,38 @@
+<!doctype html>
+<!-- 买家、店铺客服和平台客服共用的登录页。 -->
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>登录 · 售后工作台</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/session.js" defer></script>
+</head>
+<body class="commerce-login">
+  <main class="commerce-login-layout">
+    <section class="commerce-login-art" aria-label="工作台预览">
+      <div class="postal-brand"><span aria-hidden="true">↶</span>商城售后</div>
+      <div class="portal-cover"><div class="portal-title" id="portal-title">我的订单</div>
+        <p id="portal-caption">查包裹、联系店铺，跟进每一笔售后。</p></div>
+      <div class="portal-roles" aria-label="预览角色工作台">
+        <button type="button" aria-pressed="true" data-preview="buyer">买家</button>
+        <button type="button" aria-pressed="false" data-preview="merchant">店铺</button>
+        <button type="button" aria-pressed="false" data-preview="staff">平台</button>
+      </div>
+    </section>
+    <section class="commerce-login-panel" aria-labelledby="login-title">
+      <h1 id="login-title">登录工作台</h1>
+      <p id="access-help">登录后进入对应的买家、店铺或平台工作台。</p>
+      <form id="access-login">
+        <label for="access-account">账号或中文名</label>
+        <input id="access-account" class="ticket-number" type="text" autocomplete="username" maxlength="40" required placeholder="例如 张三">
+        <label for="access-secret">登录口令</label>
+        <div class="secret-field"><input id="access-secret" class="ticket-number" type="password" autocomplete="current-password" maxlength="160" required aria-describedby="access-help">
+          <button id="secret-toggle" type="button" aria-label="显示口令" aria-pressed="false">显示</button></div>
+        <button id="access-submit" class="ticket-button" type="submit">登录 <span aria-hidden="true">→</span></button>
+      </form>
+      <p id="access-feedback" class="ticket-feedback" role="status"></p>
+    </section>
+  </main>
+</body>
+</html>

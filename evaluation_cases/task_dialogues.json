@@ -1,0 +1,36 @@
+{
+  "description":"新增任务状态评测；断言公开可见业务字段，不将词面命中等同于回答质量。",
+  "conversations":[
+    {"name":"并存问题逐项解决", "title":"桌面集线器", "turns":[
+      {"question":"少了一根连接线，主机插电也完全没反应。我想退货退款。","active_reasons":["missing","quality"],"kind":"return_refund"},
+      {"question":"线找到了，但主机依旧没反应，只退一件。","reason":"quality","quantity":1,"active_reasons":["quality"],"draft_state":"ready"},
+      {"question":"我没拍开箱视频，只有现在的照片。","reason":"quality","quantity":1,"reported_missing":"unboxing_video","reported_available":"photos"},
+      {"question":"这单原快递签收了吗？","reason":"quality","quantity":1,"topic":"logistics"},
+      {"question":"退货改成两件吧。","reason":"quality","quantity":2,"draft_quantity":2} ]},
+    {"name":"购买件数不等于申请件数", "title":"便携台灯", "turns":[
+      {"question":"灯闪个不停，我要退货退款。","reason":"quality","kind":"return_refund","draft_missing":"quantity"},
+      {"question":"我这单当时买了几件？","reason":"quality","topic":"product","quantity":null},
+      {"question":"只退其中一件。","reason":"quality","quantity":1,"draft_quantity":1},
+      {"question":"另一件先留着，把退的这件运费告诉我。","reason":"quality","quantity":1,"topic":"freight"} ]},
+    {"name":"暂停与恢复不谎称撤回", "title":"折叠风扇", "turns":[
+      {"question":"叶片转不起来，我想换一件。","reason":"quality","kind":"exchange","quantity":1},
+      {"question":"先别办，故障还在，我只是想考虑一下。","reason":"quality","paused":true,"not_submitted":true},
+      {"question":"给我查一下原来的物流。","reason":"quality","paused":true,"topic":"logistics"},
+      {"question":"考虑好了，还是换一件。","reason":"quality","kind":"exchange","quantity":1,"paused":false,"draft_state":"ready"} ]},
+    {"name":"凭证纠正与插问保留", "title":"玻璃保鲜盒", "turns":[
+      {"question":"开箱时玻璃就裂了，想退货退款。","reason":"quality","kind":"return_refund"},
+      {"question":"我没有开箱视频。","reported_missing":"unboxing_video"},
+      {"question":"刚才说错了，我有开箱视频，是家里人拍的。","reported_available":"unboxing_video"},
+      {"question":"那我就退一件。","quantity":1,"draft_quantity":1},
+      {"question":"照片要拍什么？","quantity":1,"reported_available":"unboxing_video","topic":"photos"} ]},
+    {"name":"全部退与超量申请", "title":"陶瓷马克杯", "turns":[
+      {"question":"杯子拿到就漏水，想退货退款。","reason":"quality","kind":"return_refund"},
+      {"question":"那全部退吧。","quantity_mode":"all_remaining","draft_quantity":2},
+      {"question":"改成退三件。","quantity":3,"draft_state":"needs_input","draft_missing":"quantity"},
+      {"question":"我说错了，只退一件。","quantity":1,"draft_quantity":1} ]},
+    {"name":"换规格与原商品区分", "title":"休闲外套", "turns":[
+      {"question":"这件穿着紧，帮我换大一码，先换一件。","reason":"wrong_purchase","kind":"exchange","quantity":1,"target":"大一码"},
+      {"question":"我原来买的是什么规格？","reason":"wrong_purchase","quantity":1,"target":"大一码","topic":"product"},
+      {"question":"不换大一码了，换成黑色XL。","reason":"wrong_purchase","kind":"exchange","quantity":1,"target":"黑色XL"} ]}
+  ]
+}

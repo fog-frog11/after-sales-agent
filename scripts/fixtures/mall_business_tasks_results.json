@@ -1,0 +1,2790 @@
+{
+  "verified_on": "2026-11-24",
+  "status": "verified_with_known_limits",
+  "python_tests": 296,
+  "release_gate": {
+    "passed": true,
+    "live": false,
+    "stages": [
+      {
+        "stage": "自动化",
+        "exit_code": 0
+      },
+      {
+        "stage": "确认事务",
+        "exit_code": 0
+      },
+      {
+        "stage": "三角色浏览器",
+        "exit_code": 0
+      },
+      {
+        "stage": "只读并发",
+        "exit_code": 0
+      }
+    ]
+  },
+  "confirmation_transactions": {
+    "checks": 9,
+    "passed": [
+      "跨买家和伪造确认卡被拒绝",
+      "重复确认不新增售后单或审计事件，变更请求不能复用旧回执",
+      "改口后旧卡失效，新卡按两件办理",
+      "无效照片没有半张售后单，修正后同一卡片可重试",
+      "店铺修改方案后旧确认卡失效，买家可确认拒绝新版方案",
+      "聊天确认平台介入后，平台队列显示同一原单",
+      "撤回及重复确认保留原单结果与审计",
+      "聊天回复补证并接受原单方案，金额采用店铺版本，接受不冒充已退款",
+      "聊天登记寄回运单并确认新收货资料，重复请求各只留一次事件"
+    ],
+    "multi_connection": false,
+    "concurrency_proof": [],
+    "database": "after_sales_v3_release_20261122",
+    "orders": [
+      "CN-8800883000",
+      "CN-8800911001",
+      "CN-8800918002",
+      "CN-8800922003",
+      "CN-8800924004",
+      "CN-8800928005"
+    ],
+    "data_retained": false,
+    "note": "验证真实业务事务与权限，不计为模型理解准确率。"
+  },
+  "read_concurrency": {
+    "passed": true,
+    "workers": 4,
+    "sessions": 20,
+    "authorized_reads": 20,
+    "foreign_reads_rejected": 20,
+    "p95_session_ms": 144.98,
+    "scope": "进程内HTTP与真实PostgreSQL只读小规模并发，不是网络吞吐压测"
+  },
+  "semantic_browser": {
+    "turns": 17,
+    "generated": 17,
+    "p50Ms": 4584.899999976158,
+    "p95Ms": 9668.399999976158
+  },
+  "fulfillment_browser": {
+    "passed": true,
+    "samples": [
+      {
+        "question": "主机插电不亮，我要换一件正常的。",
+        "result": {
+          "kinds": {
+            "repair": "维修",
+            "exchange": "换货",
+            "return_refund": "退货退款"
+          },
+          "route": "function_call",
+          "answer": "主机插电不亮，我理解你想换一件正常的；这款栖禾数码桌面集线器（银灰·4口）目前可以申请换货。\n目前还没有提交售后申请，需要你确认后才会提交；请核对下方卡片，确认无误后我再为你提交。",
+          "reason": "quality",
+          "topics": [
+            "eligibility"
+          ],
+          "case_no": null,
+          "freight": {
+            "advance": 9,
+            "message": "若店铺核实该原因属实，寄回运费由店铺承担。按当前寄回报价，先垫付 ¥9.00，店铺在办理时登记返还。"
+          },
+          "evidence": [],
+          "reference": {
+            "title": "栖禾数码 桌面集线器",
+            "item_no": 1,
+            "shop_id": "market-001",
+            "order_id": "CN-9877",
+            "package_no": 1,
+            "terms_version": 1
+          },
+          "retrieval": {
+            "routes": [
+              "scoped_bm25",
+              "milvus_bm25",
+              "milvus_dense",
+              "e5_dense",
+              "rrf",
+              "evidence_window_rerank",
+              "rrf_prior"
+            ],
+            "aspects": [
+              {
+                "label": "clarify",
+                "question": "主机插电不亮，我要换一件正常的。",
+                "supported": false,
+                "article_id": null
+              }
+            ],
+            "coverage": "unsupported",
+            "read_loop": {
+              "steps": [
+                {
+                  "step": 1,
+                  "tool": "search_purchase_policy",
+                  "query": "主机插电不亮，我要换一件正常的。",
+                  "coverage": "unsupported"
+                }
+              ],
+              "elapsed_ms": 4413.16,
+              "stop_reason": "model_stopped"
+            },
+            "candidates": 4,
+            "timings_ms": {
+              "total": 3373.56,
+              "queries": [
+                {
+                  "question": "主机插电不亮，我要换一件正常的。",
+                  "elapsed_ms": 287.67
+                }
+              ]
+            },
+            "used_for_answer": false
+          },
+          "tool_facts": {
+            "F1": {
+              "data": {
+                "title": "栖禾数码 桌面集线器",
+                "item_no": 1,
+                "shop_id": "market-001",
+                "variant": "银灰 · 4 口",
+                "order_id": "CN-9877",
+                "purchase_policy_version": 1
+              },
+              "kind": "item_identity"
+            },
+            "F2": {
+              "data": {
+                "case_exists": false,
+                "application_submitted": false
+              },
+              "kind": "case_absence"
+            },
+            "F3": {
+              "data": {
+                "stage": "delivered",
+                "reason": "quality",
+                "checked": true,
+                "transit": false,
+                "deadlines": {
+                  "repair": "2027-05-22",
+                  "exchange": "2026-12-23",
+                  "return_refund": "2026-12-23"
+                },
+                "window_days": {
+                  "repair": 180,
+                  "exchange": 30,
+                  "return_refund": 30
+                },
+                "reason_label": "质量问题",
+                "blocked_reason": null,
+                "available_kinds": {
+                  "repair": "维修",
+                  "exchange": "换货",
+                  "return_refund": "退货退款"
+                },
+                "existing_case_no": null,
+                "remaining_quantity": 3,
+                "return_required_by_kind": {
+                  "repair": true,
+                  "exchange": true,
+                  "return_refund": true
+                },
+                "requires_seller_verification": true
+              },
+              "kind": "eligibility"
+            },
+            "F4": {
+              "data": {
+                "issues": [
+                  {
+                    "id": "issue-1",
+                    "quote": "主机插电不亮",
+                    "state": "active",
+                    "reason": "quality",
+                    "reason_label": "质量问题"
+                  }
+                ],
+                "reason": "quality",
+                "evidence": [],
+                "description": "主机插电不亮",
+                "issue_state": "active",
+                "target_spec": null,
+                "quantity_mode": "explicit",
+                "requested_kind": "exchange",
+                "processing_paused": false,
+                "requested_quantity": 1,
+                "last_confirmed_action": null,
+                "desired_is_not_executed": true,
+                "target_spec_availability_verified": false,
+                "target_spec_requires_shop_confirmation": true
+              },
+              "kind": "customer_task"
+            },
+            "F5": {
+              "data": {
+                "max_photos": 3,
+                "photo_mime": [
+                  "image/jpeg",
+                  "image/png"
+                ],
+                "video_upload_supported": false,
+                "reported_material_can_be_described_in_note": true
+              },
+              "kind": "submission_channels"
+            },
+            "F6": {
+              "data": {
+                "preview": {
+                  "kind": "exchange",
+                  "note": "主机插电不亮",
+                  "label": "提交售后申请",
+                  "state": "ready",
+                  "title": "栖禾数码 桌面集线器",
+                  "action": "submit",
+                  "variant": "银灰 · 4 口",
+                  "quantity": 1,
+                  "kind_label": "换货",
+                  "reason_label": "质量问题",
+                  "photos_allowed": true,
+                  "max_product_refund": null
+                },
+                "executed": false,
+                "explicit_confirmation_required": true
+              },
+              "kind": "action_preview"
+            },
+            "F7": {
+              "data": {
+                "state": "ready",
+                "case_no": null,
+                "missing": [],
+                "preserved": {
+                  "kind": "exchange",
+                  "quantity": 1,
+                  "target_spec": null
+                },
+                "next_owner": "buyer",
+                "pending_action": "submit",
+                "execution_requires_confirmation": true
+              },
+              "kind": "task_progress"
+            }
+          },
+          "tool_trace": [
+            {
+              "tool": "eligibility",
+              "scope": "current_item",
+              "status": "completed"
+            }
+          ],
+          "eligibility": {
+            "message": "本单的质量问题退换期限至 2026-12-23，可以向店铺提交申请。",
+            "transit": false,
+            "next_step": null
+          },
+          "terms_title": "栖禾数码售后服务条款",
+          "action_draft": {
+            "id": "a3eec4cc-3b03-42a2-88f9-cb34768f124f",
+            "kind": "exchange",
+            "note": "主机插电不亮",
+            "label": "提交售后申请",
+            "state": "ready",
+            "title": "栖禾数码 桌面集线器",
+            "action": "submit",
+            "reason": "quality",
+            "item_no": 1,
+            "turn_no": "1590",
+            "variant": "银灰 · 4 口",
+            "order_id": "CN-9877",
+            "quantity": 1,
+            "kind_label": "换货",
+            "reason_label": "质量问题",
+            "terms_version": 1,
+            "photos_allowed": true,
+            "memory_revision": 1,
+            "memory_signature": "ad8b3c7cfc487303a414a876c50f2de4dd6fdf9d651d9c316a419d1fa623d8a3",
+            "max_product_refund": null,
+            "confirmation_required": true
+          },
+          "current_case": null,
+          "intervention": null,
+          "answer_source": "model",
+          "quick_replies": [],
+          "task_revision": 1,
+          "terms_version": 1,
+          "planned_topics": [
+            "eligibility"
+          ],
+          "task_signature": "ad8b3c7cfc487303a414a876c50f2de4dd6fdf9d651d9c316a419d1fa623d8a3",
+          "executed_topics": [
+            "eligibility"
+          ],
+          "current_question": "主机插电不亮，我要换一件正常的。",
+          "recommended_kind": "exchange",
+          "reset_suggestion": true,
+          "generation_status": "grounded",
+          "conversation_facts": {
+            "reason": "quality",
+            "requested_kind": "exchange",
+            "issue_description": "主机插电不亮"
+          },
+          "evidence_checklist": [
+            "商品全貌与故障或损坏位置",
+            "必要时附上外包装破损照片"
+          ],
+          "evidence_requested": false,
+          "suggested_quantity": 1,
+          "generation_attempts": 1,
+          "generation_reviewed": false,
+          "action_draft_relevant": true,
+          "suggested_description": "主机插电不亮"
+        }
+      },
+      {
+        "question": "我已经寄回了，运单号是SF1234567890，请帮我登记。",
+        "result": {
+          "kinds": {},
+          "route": "function_call",
+          "answer": "你提供的运单号SF1234567890我看到了，不过登记时还缺快递公司名称，麻烦你告诉我用的是哪家快递。",
+          "reason": null,
+          "topics": [
+            "return"
+          ],
+          "case_no": "170",
+          "freight": null,
+          "evidence": [],
+          "reference": {
+            "title": "栖禾数码 桌面集线器",
+            "item_no": 1,
+            "shop_id": "market-001",
+            "order_id": "CN-9877",
+            "package_no": 1,
+            "terms_version": 1
+          },
+          "tool_facts": {
+            "F1": {
+              "data": {
+                "title": "栖禾数码 桌面集线器",
+                "item_no": 1,
+                "shop_id": "market-001",
+                "variant": "银灰 · 4 口",
+                "order_id": "CN-9877",
+                "purchase_policy_version": 1
+              },
+              "kind": "item_identity"
+            },
+            "F2": {
+              "data": {
+                "kind": "exchange",
+                "owner": "买家",
+                "due_at": "2026-12-01T03:14:55.453363+00:00",
+                "status": "awaiting_return",
+                "case_no": "170",
+                "overdue": false,
+                "quantity": 1,
+                "status_label": "待买家寄回",
+                "buyer_actions": [
+                  "ship",
+                  "withdraw",
+                  "evidence"
+                ],
+                "pending_offer": null,
+                "accepted_offer": null
+              },
+              "kind": "case"
+            },
+            "F3": {
+              "data": {
+                "due_at": "2026-12-01T03:14:55.453363+00:00",
+                "status": "awaiting_return",
+                "case_no": "170",
+                "details": null,
+                "details_pending": false,
+                "transit_request": null,
+                "carrier_returned": false,
+                "interception_failed": false
+              },
+              "kind": "return_parcel"
+            },
+            "F4": {
+              "data": {
+                "form": "return_tracking",
+                "case_no": "170",
+                "waiting_for": "buyer_tracking",
+                "submit_allowed": true,
+                "required_fields": [
+                  "carrier",
+                  "tracking"
+                ],
+                "must_use_current_case": true,
+                "chat_submission_supported": true
+              },
+              "kind": "handling_form"
+            },
+            "F5": {
+              "data": {
+                "issues": [
+                  {
+                    "id": "issue-1",
+                    "quote": "主机插电不亮",
+                    "state": "active",
+                    "reason": "quality",
+                    "reason_label": "质量问题"
+                  }
+                ],
+                "reason": "quality",
+                "evidence": [],
+                "description": "主机插电不亮",
+                "issue_state": "active",
+                "target_spec": null,
+                "quantity_mode": "explicit",
+                "requested_kind": "exchange",
+                "processing_paused": false,
+                "requested_quantity": 1,
+                "last_confirmed_action": {
+                  "label": "提交售后申请",
+                  "action": "submit",
+                  "status": "submitted",
+                  "case_no": "170",
+                  "item_no": 1,
+                  "draft_id": "a3eec4cc-3b03-42a2-88f9-cb34768f124f",
+                  "order_id": "CN-9877",
+                  "is_active": true,
+                  "confirmed_at": "2026-11-24T11:14:54.789278+08:00",
+                  "operation_id": "a3eec4cc-3b03-42a2-88f9-cb34768f124f",
+                  "status_label": "待店铺响应"
+                },
+                "desired_is_not_executed": true,
+                "target_spec_availability_verified": false,
+                "target_spec_requires_shop_confirmation": true
+              },
+              "kind": "customer_task"
+            },
+            "F6": {
+              "data": {
+                "max_photos": 3,
+                "photo_mime": [
+                  "image/jpeg",
+                  "image/png"
+                ],
+                "video_upload_supported": false,
+                "reported_material_can_be_described_in_note": true
+              },
+              "kind": "submission_channels"
+            },
+            "F7": {
+              "data": {
+                "fields": {
+                  "tracking": "SF1234567890"
+                },
+                "case_no": "170",
+                "submitted": false
+              },
+              "kind": "fulfillment_draft"
+            },
+            "F8": {
+              "data": {
+                "preview": {
+                  "state": "needs_input",
+                  "action": "ship",
+                  "case_no": "170",
+                  "missing": [
+                    "carrier"
+                  ]
+                },
+                "executed": false,
+                "explicit_confirmation_required": true
+              },
+              "kind": "action_preview"
+            }
+          },
+          "tool_trace": [
+            {
+              "tool": "return",
+              "scope": "current_item",
+              "status": "completed"
+            }
+          ],
+          "eligibility": null,
+          "terms_title": "栖禾数码售后服务条款",
+          "action_draft": {
+            "state": "needs_input",
+            "action": "ship",
+            "case_no": "170",
+            "missing": [
+              "carrier"
+            ]
+          },
+          "current_case": {
+            "status": "awaiting_return",
+            "case_no": "170",
+            "is_active": true,
+            "intervention": {
+              "state": "waiting",
+              "message": "当前步骤需要你按原单说明寄回商品。请先完成寄回操作。"
+            },
+            "status_label": "待买家寄回"
+          },
+          "intervention": null,
+          "answer_source": "model",
+          "quick_replies": [],
+          "task_revision": 3,
+          "terms_version": 1,
+          "planned_topics": [
+            "return"
+          ],
+          "task_signature": "6a61dcbc5648522589892e67132d07166e85ec3fc90953ef5b6461999b1e97e9",
+          "executed_topics": [
+            "return"
+          ],
+          "current_question": "我已经寄回了，运单号是SF1234567890，请帮我登记。",
+          "reset_suggestion": false,
+          "generation_status": "grounded",
+          "business_read_loop": {
+            "status": "completed",
+            "added_topics": [],
+            "observed_case": {
+              "owner": "买家",
+              "status": "awaiting_return",
+              "actions": [
+                "ship",
+                "withdraw",
+                "evidence"
+              ],
+              "case_no": "170",
+              "status_label": "待买家寄回",
+              "outbound_pending": false,
+              "return_details_pending": false
+            }
+          },
+          "conversation_facts": {
+            "reason": "quality",
+            "requested_kind": "exchange",
+            "issue_description": "主机插电不亮"
+          },
+          "evidence_checklist": [],
+          "suggested_quantity": 1,
+          "generation_attempts": 1,
+          "generation_reviewed": false,
+          "action_draft_relevant": true,
+          "suggested_description": null
+        }
+      },
+      {
+        "question": "用的是顺丰快递。",
+        "result": {
+          "kinds": {},
+          "route": "function_call",
+          "answer": "好的，顺丰快递，运单号SF1234567890，我先帮你核对一下登记信息。\n请核对确认卡片，确认后即可登记寄回运单。",
+          "reason": null,
+          "topics": [
+            "return"
+          ],
+          "case_no": "170",
+          "freight": null,
+          "evidence": [],
+          "reference": {
+            "title": "栖禾数码 桌面集线器",
+            "item_no": 1,
+            "shop_id": "market-001",
+            "order_id": "CN-9877",
+            "package_no": 1,
+            "terms_version": 1
+          },
+          "tool_facts": {
+            "F1": {
+              "data": {
+                "title": "栖禾数码 桌面集线器",
+                "item_no": 1,
+                "shop_id": "market-001",
+                "variant": "银灰 · 4 口",
+                "order_id": "CN-9877",
+                "purchase_policy_version": 1
+              },
+              "kind": "item_identity"
+            },
+            "F2": {
+              "data": {
+                "kind": "exchange",
+                "owner": "买家",
+                "due_at": "2026-12-01T03:14:55.453363+00:00",
+                "status": "awaiting_return",
+                "case_no": "170",
+                "overdue": false,
+                "quantity": 1,
+                "status_label": "待买家寄回",
+                "buyer_actions": [
+                  "ship",
+                  "withdraw",
+                  "evidence"
+                ],
+                "pending_offer": null,
+                "accepted_offer": null
+              },
+              "kind": "case"
+            },
+            "F3": {
+              "data": {
+                "due_at": "2026-12-01T03:14:55.453363+00:00",
+                "status": "awaiting_return",
+                "case_no": "170",
+                "details": null,
+                "details_pending": false,
+                "transit_request": null,
+                "carrier_returned": false,
+                "interception_failed": false
+              },
+              "kind": "return_parcel"
+            },
+            "F4": {
+              "data": {
+                "form": "return_tracking",
+                "case_no": "170",
+                "waiting_for": "buyer_tracking",
+                "submit_allowed": true,
+                "required_fields": [
+                  "carrier",
+                  "tracking"
+                ],
+                "must_use_current_case": true,
+                "chat_submission_supported": true
+              },
+              "kind": "handling_form"
+            },
+            "F5": {
+              "data": {
+                "issues": [
+                  {
+                    "id": "issue-1",
+                    "quote": "主机插电不亮",
+                    "state": "active",
+                    "reason": "quality",
+                    "reason_label": "质量问题"
+                  }
+                ],
+                "reason": "quality",
+                "evidence": [],
+                "description": "主机插电不亮",
+                "issue_state": "active",
+                "target_spec": null,
+                "quantity_mode": "explicit",
+                "requested_kind": "exchange",
+                "processing_paused": false,
+                "requested_quantity": 1,
+                "last_confirmed_action": {
+                  "label": "提交售后申请",
+                  "action": "submit",
+                  "status": "submitted",
+                  "case_no": "170",
+                  "item_no": 1,
+                  "draft_id": "a3eec4cc-3b03-42a2-88f9-cb34768f124f",
+                  "order_id": "CN-9877",
+                  "is_active": true,
+                  "confirmed_at": "2026-11-24T11:14:54.789278+08:00",
+                  "operation_id": "a3eec4cc-3b03-42a2-88f9-cb34768f124f",
+                  "status_label": "待店铺响应"
+                },
+                "desired_is_not_executed": true,
+                "target_spec_availability_verified": false,
+                "target_spec_requires_shop_confirmation": true
+              },
+              "kind": "customer_task"
+            },
+            "F6": {
+              "data": {
+                "max_photos": 3,
+                "photo_mime": [
+                  "image/jpeg",
+                  "image/png"
+                ],
+                "video_upload_supported": false,
+                "reported_material_can_be_described_in_note": true
+              },
+              "kind": "submission_channels"
+            },
+            "F7": {
+              "data": {
+                "fields": {
+                  "carrier": "顺丰",
+                  "tracking": "SF1234567890"
+                },
+                "case_no": "170",
+                "submitted": false
+              },
+              "kind": "fulfillment_draft"
+            },
+            "F8": {
+              "data": {
+                "preview": {
+                  "kind": "exchange",
+                  "note": "我已经寄回了，运单号是SF1234567890，请帮我登记。",
+                  "label": "登记寄回运单",
+                  "offer": null,
+                  "state": "ready",
+                  "title": "栖禾数码 桌面集线器",
+                  "action": "ship",
+                  "case_no": "170",
+                  "payload": {
+                    "carrier": "顺丰",
+                    "tracking": "SF1234567890"
+                  },
+                  "variant": "银灰 · 4 口",
+                  "quantity": 1,
+                  "photos_allowed": false
+                },
+                "executed": false,
+                "explicit_confirmation_required": true
+              },
+              "kind": "action_preview"
+            }
+          },
+          "tool_trace": [
+            {
+              "tool": "return",
+              "scope": "current_item",
+              "status": "completed"
+            }
+          ],
+          "eligibility": null,
+          "terms_title": "栖禾数码售后服务条款",
+          "action_draft": {
+            "id": "7735a6fc-b0eb-48ed-a34e-4894141c9735",
+            "kind": "exchange",
+            "note": "我已经寄回了，运单号是SF1234567890，请帮我登记。",
+            "label": "登记寄回运单",
+            "offer": null,
+            "state": "ready",
+            "title": "栖禾数码 桌面集线器",
+            "action": "ship",
+            "case_no": "170",
+            "item_no": 1,
+            "payload": {
+              "carrier": "顺丰",
+              "tracking": "SF1234567890"
+            },
+            "turn_no": "1592",
+            "variant": "银灰 · 4 口",
+            "order_id": "CN-9877",
+            "quantity": 1,
+            "case_signature": "361d62df0b66e3f5f84677e2a36f6eb5437f50dc3e8fec7976a00b3144172c39",
+            "photos_allowed": false,
+            "memory_revision": 4,
+            "memory_signature": "49eab30fa465dc8657ff18ec2f5626be0f7d90bb4b67606e6d51baeb5f8ce9a5",
+            "confirmation_required": true
+          },
+          "current_case": {
+            "status": "awaiting_return",
+            "case_no": "170",
+            "is_active": true,
+            "intervention": {
+              "state": "waiting",
+              "message": "当前步骤需要你按原单说明寄回商品。请先完成寄回操作。"
+            },
+            "status_label": "待买家寄回"
+          },
+          "intervention": null,
+          "answer_source": "model",
+          "quick_replies": [],
+          "task_revision": 4,
+          "terms_version": 1,
+          "planned_topics": [
+            "return"
+          ],
+          "task_signature": "49eab30fa465dc8657ff18ec2f5626be0f7d90bb4b67606e6d51baeb5f8ce9a5",
+          "executed_topics": [
+            "return"
+          ],
+          "current_question": "用的是顺丰快递。",
+          "reset_suggestion": false,
+          "generation_status": "grounded",
+          "business_read_loop": {
+            "status": "completed",
+            "added_topics": [],
+            "observed_case": {
+              "owner": "买家",
+              "status": "awaiting_return",
+              "actions": [
+                "ship",
+                "withdraw",
+                "evidence"
+              ],
+              "case_no": "170",
+              "status_label": "待买家寄回",
+              "outbound_pending": false,
+              "return_details_pending": false
+            }
+          },
+          "conversation_facts": {
+            "reason": "quality",
+            "requested_kind": "exchange",
+            "issue_description": "主机插电不亮"
+          },
+          "evidence_checklist": [],
+          "suggested_quantity": 1,
+          "generation_attempts": 1,
+          "generation_reviewed": false,
+          "action_draft_relevant": true,
+          "suggested_description": null
+        }
+      },
+      {
+        "question": "新收件人李四，地址杭州市西湖区示例路八号，电话13800000001，请按这个地址寄换货。",
+        "result": {
+          "kinds": {},
+          "route": "function_call",
+          "answer": "你提供的收件人李四、地址杭州市西湖区示例路八号、电话13800000001，已准备好用于售后单170的换货收货信息。\n请核对确认卡片，确认后才会保存这份收货信息。",
+          "reason": null,
+          "topics": [
+            "outbound",
+            "original_shipping",
+            "offer",
+            "progress"
+          ],
+          "case_no": "170",
+          "freight": null,
+          "evidence": [],
+          "reference": {
+            "title": "栖禾数码 桌面集线器",
+            "item_no": 1,
+            "shop_id": "market-001",
+            "order_id": "CN-9877",
+            "package_no": 1,
+            "terms_version": 1
+          },
+          "tool_facts": {
+            "F1": {
+              "data": {
+                "title": "栖禾数码 桌面集线器",
+                "item_no": 1,
+                "shop_id": "market-001",
+                "variant": "银灰 · 4 口",
+                "order_id": "CN-9877",
+                "purchase_policy_version": 1
+              },
+              "kind": "item_identity"
+            },
+            "F2": {
+              "data": {
+                "amount": null,
+                "recorded": false,
+                "refund_of_shipping_checked": false
+              },
+              "kind": "original_shipping"
+            },
+            "F3": {
+              "data": {
+                "kind": "exchange",
+                "owner": "买家",
+                "due_at": null,
+                "status": "received",
+                "case_no": "170",
+                "overdue": false,
+                "quantity": 1,
+                "status_label": "待买家确认收货信息",
+                "buyer_actions": [
+                  "confirm_delivery_address",
+                  "evidence"
+                ],
+                "pending_offer": null,
+                "accepted_offer": null
+              },
+              "kind": "case"
+            },
+            "F4": {
+              "data": {
+                "refund": {
+                  "product": {
+                    "label": "未登记商品退款",
+                    "lines": [],
+                    "state": "unrecorded",
+                    "amount": null,
+                    "message": "这张单暂无商品退款登记。",
+                    "result_at": null,
+                    "started_at": null
+                  },
+                  "return_shipping": {
+                    "state": "quoted",
+                    "message": "寄回运费由店铺承担。条款报价 ¥9.00，买家预计垫付 ¥9.00，该笔垫付待店铺登记返还。"
+                  },
+                  "original_shipping": {
+                    "paid": null,
+                    "message": "原配送费实付金额待核实，当前售后单暂无配送费退款记录。"
+                  }
+                },
+                "refund_attempt": null,
+                "recorded_refund": null,
+                "bank_arrival_verified": false,
+                "return_reimbursement_due": "9.00"
+              },
+              "kind": "case_finance"
+            },
+            "F5": {
+              "data": {
+                "reply": null,
+                "parcel": null,
+                "review": null,
+                "awaiting_address_confirmation": true
+              },
+              "kind": "outbound_parcel"
+            },
+            "F6": {
+              "data": {
+                "form": "delivery_address",
+                "case_no": "170",
+                "waiting_for": "buyer_confirmation",
+                "required_fields": [
+                  "recipient",
+                  "address",
+                  "phone"
+                ],
+                "must_use_current_case": true,
+                "chat_submission_supported": true
+              },
+              "kind": "handling_form"
+            },
+            "F7": {
+              "data": {
+                "issues": [
+                  {
+                    "id": "issue-1",
+                    "quote": "主机插电不亮",
+                    "state": "active",
+                    "reason": "quality",
+                    "reason_label": "质量问题"
+                  }
+                ],
+                "reason": "quality",
+                "evidence": [],
+                "description": "主机插电不亮",
+                "issue_state": "active",
+                "target_spec": null,
+                "quantity_mode": "explicit",
+                "requested_kind": "exchange",
+                "processing_paused": false,
+                "requested_quantity": 1,
+                "last_confirmed_action": {
+                  "label": "登记寄回运单",
+                  "action": "ship",
+                  "status": "return_sent",
+                  "case_no": "170",
+                  "item_no": 1,
+                  "draft_id": "7735a6fc-b0eb-48ed-a34e-4894141c9735",
+                  "order_id": "CN-9877",
+                  "is_active": true,
+                  "confirmed_at": "2026-11-24T11:15:08.374364+08:00",
+                  "operation_id": "7735a6fc-b0eb-48ed-a34e-4894141c9735",
+                  "status_label": "待店铺确认收件"
+                },
+                "desired_is_not_executed": true,
+                "target_spec_availability_verified": false,
+                "target_spec_requires_shop_confirmation": true
+              },
+              "kind": "customer_task"
+            },
+            "F8": {
+              "data": {
+                "max_photos": 3,
+                "photo_mime": [
+                  "image/jpeg",
+                  "image/png"
+                ],
+                "video_upload_supported": false,
+                "reported_material_can_be_described_in_note": true
+              },
+              "kind": "submission_channels"
+            },
+            "F9": {
+              "data": {
+                "fields": {
+                  "phone": "13800000001",
+                  "address": "杭州市西湖区示例路八号",
+                  "recipient": "李四"
+                },
+                "case_no": "170",
+                "submitted": false
+              },
+              "kind": "fulfillment_draft"
+            },
+            "F10": {
+              "data": {
+                "preview": {
+                  "kind": "exchange",
+                  "note": "请按这个地址寄换货",
+                  "label": "确认售后收货信息",
+                  "offer": null,
+                  "state": "ready",
+                  "title": "栖禾数码 桌面集线器",
+                  "action": "confirm_delivery_address",
+                  "case_no": "170",
+                  "payload": {
+                    "delivery_address": {
+                      "phone": "13800000001",
+                      "address": "杭州市西湖区示例路八号",
+                      "recipient": "李四"
+                    },
+                    "delivery_parcel_no": null,
+                    "delivery_address_version": null
+                  },
+                  "variant": "银灰 · 4 口",
+                  "quantity": 1,
+                  "photos_allowed": false
+                },
+                "executed": false,
+                "explicit_confirmation_required": true
+              },
+              "kind": "action_preview"
+            },
+            "F11": {
+              "data": {
+                "state": "existing_case",
+                "case_no": "170",
+                "missing": [],
+                "preserved": {
+                  "kind": "exchange",
+                  "quantity": 1,
+                  "target_spec": null
+                },
+                "next_owner": "买家",
+                "pending_action": "confirm_delivery_address",
+                "execution_requires_confirmation": true
+              },
+              "kind": "task_progress"
+            }
+          },
+          "tool_trace": [
+            {
+              "tool": "outbound",
+              "scope": "current_item",
+              "status": "completed"
+            },
+            {
+              "tool": "original_shipping",
+              "scope": "current_item",
+              "status": "completed"
+            },
+            {
+              "tool": "offer",
+              "scope": "current_item",
+              "status": "completed"
+            },
+            {
+              "tool": "progress",
+              "scope": "current_item",
+              "status": "completed"
+            }
+          ],
+          "eligibility": null,
+          "terms_title": "栖禾数码售后服务条款",
+          "action_draft": {
+            "id": "7310f712-62d0-47f0-8c12-1c1fb2fc180e",
+            "kind": "exchange",
+            "note": "请按这个地址寄换货",
+            "label": "确认售后收货信息",
+            "offer": null,
+            "state": "ready",
+            "title": "栖禾数码 桌面集线器",
+            "action": "confirm_delivery_address",
+            "case_no": "170",
+            "item_no": 1,
+            "payload": {
+              "delivery_address": {
+                "phone": "13800000001",
+                "address": "杭州市西湖区示例路八号",
+                "recipient": "李四"
+              },
+              "delivery_parcel_no": null,
+              "delivery_address_version": null
+            },
+            "turn_no": "1593",
+            "variant": "银灰 · 4 口",
+            "order_id": "CN-9877",
+            "quantity": 1,
+            "case_signature": "165f51318ef753ea3d6c2b313b8f631b4605650182cbf7eb889033d9956c2498",
+            "photos_allowed": false,
+            "memory_revision": 6,
+            "memory_signature": "e3f38ec3b4376ff4bce47e1c8d6efada87cd22b54c425c3ed2a19143b9b3e3b8",
+            "confirmation_required": true
+          },
+          "current_case": {
+            "status": "received",
+            "case_no": "170",
+            "is_active": true,
+            "intervention": {
+              "state": "waiting",
+              "message": "请先确认本次售后寄出需要使用的收货信息。"
+            },
+            "status_label": "待买家确认收货信息"
+          },
+          "intervention": null,
+          "answer_source": "model",
+          "quick_replies": [],
+          "task_revision": 6,
+          "terms_version": 1,
+          "planned_topics": [
+            "outbound",
+            "original_shipping",
+            "offer",
+            "next_step"
+          ],
+          "task_signature": "e3f38ec3b4376ff4bce47e1c8d6efada87cd22b54c425c3ed2a19143b9b3e3b8",
+          "executed_topics": [
+            "outbound",
+            "original_shipping",
+            "offer",
+            "progress"
+          ],
+          "current_question": "新收件人李四，地址杭州市西湖区示例路八号，电话13800000001，请按这个地址寄换货。",
+          "reset_suggestion": false,
+          "generation_status": "grounded",
+          "business_read_loop": {
+            "status": "completed",
+            "added_topics": [
+              "original_shipping",
+              "offer",
+              "next_step"
+            ],
+            "observed_case": {
+              "owner": "买家",
+              "status": "received",
+              "actions": [
+                "confirm_delivery_address",
+                "evidence"
+              ],
+              "case_no": "170",
+              "status_label": "待买家确认收货信息",
+              "outbound_pending": true,
+              "return_details_pending": false
+            }
+          },
+          "conversation_facts": {
+            "reason": "quality",
+            "requested_kind": "exchange",
+            "issue_description": "主机插电不亮"
+          },
+          "evidence_checklist": [],
+          "suggested_quantity": 1,
+          "generation_attempts": 1,
+          "generation_reviewed": true,
+          "action_draft_relevant": true,
+          "suggested_description": null
+        }
+      },
+      {
+        "question": "现在等谁处理，为什么还没发出？",
+        "result": {
+          "kinds": {},
+          "route": "function_call",
+          "answer": "这笔换货（售后单170）现在由店铺客服处理，状态是待店铺发出新包裹，预计处理时限到2026-11-26 11:15。\n新包裹目前还在备货阶段，还没有交寄，所以暂时没有物流单号。",
+          "reason": null,
+          "topics": [
+            "progress",
+            "outbound",
+            "progress"
+          ],
+          "case_no": "170",
+          "freight": null,
+          "evidence": [],
+          "reference": {
+            "title": "栖禾数码 桌面集线器",
+            "item_no": 1,
+            "shop_id": "market-001",
+            "order_id": "CN-9877",
+            "package_no": 1,
+            "terms_version": 1
+          },
+          "tool_facts": {
+            "F1": {
+              "data": {
+                "title": "栖禾数码 桌面集线器",
+                "item_no": 1,
+                "shop_id": "market-001",
+                "variant": "银灰 · 4 口",
+                "order_id": "CN-9877",
+                "purchase_policy_version": 1
+              },
+              "kind": "item_identity"
+            },
+            "F2": {
+              "data": {
+                "kind": "exchange",
+                "owner": "店铺客服",
+                "due_at": "2026-11-26T03:15:15.447861+00:00",
+                "status": "received",
+                "case_no": "170",
+                "overdue": false,
+                "quantity": 1,
+                "status_label": "待店铺发出新包裹",
+                "buyer_actions": [
+                  "confirm_delivery_address",
+                  "evidence"
+                ],
+                "pending_offer": null,
+                "accepted_offer": null
+              },
+              "kind": "case"
+            },
+            "F3": {
+              "data": {
+                "reply": null,
+                "parcel": {
+                  "stage": "ready",
+                  "carrier": null,
+                  "problem": null,
+                  "tracking": null,
+                  "parcel_no": "38",
+                  "shipped_at": null,
+                  "received_at": null
+                },
+                "review": null,
+                "awaiting_address_confirmation": false
+              },
+              "kind": "outbound_parcel"
+            },
+            "F4": {
+              "data": {
+                "issues": [
+                  {
+                    "id": "issue-1",
+                    "quote": "主机插电不亮",
+                    "state": "active",
+                    "reason": "quality",
+                    "reason_label": "质量问题"
+                  }
+                ],
+                "reason": "quality",
+                "evidence": [],
+                "description": "主机插电不亮",
+                "issue_state": "active",
+                "target_spec": null,
+                "quantity_mode": "explicit",
+                "requested_kind": "exchange",
+                "processing_paused": false,
+                "requested_quantity": 1,
+                "last_confirmed_action": {
+                  "label": "确认售后收货信息",
+                  "action": "confirm_delivery_address",
+                  "status": "received",
+                  "case_no": "170",
+                  "item_no": 1,
+                  "draft_id": "7310f712-62d0-47f0-8c12-1c1fb2fc180e",
+                  "order_id": "CN-9877",
+                  "is_active": true,
+                  "confirmed_at": "2026-11-24T11:15:15.468958+08:00",
+                  "operation_id": "7310f712-62d0-47f0-8c12-1c1fb2fc180e",
+                  "status_label": "待店铺发出新包裹"
+                },
+                "desired_is_not_executed": true,
+                "target_spec_availability_verified": false,
+                "target_spec_requires_shop_confirmation": true
+              },
+              "kind": "customer_task"
+            }
+          },
+          "tool_trace": [
+            {
+              "tool": "progress",
+              "scope": "current_item",
+              "status": "completed"
+            },
+            {
+              "tool": "outbound",
+              "scope": "current_item",
+              "status": "completed"
+            },
+            {
+              "tool": "progress",
+              "scope": "current_item",
+              "status": "completed"
+            }
+          ],
+          "eligibility": null,
+          "terms_title": "栖禾数码售后服务条款",
+          "current_case": {
+            "status": "received",
+            "case_no": "170",
+            "is_active": true,
+            "intervention": {
+              "state": "waiting",
+              "message": "店铺正在准备发出新包裹。超过发货期限后，可申请平台处理。"
+            },
+            "status_label": "待店铺发出新包裹"
+          },
+          "intervention": null,
+          "answer_source": "model",
+          "quick_replies": [],
+          "task_revision": 7,
+          "terms_version": 1,
+          "planned_topics": [
+            "progress",
+            "outbound",
+            "next_step"
+          ],
+          "task_signature": "ad8b3c7cfc487303a414a876c50f2de4dd6fdf9d651d9c316a419d1fa623d8a3",
+          "executed_topics": [
+            "progress",
+            "outbound",
+            "progress"
+          ],
+          "current_question": "现在等谁处理，为什么还没发出？",
+          "reset_suggestion": false,
+          "generation_status": "grounded",
+          "business_read_loop": {
+            "status": "completed",
+            "added_topics": [
+              "next_step"
+            ],
+            "observed_case": {
+              "owner": "店铺客服",
+              "status": "received",
+              "actions": [
+                "confirm_delivery_address",
+                "evidence"
+              ],
+              "case_no": "170",
+              "status_label": "待店铺发出新包裹",
+              "outbound_pending": true,
+              "return_details_pending": false
+            }
+          },
+          "conversation_facts": {
+            "reason": "quality",
+            "requested_kind": "exchange",
+            "issue_description": "主机插电不亮"
+          },
+          "evidence_checklist": [],
+          "suggested_quantity": 1,
+          "generation_attempts": 1,
+          "generation_reviewed": false,
+          "action_draft_relevant": true,
+          "suggested_description": null
+        }
+      }
+    ],
+    "case_no": "170",
+    "database_rolled_back": true
+  },
+  "external_corpus_initial": {
+    "dataset": "QingshanAI/ecom-after-sale-synthetic",
+    "sha256": "b84df0ac6a7408ba17223ed3c0ca1afe8adb2fd9f8beea8edc75f7f35be9cb91",
+    "with_examples": false,
+    "split": "final",
+    "semantic": true,
+    "total": 30,
+    "passed": 28,
+    "fallbacks": 0,
+    "rows": [
+      {
+        "line": 97,
+        "required": [
+          "eligibility"
+        ],
+        "question": "这个商品有问题，能帮我退换吗？",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "expected_vs_actual",
+          "question": "商品具体出现了什么问题，实际收到或使用的情况和预期有什么差别？"
+        },
+        "observation": {
+          "quote": "这个商品有问题，能帮我退换吗？",
+          "issue_state": "unclear"
+        },
+        "passed": true,
+        "ms": 2396
+      },
+      {
+        "line": 101,
+        "required": [
+          "eligibility"
+        ],
+        "reason": "wrong_purchase",
+        "question": "这个杯子太小了，不想要了。",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "这个杯子太小了，不想要了。",
+          "issue_quote": "这个杯子太小了，不想要了。",
+          "issue_state": "active",
+          "reason": "wrong_purchase",
+          "requested_kind": "return_refund"
+        },
+        "passed": true,
+        "ms": 2598
+      },
+      {
+        "line": 111,
+        "required": [
+          "eligibility"
+        ],
+        "question": "收到的鞋子有异味，影响使用体验怎么办？",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "收到的鞋子有异味，影响使用体验怎么办？",
+          "issue_quote": "收到的鞋子有异味，影响使用体验",
+          "issue_state": "active",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 2609
+      },
+      {
+        "line": 117,
+        "required": [
+          "eligibility"
+        ],
+        "question": "商品有问题，你们怎么解决？",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "expected_vs_actual",
+          "question": "商品具体出现了什么问题，比如损坏、少件还是和描述不符？"
+        },
+        "observation": {
+          "quote": "商品有问题，你们怎么解决？",
+          "issue_state": "unclear"
+        },
+        "passed": true,
+        "ms": 1845
+      },
+      {
+        "line": 122,
+        "required": [
+          "fit_exchange"
+        ],
+        "question": "收到的这件衣服尺码不对，能帮我换一下吗？",
+        "topics": [
+          "fit_exchange",
+          "eligibility"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "expected_vs_actual",
+          "question": "您想换成哪个尺码呢？"
+        },
+        "observation": {
+          "quote": "收到的这件衣服尺码不对，能帮我换一下吗？",
+          "issue_quote": "收到的这件衣服尺码不对",
+          "issue_state": "active",
+          "reason": "wrong_purchase",
+          "requested_kind": "exchange"
+        },
+        "passed": true,
+        "ms": 1923
+      },
+      {
+        "line": 209,
+        "required": [
+          "eligibility"
+        ],
+        "question": "收到的货物颜色跟描述的根本不一样，这该怎么办？",
+        "topics": [
+          "eligibility",
+          "product"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "收到的货物颜色跟描述的根本不一样，这该怎么办？",
+          "issue_quote": "收到的货物颜色跟描述的根本不一样",
+          "issue_state": "active",
+          "reason": "wrong_item"
+        },
+        "passed": true,
+        "ms": 1568
+      },
+      {
+        "line": 211,
+        "required": [
+          "logistics",
+          "platform"
+        ],
+        "question": "你们发错地址导致我没收到东西，我要投诉！",
+        "topics": [
+          "logistics",
+          "platform",
+          "eligibility"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "你们发错地址导致我没收到东西，我要投诉！",
+          "issue_quote": "你们发错地址导致我没收到东西",
+          "issue_state": "active",
+          "reason": "not_received",
+          "requested_kind": "refund_only"
+        },
+        "passed": true,
+        "ms": 1696
+      },
+      {
+        "line": 275,
+        "required": [
+          "eligibility"
+        ],
+        "question": "我买的新手机有问题，屏幕显示异常，怎么办？",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "我买的新手机有问题，屏幕显示异常，怎么办？",
+          "issue_quote": "屏幕显示异常",
+          "issue_state": "active",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 1965
+      },
+      {
+        "line": 279,
+        "required": [
+          "fit_exchange"
+        ],
+        "question": "这件衣服尺码不对，想要换一下。",
+        "topics": [
+          "fit_exchange",
+          "eligibility"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "expected_vs_actual",
+          "question": "您想换成哪个尺码呢？"
+        },
+        "observation": {
+          "quote": "这件衣服尺码不对，想要换一下。",
+          "issue_quote": "这件衣服尺码不对",
+          "issue_state": "active",
+          "reason": "wrong_purchase",
+          "requested_kind": "exchange"
+        },
+        "passed": true,
+        "ms": 2251
+      },
+      {
+        "line": 310,
+        "required": [
+          "eligibility"
+        ],
+        "question": "收到的商品是假货，我要退货！",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "收到的商品是假货，我要退货！",
+          "issue_quote": "收到的商品是假货",
+          "issue_state": "active",
+          "reason": "quality",
+          "requested_kind": "return_refund"
+        },
+        "passed": true,
+        "ms": 1963
+      },
+      {
+        "line": 314,
+        "required": [
+          "photos"
+        ],
+        "question": "收到的商品包装破损了怎么办？",
+        "topics": [
+          "eligibility",
+          "shop_guidance"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "affected_part",
+          "question": "请问是只有外包装或纸盒破损，还是里面的商品本身也有损坏？"
+        },
+        "observation": {
+          "quote": "收到的商品包装破损了怎么办？",
+          "issue_quote": "收到的商品包装破损了",
+          "issue_state": "unclear"
+        },
+        "passed": false,
+        "ms": 1774
+      },
+      {
+        "line": 377,
+        "required": [
+          "fit_exchange"
+        ],
+        "question": "这件衣服的尺码标示不太准，我需要换大一号的。",
+        "topics": [
+          "fit_exchange",
+          "eligibility"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "这件衣服的尺码标示不太准，我需要换大一号的。",
+          "issue_quote": "这件衣服的尺码标示不太准",
+          "issue_state": "active",
+          "reason": "wrong_purchase",
+          "requested_kind": "exchange",
+          "target_spec": "大一号"
+        },
+        "passed": true,
+        "ms": 2087
+      },
+      {
+        "line": 430,
+        "required": [
+          "eligibility"
+        ],
+        "question": "衣服的尺码和描述不符。",
+        "topics": [
+          "eligibility",
+          "fit_exchange"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "衣服的尺码和描述不符。",
+          "issue_quote": "衣服的尺码和描述不符。",
+          "issue_state": "active",
+          "reason": "wrong_purchase"
+        },
+        "passed": true,
+        "ms": 1602
+      },
+      {
+        "line": 460,
+        "required": [
+          "eligibility"
+        ],
+        "reason": "wrong_purchase",
+        "question": "不想要了，给我退钱！",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "不想要了，给我退钱！",
+          "issue_quote": "不想要了",
+          "issue_state": "active",
+          "reason": "wrong_purchase",
+          "requested_kind": "refund_only"
+        },
+        "passed": true,
+        "ms": 1724
+      },
+      {
+        "line": 529,
+        "required": [
+          "logistics"
+        ],
+        "question": "你们寄来的商品我还没收到呢，怎么办？",
+        "topics": [
+          "logistics",
+          "next_step"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "你们寄来的商品我还没收到呢，怎么办？",
+          "issue_quote": "你们寄来的商品我还没收到呢",
+          "issue_state": "active",
+          "reason": "not_received"
+        },
+        "passed": true,
+        "ms": 1984
+      },
+      {
+        "line": 617,
+        "required": [
+          "eligibility"
+        ],
+        "question": "这款商品有异味影响使用体验，能帮我处理吗？",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "这款商品有异味影响使用体验，能帮我处理吗？",
+          "issue_quote": "这款商品有异味影响使用体验",
+          "issue_state": "active",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 1589
+      },
+      {
+        "line": 620,
+        "required": [
+          "eligibility"
+        ],
+        "question": "你们发的货有问题，东西都坏掉了。",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "affected_part",
+          "question": "请问是商品本身损坏，还是配件或外包装有问题呢？"
+        },
+        "observation": {
+          "quote": "你们发的货有问题，东西都坏掉了。",
+          "issue_quote": "东西都坏掉了",
+          "issue_state": "unclear",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 1859
+      },
+      {
+        "line": 687,
+        "required": [
+          "eligibility"
+        ],
+        "question": "我之前的好评还能改吗？或者我可以给个差评？",
+        "topics": [
+          "out_of_scope"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "我之前的好评还能改吗？或者我可以给个差评？"
+        },
+        "passed": false,
+        "ms": 1387
+      },
+      {
+        "line": 733,
+        "required": [
+          "logistics",
+          "eligibility"
+        ],
+        "question": "快递太慢了，东西都损坏了，怎么办？",
+        "topics": [
+          "eligibility",
+          "logistics"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "damage_timing",
+          "question": "商品是开箱时就已经损坏，还是使用后才损坏的？"
+        },
+        "observation": {
+          "quote": "快递太慢了，东西都损坏了，怎么办？",
+          "issue_quote": "东西都损坏了",
+          "issue_state": "unclear",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 1480
+      },
+      {
+        "line": 762,
+        "required": [
+          "fit_exchange"
+        ],
+        "question": "这双鞋的尺码不对，想要换一双。",
+        "topics": [
+          "fit_exchange",
+          "eligibility"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "expected_vs_actual",
+          "question": "您想换成哪个尺码呢？"
+        },
+        "observation": {
+          "quote": "这双鞋的尺码不对，想要换一双。",
+          "issue_quote": "这双鞋的尺码不对",
+          "issue_state": "active",
+          "reason": "wrong_purchase",
+          "requested_kind": "exchange"
+        },
+        "passed": true,
+        "ms": 1639
+      },
+      {
+        "line": 776,
+        "required": [
+          "eligibility"
+        ],
+        "reason": "quality",
+        "question": "这个商品有瑕疵，影响使用了怎么办？",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "这个商品有瑕疵，影响使用了怎么办？",
+          "issue_quote": "这个商品有瑕疵，影响使用了",
+          "issue_state": "active",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 1735
+      },
+      {
+        "line": 820,
+        "required": [
+          "eligibility"
+        ],
+        "question": "收到的手机有划痕，影响使用了怎么办？",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "收到的手机有划痕，影响使用了怎么办？",
+          "issue_quote": "收到的手机有划痕，影响使用了",
+          "issue_state": "active",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 1814
+      },
+      {
+        "line": 864,
+        "required": [
+          "fit_exchange"
+        ],
+        "reason": "quality",
+        "question": "衣服有瑕疵，想换个尺码的",
+        "topics": [
+          "eligibility",
+          "fit_exchange"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "affected_part",
+          "question": "瑕疵具体在衣服的哪个部位、是什么样的问题呢？"
+        },
+        "observation": {
+          "quote": "衣服有瑕疵，想换个尺码的",
+          "issue_quote": "衣服有瑕疵",
+          "issue_state": "unclear",
+          "reason": "quality",
+          "requested_kind": "exchange"
+        },
+        "passed": true,
+        "ms": 2091
+      },
+      {
+        "line": 870,
+        "required": [
+          "eligibility"
+        ],
+        "reason": "quality",
+        "question": "收到的商品有明显瑕疵，跟图片完全不一样。",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "收到的商品有明显瑕疵，跟图片完全不一样。",
+          "issue_quote": "收到的商品有明显瑕疵，跟图片完全不一样。",
+          "issue_state": "active",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 1710
+      },
+      {
+        "line": 877,
+        "required": [
+          "eligibility"
+        ],
+        "reason": "quality",
+        "question": "你们的产品质量太差了，我要退货并退款。",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "expected_vs_actual",
+          "question": "商品具体出现了什么问题，比如哪里损坏或无法正常使用？"
+        },
+        "observation": {
+          "quote": "你们的产品质量太差了，我要退货并退款。",
+          "issue_quote": "你们的产品质量太差了",
+          "issue_state": "unclear",
+          "reason": "quality",
+          "requested_kind": "return_refund"
+        },
+        "passed": true,
+        "ms": 1530
+      },
+      {
+        "line": 878,
+        "required": [
+          "eligibility"
+        ],
+        "reason": "quality",
+        "question": "买的东西坏了能退款吗？",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "affected_part",
+          "question": "请问是商品本身坏了，还是配件或外包装有问题呢？"
+        },
+        "observation": {
+          "quote": "买的东西坏了能退款吗？",
+          "issue_quote": "买的东西坏了",
+          "issue_state": "unclear",
+          "reason": "quality",
+          "requested_kind": "refund_only"
+        },
+        "passed": true,
+        "ms": 2169
+      },
+      {
+        "line": 904,
+        "required": [
+          "eligibility"
+        ],
+        "question": "收到的衣服有明显的色差，这不符合宣传的效果。",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "收到的衣服有明显的色差，这不符合宣传的效果。",
+          "issue_quote": "收到的衣服有明显的色差，这不符合宣传的效果。",
+          "issue_state": "active",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 1388
+      },
+      {
+        "line": 911,
+        "required": [
+          "eligibility"
+        ],
+        "reason": "quality",
+        "question": "收到的衣服有破洞，这明显是质量问题。",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "收到的衣服有破洞，这明显是质量问题。",
+          "issue_quote": "收到的衣服有破洞",
+          "issue_state": "active",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 1537
+      },
+      {
+        "line": 915,
+        "required": [
+          "eligibility"
+        ],
+        "question": "收到的衣服破了个洞，怎么办？",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "收到的衣服破了个洞，怎么办？",
+          "issue_quote": "收到的衣服破了个洞",
+          "issue_state": "active",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 1561
+      },
+      {
+        "line": 917,
+        "required": [
+          "eligibility"
+        ],
+        "question": "收到的商品和页面描述完全不一样，这是欺诈行为吗？",
+        "topics": [
+          "eligibility",
+          "product"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "expected_vs_actual",
+          "question": "实际收到的商品和页面描述具体哪里不一样，比如颜色、型号、规格还是款式？"
+        },
+        "observation": {
+          "quote": "收到的商品和页面描述完全不一样，这是欺诈行为吗？",
+          "issue_quote": "收到的商品和页面描述完全不一样",
+          "issue_state": "unclear",
+          "reason": "wrong_item"
+        },
+        "passed": true,
+        "ms": 2277
+      }
+    ]
+  },
+  "external_corpus_recheck": {
+    "dataset": "QingshanAI/ecom-after-sale-synthetic",
+    "sha256": "b84df0ac6a7408ba17223ed3c0ca1afe8adb2fd9f8beea8edc75f7f35be9cb91",
+    "with_examples": false,
+    "split": "final",
+    "semantic": true,
+    "total": 30,
+    "passed": 29,
+    "fallbacks": 0,
+    "rows": [
+      {
+        "line": 97,
+        "required": [
+          "eligibility"
+        ],
+        "question": "这个商品有问题，能帮我退换吗？",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "expected_vs_actual",
+          "question": "商品具体出现了什么问题，比如损坏、少件还是和描述不符？"
+        },
+        "observation": {
+          "quote": "这个商品有问题，能帮我退换吗？",
+          "issue_state": "unclear",
+          "requested_kind": "return_refund"
+        },
+        "passed": true,
+        "ms": 1995
+      },
+      {
+        "line": 101,
+        "required": [
+          "eligibility"
+        ],
+        "reason": "wrong_purchase",
+        "question": "这个杯子太小了，不想要了。",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "这个杯子太小了，不想要了。",
+          "issue_quote": "这个杯子太小了，不想要了。",
+          "issue_state": "active",
+          "reason": "wrong_purchase",
+          "requested_kind": "return_refund"
+        },
+        "passed": true,
+        "ms": 1693
+      },
+      {
+        "line": 111,
+        "required": [
+          "eligibility"
+        ],
+        "question": "收到的鞋子有异味，影响使用体验怎么办？",
+        "topics": [
+          "eligibility",
+          "product"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "收到的鞋子有异味，影响使用体验怎么办？",
+          "issue_quote": "收到的鞋子有异味，影响使用体验",
+          "issue_state": "active",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 1936
+      },
+      {
+        "line": 117,
+        "required": [
+          "eligibility"
+        ],
+        "question": "商品有问题，你们怎么解决？",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "expected_vs_actual",
+          "question": "商品具体出现了什么问题，能描述一下吗？"
+        },
+        "observation": {
+          "quote": "商品有问题，你们怎么解决？",
+          "issue_state": "unclear"
+        },
+        "passed": true,
+        "ms": 1430
+      },
+      {
+        "line": 122,
+        "required": [
+          "fit_exchange"
+        ],
+        "question": "收到的这件衣服尺码不对，能帮我换一下吗？",
+        "topics": [
+          "fit_exchange",
+          "eligibility"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "expected_vs_actual",
+          "question": "您想换成哪个尺码呢？"
+        },
+        "observation": {
+          "quote": "收到的这件衣服尺码不对，能帮我换一下吗？",
+          "issue_quote": "收到的这件衣服尺码不对",
+          "issue_state": "active",
+          "reason": "wrong_purchase",
+          "requested_kind": "exchange"
+        },
+        "passed": true,
+        "ms": 1904
+      },
+      {
+        "line": 209,
+        "required": [
+          "eligibility"
+        ],
+        "question": "收到的货物颜色跟描述的根本不一样，这该怎么办？",
+        "topics": [
+          "eligibility",
+          "product"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "收到的货物颜色跟描述的根本不一样，这该怎么办？",
+          "issue_quote": "收到的货物颜色跟描述的根本不一样",
+          "issue_state": "active",
+          "reason": "wrong_item"
+        },
+        "passed": true,
+        "ms": 2058
+      },
+      {
+        "line": 211,
+        "required": [
+          "logistics",
+          "platform"
+        ],
+        "question": "你们发错地址导致我没收到东西，我要投诉！",
+        "topics": [
+          "logistics",
+          "platform"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "你们发错地址导致我没收到东西，我要投诉！",
+          "issue_quote": "你们发错地址导致我没收到东西",
+          "issue_state": "active",
+          "reason": "not_received",
+          "action_note_quote": "你们发错地址导致我没收到东西，我要投诉！"
+        },
+        "passed": true,
+        "ms": 1668
+      },
+      {
+        "line": 275,
+        "required": [
+          "eligibility"
+        ],
+        "question": "我买的新手机有问题，屏幕显示异常，怎么办？",
+        "topics": [
+          "eligibility",
+          "product"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "我买的新手机有问题，屏幕显示异常，怎么办？",
+          "issue_quote": "屏幕显示异常",
+          "issue_state": "active",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 1709
+      },
+      {
+        "line": 279,
+        "required": [
+          "fit_exchange"
+        ],
+        "question": "这件衣服尺码不对，想要换一下。",
+        "topics": [
+          "fit_exchange",
+          "eligibility"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "expected_vs_actual",
+          "question": "您想换成哪个尺码呢？"
+        },
+        "observation": {
+          "quote": "这件衣服尺码不对，想要换一下。",
+          "issue_quote": "这件衣服尺码不对",
+          "issue_state": "active",
+          "reason": "wrong_purchase",
+          "requested_kind": "exchange"
+        },
+        "passed": true,
+        "ms": 2023
+      },
+      {
+        "line": 310,
+        "required": [
+          "eligibility"
+        ],
+        "question": "收到的商品是假货，我要退货！",
+        "topics": [
+          "eligibility",
+          "return"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "收到的商品是假货，我要退货！",
+          "issue_quote": "收到的商品是假货",
+          "issue_state": "active",
+          "reason": "quality",
+          "requested_kind": "return_refund"
+        },
+        "passed": true,
+        "ms": 1829
+      },
+      {
+        "line": 314,
+        "required": [
+          "photos"
+        ],
+        "question": "收到的商品包装破损了怎么办？",
+        "topics": [
+          "photos"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "affected_part",
+          "question": "里面的商品本身有没有损坏或缺件呢？"
+        },
+        "observation": {
+          "quote": "收到的商品包装破损了怎么办？",
+          "issue_quote": "收到的商品包装破损了",
+          "issue_state": "packaging_only",
+          "evidence": [
+            {
+              "kind": "packaging",
+              "state": "reported_available",
+              "quote": "收到的商品包装破损了"
+            }
+          ]
+        },
+        "passed": true,
+        "ms": 2010
+      },
+      {
+        "line": 377,
+        "required": [
+          "fit_exchange"
+        ],
+        "question": "这件衣服的尺码标示不太准，我需要换大一号的。",
+        "topics": [
+          "fit_exchange",
+          "eligibility"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "这件衣服的尺码标示不太准，我需要换大一号的。",
+          "issue_quote": "这件衣服的尺码标示不太准",
+          "issue_state": "active",
+          "reason": "wrong_purchase",
+          "requested_kind": "exchange",
+          "target_spec": "大一号"
+        },
+        "passed": true,
+        "ms": 2032
+      },
+      {
+        "line": 430,
+        "required": [
+          "eligibility"
+        ],
+        "question": "衣服的尺码和描述不符。",
+        "topics": [
+          "eligibility",
+          "fit_exchange"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "衣服的尺码和描述不符。",
+          "issue_quote": "衣服的尺码和描述不符。",
+          "issue_state": "active",
+          "reason": "wrong_purchase"
+        },
+        "passed": true,
+        "ms": 1800
+      },
+      {
+        "line": 460,
+        "required": [
+          "eligibility"
+        ],
+        "reason": "wrong_purchase",
+        "question": "不想要了，给我退钱！",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "不想要了，给我退钱！",
+          "issue_quote": "不想要了",
+          "issue_state": "active",
+          "reason": "wrong_purchase",
+          "requested_kind": "refund_only"
+        },
+        "passed": true,
+        "ms": 1688
+      },
+      {
+        "line": 529,
+        "required": [
+          "logistics"
+        ],
+        "question": "你们寄来的商品我还没收到呢，怎么办？",
+        "topics": [
+          "logistics",
+          "next_step"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "你们寄来的商品我还没收到呢，怎么办？",
+          "issue_quote": "你们寄来的商品我还没收到呢",
+          "issue_state": "active",
+          "reason": "not_received"
+        },
+        "passed": true,
+        "ms": 1491
+      },
+      {
+        "line": 617,
+        "required": [
+          "eligibility"
+        ],
+        "question": "这款商品有异味影响使用体验，能帮我处理吗？",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "这款商品有异味影响使用体验，能帮我处理吗？",
+          "issue_quote": "这款商品有异味影响使用体验",
+          "issue_state": "active",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 1396
+      },
+      {
+        "line": 620,
+        "required": [
+          "eligibility"
+        ],
+        "question": "你们发的货有问题，东西都坏掉了。",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "affected_part",
+          "question": "请问是商品本身坏了，还是只有外包装破损？"
+        },
+        "observation": {
+          "quote": "你们发的货有问题，东西都坏掉了。",
+          "issue_quote": "东西都坏掉了",
+          "issue_state": "unclear",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 2072
+      },
+      {
+        "line": 687,
+        "required": [
+          "eligibility"
+        ],
+        "question": "我之前的好评还能改吗？或者我可以给个差评？",
+        "topics": [
+          "platform"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "我之前的好评还能改吗？或者我可以给个差评？"
+        },
+        "passed": false,
+        "ms": 1211
+      },
+      {
+        "line": 733,
+        "required": [
+          "logistics",
+          "eligibility"
+        ],
+        "question": "快递太慢了，东西都损坏了，怎么办？",
+        "topics": [
+          "eligibility",
+          "logistics"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "affected_part",
+          "question": "请问是商品本身损坏了，还是只有外包装破损？"
+        },
+        "observation": {
+          "quote": "快递太慢了，东西都损坏了，怎么办？",
+          "issue_quote": "东西都损坏了",
+          "issue_state": "unclear",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 1787
+      },
+      {
+        "line": 762,
+        "required": [
+          "fit_exchange"
+        ],
+        "question": "这双鞋的尺码不对，想要换一双。",
+        "topics": [
+          "fit_exchange",
+          "eligibility"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "expected_vs_actual",
+          "question": "您想换成哪个尺码呢？"
+        },
+        "observation": {
+          "quote": "这双鞋的尺码不对，想要换一双。",
+          "issue_quote": "这双鞋的尺码不对",
+          "issue_state": "active",
+          "reason": "wrong_purchase",
+          "requested_kind": "exchange"
+        },
+        "passed": true,
+        "ms": 1870
+      },
+      {
+        "line": 776,
+        "required": [
+          "eligibility"
+        ],
+        "reason": "quality",
+        "question": "这个商品有瑕疵，影响使用了怎么办？",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "这个商品有瑕疵，影响使用了怎么办？",
+          "issue_quote": "这个商品有瑕疵，影响使用了",
+          "issue_state": "active",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 1670
+      },
+      {
+        "line": 820,
+        "required": [
+          "eligibility"
+        ],
+        "question": "收到的手机有划痕，影响使用了怎么办？",
+        "topics": [
+          "eligibility",
+          "photos"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "收到的手机有划痕，影响使用了怎么办？",
+          "issue_quote": "收到的手机有划痕，影响使用了",
+          "issue_state": "active",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 1947
+      },
+      {
+        "line": 864,
+        "required": [
+          "fit_exchange"
+        ],
+        "reason": "quality",
+        "question": "衣服有瑕疵，想换个尺码的",
+        "topics": [
+          "eligibility",
+          "fit_exchange"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "affected_part",
+          "question": "瑕疵具体在衣服的哪个部位、是什么表现呢？"
+        },
+        "observation": {
+          "quote": "衣服有瑕疵，想换个尺码的",
+          "issue_quote": "衣服有瑕疵",
+          "issue_state": "unclear",
+          "reason": "quality",
+          "requested_kind": "exchange"
+        },
+        "passed": true,
+        "ms": 1981
+      },
+      {
+        "line": 870,
+        "required": [
+          "eligibility"
+        ],
+        "reason": "quality",
+        "question": "收到的商品有明显瑕疵，跟图片完全不一样。",
+        "topics": [
+          "eligibility",
+          "photos"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "affected_part",
+          "question": "瑕疵是在商品本身还是配件上？具体是什么情况呢？"
+        },
+        "observation": {
+          "quote": "收到的商品有明显瑕疵，跟图片完全不一样。",
+          "issue_quote": "收到的商品有明显瑕疵，跟图片完全不一样。",
+          "issue_state": "active",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 2200
+      },
+      {
+        "line": 877,
+        "required": [
+          "eligibility"
+        ],
+        "reason": "quality",
+        "question": "你们的产品质量太差了，我要退货并退款。",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "expected_vs_actual",
+          "question": "商品具体出现了什么问题，比如哪里损坏或不能正常使用？"
+        },
+        "observation": {
+          "quote": "你们的产品质量太差了，我要退货并退款。",
+          "issue_quote": "你们的产品质量太差了",
+          "issue_state": "unclear",
+          "reason": "quality",
+          "requested_kind": "return_refund"
+        },
+        "passed": true,
+        "ms": 1704
+      },
+      {
+        "line": 878,
+        "required": [
+          "eligibility"
+        ],
+        "reason": "quality",
+        "question": "买的东西坏了能退款吗？",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "affected_part",
+          "question": "请问是商品本身坏了，还是配件或外包装有问题？"
+        },
+        "observation": {
+          "quote": "买的东西坏了能退款吗？",
+          "issue_quote": "买的东西坏了",
+          "issue_state": "unclear",
+          "reason": "quality",
+          "requested_kind": "refund_only"
+        },
+        "passed": true,
+        "ms": 1757
+      },
+      {
+        "line": 904,
+        "required": [
+          "eligibility"
+        ],
+        "question": "收到的衣服有明显的色差，这不符合宣传的效果。",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "收到的衣服有明显的色差，这不符合宣传的效果。",
+          "issue_quote": "收到的衣服有明显的色差，这不符合宣传的效果。",
+          "issue_state": "active",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 1608
+      },
+      {
+        "line": 911,
+        "required": [
+          "eligibility"
+        ],
+        "reason": "quality",
+        "question": "收到的衣服有破洞，这明显是质量问题。",
+        "topics": [
+          "eligibility"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "收到的衣服有破洞，这明显是质量问题。",
+          "issue_quote": "收到的衣服有破洞",
+          "issue_state": "active",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 1633
+      },
+      {
+        "line": 915,
+        "required": [
+          "eligibility"
+        ],
+        "question": "收到的衣服破了个洞，怎么办？",
+        "topics": [
+          "eligibility",
+          "photos"
+        ],
+        "route": "function_call",
+        "observation": {
+          "quote": "收到的衣服破了个洞，怎么办？",
+          "issue_quote": "收到的衣服破了个洞",
+          "issue_state": "active",
+          "reason": "quality"
+        },
+        "passed": true,
+        "ms": 1803
+      },
+      {
+        "line": 917,
+        "required": [
+          "eligibility"
+        ],
+        "question": "收到的商品和页面描述完全不一样，这是欺诈行为吗？",
+        "topics": [
+          "eligibility",
+          "product"
+        ],
+        "route": "function_call",
+        "follow_up": {
+          "fact": "expected_vs_actual",
+          "question": "实际收到的商品和页面描述具体哪里不一样，比如款式、颜色、规格还是功能？"
+        },
+        "observation": {
+          "quote": "收到的商品和页面描述完全不一样，这是欺诈行为吗？",
+          "issue_quote": "收到的商品和页面描述完全不一样",
+          "issue_state": "active",
+          "reason": "wrong_item"
+        },
+        "passed": true,
+        "ms": 1929
+      }
+    ]
+  },
+  "frozen_inputs": [
+    {
+      "file": "tests/evaluation_cases/scenario_task_dialogues.json",
+      "sha256": "ace4e96621ae75bbdaa8f962e108a83e420447b73052a788138a39aa579feb38"
+    },
+    {
+      "file": "scripts/fixtures/mall_qingshan_review.json",
+      "sha256": "2260c3ca47d4b7a5f998809a4c400d97e9cf8ef3be8ce5ce12178b56f6b1e335"
+    },
+    {
+      "file": "tests/browser/platform_review.mjs",
+      "sha256": "8817b637027448642e7a70c5a0981346213a18b716e6e7684113f26ed858b0b0"
+    },
+    {
+      "file": "tests/test_fulfillment_chat.py",
+      "sha256": "32484bcecf4a2776b4dc363cd0c6996a004e09020f1fa4e15e43697d6b350562"
+    }
+  ],
+  "limits": [
+    "外部公开合成语料已用于过往回归，本轮复测不等于新的用户盲测。",
+    "评价发布与修改没有接入，外部题集该题仍未通过，不将其计为成功。",
+    "聊天资料仅支持寄回运单及售后新收货信息，实际写入必须经过用户确认和原业务校验。",
+    "只读业务决策每轮最多追加3项白名单事项，不能更换订单或调用写操作。",
+    "只读并发为4工作线程20会话，验证身份隔离而非生产吞吐。",
+    "历史执行回执保持历史状态；当前原单状态与旧卡是否失效在读取历史时重新核对。",
+    "最终语义浏览器复测暴露的过早催填运单与待发货误认未确认地址，已修复并由单元及最终履约流程验证。"
+  ],
+  "fulfillment_quality_review": {
+    "source": "fulfillment-chat-1795490120899.json",
+    "total": 5,
+    "passed": 5,
+    "reviews": [
+      {
+        "question": "主机插电不亮，我要换一件正常的。",
+        "review": {
+          "relevant": true,
+          "grounded": true,
+          "task_consistent": true,
+          "issues": []
+        }
+      },
+      {
+        "question": "我已经寄回了，运单号是SF1234567890，请帮我登记。",
+        "review": {
+          "relevant": true,
+          "grounded": true,
+          "task_consistent": true,
+          "issues": []
+        }
+      },
+      {
+        "question": "用的是顺丰快递。",
+        "review": {
+          "relevant": true,
+          "grounded": true,
+          "task_consistent": true,
+          "issues": []
+        }
+      },
+      {
+        "question": "新收件人李四，地址杭州市西湖区示例路八号，电话13800000001，请按这个地址寄换货。",
+        "review": {
+          "relevant": true,
+          "grounded": true,
+          "task_consistent": true,
+          "issues": []
+        }
+      },
+      {
+        "question": "现在等谁处理，为什么还没发出？",
+        "review": {
+          "relevant": true,
+          "grounded": true,
+          "task_consistent": true,
+          "issues": []
+        }
+      }
+    ],
+    "note": "同模型独立提示，不是外部盲评"
+  },
+  "final_source_checks": {
+    "python_tests": 296,
+    "openspec_strict": true,
+    "react_build": true
+  },
+  "deployment": {
+    "restarted": true,
+    "health": {
+      "/login": 200,
+      "/commerce-build/workbench.js": 200,
+      "/commerce-build/workbench.css": 200,
+      "/openapi.json": 200
+    }
+  }
+}

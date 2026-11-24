@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+.local/
+.git/
+node_modules/
+web/commerce-build/
+__pycache__/
+*.pyc
+*.zip

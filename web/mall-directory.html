@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>商城档案</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/session.js" defer></script>
+  <script src="/mall-directory.js" defer></script>
+</head>
+<body class="commerce-workbench">
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a id="directory-home" class="brand"><span class="mark" aria-hidden="true">↶</span>商城售后</a>
+      <nav class="topbar-tools" aria-label="工作台导航">
+        <a id="directory-cases" class="topbar-link"></a>
+        <a id="directory-current" class="topbar-link current-link" aria-current="page"></a>
+        <span id="access-identity"></span>
+        <button id="access-logout" class="text-button" type="button" hidden>退出</button>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <header class="intro"><h1 id="directory-title">商城档案</h1></header>
+    <nav class="directory-tabs" id="directory-tabs" aria-label="商城目录" hidden></nav>
+    <section class="card directory-card" aria-labelledby="directory-list-title">
+      <div class="directory-toolbar">
+        <h2 id="directory-list-title">订单列表</h2>
+        <form id="directory-search" class="directory-search">
+          <label class="visually-hidden" for="directory-query">搜索</label>
+          <input class="ticket-number" id="directory-query" type="search" maxlength="60">
+          <button class="ticket-button" type="submit">查询</button>
+        </form>
+      </div>
+      <p class="ticket-feedback" id="directory-message" role="status"></p>
+      <div class="catalog-table-wrap">
+        <table class="catalog-table directory-table">
+          <thead><tr id="directory-columns"></tr></thead>
+          <tbody id="directory-rows"></tbody>
+        </table>
+      </div>
+      <nav class="directory-pager" aria-label="列表分页">
+        <button class="text-button" id="directory-prev" type="button">上一页</button>
+        <span id="directory-page"></span>
+        <button class="text-button" id="directory-next" type="button">下一页</button>
+      </nav>
+    </section>
+    <section class="card directory-card" id="directory-detail" aria-labelledby="directory-order-title" hidden>
+      <h2 id="directory-order-title">订单详情</h2>
+      <p id="directory-order-summary" role="status"></p>
+      <dl id="directory-totals" class="directory-totals"></dl>
+      <div class="catalog-table-wrap">
+        <table class="catalog-table directory-table">
+          <thead><tr><th scope="col">商品</th><th scope="col">数量</th><th scope="col">成交价</th><th scope="col">包裹状态</th></tr></thead>
+          <tbody id="directory-items"></tbody>
+        </table>
+      </div>
+      <div class="directory-case-links" id="directory-order-cases"></div>
+    </section>
+  </main>
+</body>
+</html>

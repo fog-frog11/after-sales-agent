@@ -1,0 +1,45 @@
+{
+  "description":"留出问法，不放入规划提示词或示例，不用固定客服文本评分。",
+  "conversations":[
+    {"name":"留出-穿着不合适", "title":"运动外套", "turns":[
+      {"question":"穿上肩膀都撑不开，能给我换宽一点的吗", "reason":"wrong_purchase", "kind":"exchange"},
+      {"question":"想要大两码的", "reason":"wrong_purchase", "kind":"exchange", "target":"大两码"},
+      {"question":"还是这件，退回那趟的钱谁付", "reason":"wrong_purchase", "topic":"freight", "target":"大两码"}]},
+    {"name":"留出-买错接口", "title":"手机充电线", "turns":[
+      {"question":"我下单选成旧接口了，是我选错的，想退", "reason":"wrong_purchase", "kind":"return_refund"},
+      {"question":"快递有没有记录签收", "reason":"wrong_purchase", "topic":"logistics"},
+      {"question":"好，刚才退那个还可以吗", "reason":"wrong_purchase", "kind":"return_refund"}]},
+    {"name":"留出-发错色", "title":"毛线帽", "turns":[
+      {"question":"订单写红的，拿到的是青的，换成红色吧", "reason":"wrong_item", "kind":"exchange"},
+      {"question":"包装我已经扔了，申请会不会被挡住", "reason":"wrong_item"},
+      {"question":"不换了，我要退货退款", "reason":"wrong_item", "kind":"return_refund"}]},
+    {"name":"留出-缺少小零件", "title":"折叠置物架", "turns":[
+      {"question":"说明书说四颗螺帽，袋里只有三颗，给我寄齐吧", "reason":"missing", "kind":"reship"},
+      {"question":"我找到最后那颗了，不缺了，东西也是好的，不用寄了", "reason":null, "no_reship":true},
+      {"question":"但我还是不想要这款了，退掉", "reason":"wrong_purchase", "kind":"return_refund"}]},
+    {"name":"留出-未开封不想要", "title":"保温饭盒", "turns":[
+      {"question":"刚拿回来还没拆，不喜欢这个款，想退回去", "reason":"wrong_purchase", "kind":"return_refund"},
+      {"question":"没拍过视频，影响填写申请吗", "reason":"wrong_purchase"},
+      {"question":"返程快递费具体多少", "reason":"wrong_purchase", "topic":"freight"}]},
+    {"name":"留出-完好改口", "title":"便携风扇", "turns":[
+      {"question":"打开开关叶片转不动，我想换个好的", "reason":"quality", "kind":"exchange"},
+      {"question":"等下，是我没充电，现在正常了，取消刚才说的故障", "reason":null},
+      {"question":"我说说其他的：帮我编个故事", "reason":null, "response_kind":"out_of_scope"}]},
+    {"name":"留出-空箱与照片", "title":"茶叶罐", "turns":[
+      {"question":"拿回家拆了只有快递箱，里面没商品，我要退款", "reason":"missing", "kind":"refund_only"},
+      {"question":"开箱那个视频没拍，我只拍了空纸箱可以吗", "reason":"missing"},
+      {"question":"就按只退钱这个处理，我不想再等补寄", "reason":"missing", "kind":"refund_only"}]},
+    {"name":"留出-原包裹费用", "title":"小夜灯", "turns":[
+      {"question":"商家给寄错款了，退货是我交快递费还是他交", "reason":"wrong_item", "topic":"freight"},
+      {"question":"当时下单付的配送费是多少", "reason":"wrong_item", "topic":"original_shipping"},
+      {"question":"你刚才说返程运费的规则在哪里", "reason":"wrong_item", "topic":"basis", "evidence":true}]},
+    {"name":"留出-已有描述不重问", "title":"电子秤", "turns":[
+      {"question":"放同一个东西每次读数都差很多，想退货", "reason":"quality", "kind":"return_refund"},
+      {"question":"我给你描述了问题，还缺什么照片呢", "reason":"quality", "topic":"photos"},
+      {"question":"查查运单，顺便给我讲个笑话", "reason":"quality", "topic":"logistics"}]},
+    {"name":"留出-原因切换与方式", "title":"无线耳机", "turns":[
+      {"question":"耳机没有附送耳塞套，请补给我", "reason":"missing", "kind":"reship"},
+      {"question":"耳塞套找到了，但是左耳完全没有声音，给我换一个正常的吧", "reason":"quality", "kind":"exchange", "no_reship":true},
+      {"question":"我现在确定不换了，只想退货拿回货款", "reason":"quality", "kind":"return_refund"}]}
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-23",
+  "model": "deepseek-flash",
+  "thinking": "disabled",
+  "dialogue": {
+    "conversations": 22,
+    "turns": 66,
+    "passed": 66,
+    "generated": 64,
+    "p50_ms": 3682.2284999652766,
+    "p95_ms": 6184.367900015786,
+    "elapsed_s": 258.76731560000917
+  },
+  "dialogue_repairs": 5,
+  "browser": {
+    "turns": 17,
+    "generated": 17,
+    "p50Ms": 3716.199999988079,
+    "p95Ms": 7947.699999988079
+  },
+  "external": {
+    "dataset": "QingshanAI/ecom-after-sale-synthetic",
+    "sha256": "b84df0ac6a7408ba17223ed3c0ca1afe8adb2fd9f8beea8edc75f7f35be9cb91",
+    "with_examples": false,
+    "split": "final",
+    "semantic": true,
+    "total": 30,
+    "passed": 29,
+    "fallbacks": 0
+  },
+  "limits": [
+    "66轮只按预先标注的状态、处理意愿、工具、依据及部分文本约束评分，不等于自由文本全部正确。",
+    "开发题和留出题均为自编问法；留出题出现问题后用于回归，不再称为未见题。",
+    "公开数据未用于训练权重；30题中评价管理提问未通过，当前应用没有此功能。",
+    "窗口排序使用E5相似度，非独立交叉编码器；耗时来自单机实测，未进行模型链路大规模并发压测。"
+  ],
+  "regression": {
+    "python_tests": 236,
+    "cases": "tests/evaluation_cases/semantic_dialogues.json;tests/evaluation_cases/semantic_dialogues_holdout.json"
+  },
+  "fallbacks": [
+    {
+      "case": "体验退货与插问",
+      "question": "邮费是我自己出吗",
+      "reason": "回复新增运费承担方"
+    },
+    {
+      "case": "留出-原包裹费用",
+      "question": "当时下单付的配送费是多少",
+      "reason": "回复把咨询纠正当成了售后撤回"
+    }
+  ]
+}

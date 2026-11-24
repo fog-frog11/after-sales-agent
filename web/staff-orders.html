@@ -1,0 +1,89 @@
+<!doctype html>
+<!-- 客服可跳过工单，直接按买家或订单号核对订单资料。 -->
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>订单查询 · 客服工作台</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/session.js" defer></script>
+  <script src="/order-items.js" defer></script>
+  <script src="/order-catalog.js" defer></script>
+</head>
+<body data-order-role="staff">
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="/staff"><span class="mark" aria-hidden="true">↶</span>客服工作台</a>
+      <nav class="topbar-tools" aria-label="客服导航">
+        <a class="topbar-link" href="/staff">工单处理</a>
+        <a class="topbar-link current-link" href="/staff/orders" aria-current="page">订单查询</a>
+        <span id="access-identity"></span>
+        <button id="access-logout" class="text-button" type="button" hidden>退出</button>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap catalog-workbench">
+    <header class="intro catalog-intro">
+      <div>
+        <h1>订单查询</h1>
+        <p>按买家或订单号核对订单、归属和售后所需的资料。</p>
+      </div>
+    </header>
+    <div class="catalog-layout">
+      <section class="card catalog-list" aria-labelledby="catalog-list-title">
+        <h2 id="catalog-list-title">订单列表</h2>
+        <form class="catalog-filter staff-catalog-filter" action="/staff/orders" method="get">
+          <div>
+            <label for="catalog-buyer">买家账号</label>
+            <select id="catalog-buyer" name="buyer_id" class="ticket-number">
+              <option value="">全部买家</option>
+              <option value="buyer-a">buyer-a</option>
+              <option value="buyer-b">buyer-b</option>
+            </select>
+          </div>
+          <div>
+            <label for="catalog-order">订单号</label>
+            <input id="catalog-order" name="order_id" type="search" class="ticket-number" maxlength="15"
+                   placeholder="输入订单号" autocomplete="off">
+          </div>
+          <div>
+            <label for="catalog-kind">订单来源</label>
+            <select id="catalog-kind" name="kind" class="ticket-number">
+              <option value="all">全部来源</option>
+              <option value="shop">店铺订单</option>
+              <option value="jd" selected>京东历史订单</option>
+              <option value="olist">Olist 历史订单</option>
+            </select>
+          </div>
+          <button class="ticket-button" type="submit">查询</button>
+        </form>
+        <p id="catalog-list-feedback" class="ticket-feedback" role="status">正在读取订单…</p>
+        <div class="catalog-table-wrap" id="catalog-table" hidden>
+          <table class="catalog-table">
+            <caption class="visually-hidden">客服可查询的订单</caption>
+            <thead><tr><th scope="col">订单号</th><th scope="col">买家</th><th scope="col">状态</th><th scope="col">日期</th><th scope="col">操作</th></tr></thead>
+            <tbody id="catalog-rows"></tbody>
+          </table>
+        </div>
+        <nav class="catalog-pages" aria-label="订单分页" id="catalog-pages" hidden>
+          <a id="catalog-first" class="text-button" hidden>回到第一页</a>
+          <a id="catalog-next" class="text-button" hidden>下一页</a>
+        </nav>
+      </section>
+      <section class="card catalog-detail" id="catalog-detail" aria-labelledby="catalog-detail-title">
+        <div class="section-title">
+          <h2 id="catalog-detail-title">订单详情</h2>
+          <a href="/staff/orders" class="catalog-link" id="catalog-back" hidden>返回列表</a>
+        </div>
+        <p class="ticket-feedback" id="catalog-detail-feedback" role="status">选择一笔订单，查看对应详情。</p>
+        <div id="catalog-record" hidden>
+          <strong class="catalog-order-number" id="catalog-record-order"></strong>
+          <dl class="facts" id="catalog-facts"></dl>
+          <div id="catalog-items" class="catalog-items"></div>
+          <a class="catalog-action" id="catalog-action" hidden>查看这笔订单的工单</a>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "verified_on": "2026-11-24",
+  "image": "after-sales-agent-workbench:3.0.0",
+  "build": "Linux Docker multi-stage image passed; React, Python 3.14 dependencies and E5 files verified",
+  "existing_stack": {
+    "host_port": 8766,
+    "container_health": "healthy",
+    "login_page": 200,
+    "javascript": 200,
+    "stylesheet": 200,
+    "image_asset": 200,
+    "roles_logged_in": ["buyer", "merchant", "staff"],
+    "milvus_health": "healthy",
+    "e5_dimensions": 384
+  },
+  "fresh_stack": {
+    "compose_project": "after-sales-release-smoke",
+    "data_retained": true,
+    "containers_stopped_after_verification": true,
+    "mall_orders": 304,
+    "mall_items": 604,
+    "mall_buyer_profiles": 50,
+    "mall_shop_profiles": 100,
+    "roles_logged_in": ["buyer", "merchant", "staff"],
+    "milvus_health": "healthy",
+    "e5_dimensions": 384
+  },
+  "scope": "Verified Docker build and fresh-volume startup on one Windows Docker Desktop host. Role tests used real HTTP and database reads. No live DeepSeek dialogue, external payment or courier service was exercised in this Docker check."
+}

@@ -1,0 +1,1684 @@
+{
+  "version": "3.0.0",
+  "verified_on": "2026-11-23",
+  "python_tests": {
+    "passed": 269,
+    "total": 269
+  },
+  "dialogue": {
+    "conversations": 28,
+    "turns": 91,
+    "passed": 91,
+    "generated": 88,
+    "p50_ms": 4069.150700001046,
+    "p95_ms": 7696.401599969249
+  },
+  "dialogue_cases": [
+    {
+      "case": "体验退货与插问",
+      "question": "垫子坐久了硌得慌，想退了",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "体验退货与插问",
+      "question": "原来发的那件现在物流啥状态",
+      "errors": [],
+      "topics": [
+        "logistics"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "体验退货与插问",
+      "question": "邮费是我自己出吗",
+      "errors": [],
+      "topics": [
+        "freight"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "规格换货跨闲聊",
+      "question": "这衣服穿起来绷着，给我换个宽松的吧",
+      "errors": [],
+      "topics": [
+        "eligibility",
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "规格换货跨闲聊",
+      "question": "我选大一码",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "规格换货跨闲聊",
+      "question": "顺便写一段招聘文案",
+      "errors": [],
+      "topics": [
+        "out_of_scope"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "规格换货跨闲聊",
+      "question": "还是刚才那件，寄回要不要我花钱",
+      "errors": [],
+      "topics": [
+        "freight"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "空包缺凭证",
+      "question": "拆的时候只有一团填充纸，根本没有包，箱角也烂了",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "空包缺凭证",
+      "question": "当时忘记录视频了，只有照片还能办吗",
+      "errors": [],
+      "topics": [
+        "photos",
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "空包缺凭证",
+      "question": "那我想要重新寄一个",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "故障改口",
+      "question": "插上电一点都不亮，想退货",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "故障改口",
+      "question": "啊我插错插座了，现在灯没毛病，先不办了",
+      "errors": [],
+      "topics": [],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "故障改口",
+      "question": "但其实颜色发成黑色了，我买的是白色，换掉吧",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "少件改故障",
+      "question": "随箱的数据线没给我，麻烦补一条",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "少件改故障",
+      "question": "线在夹层找到了，少件说错了，不过机器通电冒烟了，想退掉",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "fallback",
+      "generation_error": "本轮未生成可确认的卡，请直接询问缺少的字段，不引导不存在的确认卡"
+    },
+    {
+      "case": "少件改故障",
+      "question": "这个原因退回去的快递钱呢",
+      "errors": [],
+      "topics": [
+        "freight"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "使用偏好与质量区分",
+      "question": "刷子用起来不顺手，东西没有坏，我不想留了",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "使用偏好与质量区分",
+      "question": "不是坏了，就是我不习惯，退掉就行",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "到货破损",
+      "question": "刚拆箱玻璃就裂成几块了，换一个吧",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "到货破损",
+      "question": "能不能先告诉我得留哪些照片",
+      "errors": [],
+      "topics": [
+        "photos"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "到货破损",
+      "question": "刚才的换货还没帮我提交对吧",
+      "errors": [],
+      "topics": [
+        "progress"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "包装撤回缺件",
+      "question": "篮子少了一个把手，帮我补寄",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "包装撤回缺件",
+      "question": "把手找到了，不缺件，篮子也没坏，就是纸盒扁了",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "包装撤回缺件",
+      "question": "我不需要申请了，只问下物流记录",
+      "errors": [],
+      "topics": [
+        "logistics"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "费用追问依据",
+      "question": "卖家发错款了，我想退，这个来回的费用呢",
+      "errors": [],
+      "topics": [
+        "eligibility",
+        "freight",
+        "original_shipping"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "费用追问依据",
+      "question": "你说退回运费这条有什么依据",
+      "errors": [],
+      "topics": [
+        "basis",
+        "freight"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "费用追问依据",
+      "question": "那我现在已经退款了吗",
+      "errors": [],
+      "topics": [
+        "refund"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "模糊问题澄清",
+      "question": "这东西不太对劲",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "模糊问题澄清",
+      "question": "充半天一点电也存不住，指示灯还乱闪",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "模糊问题澄清",
+      "question": "想换个正常的，这次先不退钱",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "发错数量追问",
+      "question": "买的两只杯子只来了一只，我要补齐",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "发错数量追问",
+      "question": "先别补了，少的那个能退钱吗",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "发错数量追问",
+      "question": "我刚才说的是哪种处理方式",
+      "errors": [],
+      "topics": [
+        "basis"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "否定假设",
+      "question": "我不是少收到东西，是空格键一按就卡住",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "否定假设",
+      "question": "如果寄回维修的话可以吗",
+      "errors": [],
+      "topics": [
+        "eligibility",
+        "warranty"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "否定假设",
+      "question": "现在先给我看看这家店的售后规则",
+      "errors": [],
+      "topics": [
+        "policy_menu"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-穿着不合适",
+      "question": "穿上肩膀都撑不开，能给我换宽一点的吗",
+      "errors": [],
+      "topics": [
+        "eligibility",
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-穿着不合适",
+      "question": "想要大两码的",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-穿着不合适",
+      "question": "还是这件，退回那趟的钱谁付",
+      "errors": [],
+      "topics": [
+        "freight"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-买错接口",
+      "question": "我下单选成旧接口了，是我选错的，想退",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-买错接口",
+      "question": "快递有没有记录签收",
+      "errors": [],
+      "topics": [
+        "logistics"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-买错接口",
+      "question": "好，刚才退那个还可以吗",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "fallback",
+      "generation_error": "回复新增承诺"
+    },
+    {
+      "case": "留出-发错色",
+      "question": "订单写红的，拿到的是青的，换成红色吧",
+      "errors": [],
+      "topics": [
+        "eligibility",
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-发错色",
+      "question": "包装我已经扔了，申请会不会被挡住",
+      "errors": [],
+      "topics": [
+        "eligibility",
+        "shop_guidance"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-发错色",
+      "question": "不换了，我要退货退款",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-缺少小零件",
+      "question": "说明书说四颗螺帽，袋里只有三颗，给我寄齐吧",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-缺少小零件",
+      "question": "我找到最后那颗了，不缺了，东西也是好的，不用寄了",
+      "errors": [],
+      "topics": [
+        "progress"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-缺少小零件",
+      "question": "但我还是不想要这款了，退掉",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-未开封不想要",
+      "question": "刚拿回来还没拆，不喜欢这个款，想退回去",
+      "errors": [],
+      "topics": [
+        "eligibility",
+        "return_window"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-未开封不想要",
+      "question": "没拍过视频，影响填写申请吗",
+      "errors": [],
+      "topics": [
+        "photos"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-未开封不想要",
+      "question": "返程快递费具体多少",
+      "errors": [],
+      "topics": [
+        "freight"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-完好改口",
+      "question": "打开开关叶片转不动，我想换个好的",
+      "errors": [],
+      "topics": [
+        "eligibility",
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-完好改口",
+      "question": "等下，是我没充电，现在正常了，取消刚才说的故障",
+      "errors": [],
+      "topics": [],
+      "generation_status": "fallback",
+      "generation_error": "回复把咨询纠正当成了售后撤回"
+    },
+    {
+      "case": "留出-完好改口",
+      "question": "我说说其他的：帮我编个故事",
+      "errors": [],
+      "topics": [
+        "out_of_scope"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-空箱与照片",
+      "question": "拿回家拆了只有快递箱，里面没商品，我要退款",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-空箱与照片",
+      "question": "开箱那个视频没拍，我只拍了空纸箱可以吗",
+      "errors": [],
+      "topics": [
+        "photos",
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-空箱与照片",
+      "question": "就按只退钱这个处理，我不想再等补寄",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-原包裹费用",
+      "question": "商家给寄错款了，退货是我交快递费还是他交",
+      "errors": [],
+      "topics": [
+        "freight",
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-原包裹费用",
+      "question": "当时下单付的配送费是多少",
+      "errors": [],
+      "topics": [
+        "original_shipping"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-原包裹费用",
+      "question": "你刚才说返程运费的规则在哪里",
+      "errors": [],
+      "topics": [
+        "basis"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-已有描述不重问",
+      "question": "放同一个东西每次读数都差很多，想退货",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-已有描述不重问",
+      "question": "我给你描述了问题，还缺什么照片呢",
+      "errors": [],
+      "topics": [
+        "photos"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-已有描述不重问",
+      "question": "查查运单，顺便给我讲个笑话",
+      "errors": [],
+      "topics": [
+        "logistics",
+        "out_of_scope"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-原因切换与方式",
+      "question": "耳机没有附送耳塞套，请补给我",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-原因切换与方式",
+      "question": "耳塞套找到了，但是左耳完全没有声音，给我换一个正常的吧",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "留出-原因切换与方式",
+      "question": "我现在确定不换了，只想退货拿回货款",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "并存问题逐项解决",
+      "question": "少了一根连接线，主机插电也完全没反应。我想退货退款。",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "并存问题逐项解决",
+      "question": "线找到了，但主机依旧没反应，只退一件。",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "并存问题逐项解决",
+      "question": "我没拍开箱视频，只有现在的照片。",
+      "errors": [],
+      "topics": [
+        "photos",
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "并存问题逐项解决",
+      "question": "这单原快递签收了吗？",
+      "errors": [],
+      "topics": [
+        "logistics"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "并存问题逐项解决",
+      "question": "退货改成两件吧。",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "购买件数不等于申请件数",
+      "question": "灯闪个不停，我要退货退款。",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "购买件数不等于申请件数",
+      "question": "我这单当时买了几件？",
+      "errors": [],
+      "topics": [
+        "product"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "购买件数不等于申请件数",
+      "question": "只退其中一件。",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "购买件数不等于申请件数",
+      "question": "另一件先留着，把退的这件运费告诉我。",
+      "errors": [],
+      "topics": [
+        "freight"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "暂停与恢复不谎称撤回",
+      "question": "叶片转不起来，我想换一件。",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "暂停与恢复不谎称撤回",
+      "question": "先别办，故障还在，我只是想考虑一下。",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "暂停与恢复不谎称撤回",
+      "question": "给我查一下原来的物流。",
+      "errors": [],
+      "topics": [
+        "logistics"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "暂停与恢复不谎称撤回",
+      "question": "考虑好了，还是换一件。",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "凭证纠正与插问保留",
+      "question": "开箱时玻璃就裂了，想退货退款。",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "凭证纠正与插问保留",
+      "question": "我没有开箱视频。",
+      "errors": [],
+      "topics": [
+        "photos"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "凭证纠正与插问保留",
+      "question": "刚才说错了，我有开箱视频，是家里人拍的。",
+      "errors": [],
+      "topics": [
+        "photos"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "凭证纠正与插问保留",
+      "question": "那我就退一件。",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "凭证纠正与插问保留",
+      "question": "照片要拍什么？",
+      "errors": [],
+      "topics": [
+        "photos"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "全部退与超量申请",
+      "question": "杯子拿到就漏水，想退货退款。",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "全部退与超量申请",
+      "question": "那全部退吧。",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "全部退与超量申请",
+      "question": "改成退三件。",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "全部退与超量申请",
+      "question": "我说错了，只退一件。",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "换规格与原商品区分",
+      "question": "这件穿着紧，帮我换大一码，先换一件。",
+      "errors": [],
+      "topics": [
+        "eligibility",
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "换规格与原商品区分",
+      "question": "我原来买的是什么规格？",
+      "errors": [],
+      "topics": [
+        "product"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    },
+    {
+      "case": "换规格与原商品区分",
+      "question": "不换大一码了，换成黑色XL。",
+      "errors": [],
+      "topics": [
+        "eligibility"
+      ],
+      "generation_status": "grounded",
+      "generation_error": null
+    }
+  ],
+  "postgres_rollback": {
+    "checks": 8,
+    "passed": [
+      "跨买家和伪造确认卡被拒绝",
+      "重复确认不新增售后单或审计事件，变更请求不能复用旧回执",
+      "改口后旧卡失效，新卡按两件办理",
+      "无效照片没有半张售后单，修正后同一卡片可重试",
+      "店铺修改方案后旧确认卡失效，买家可确认拒绝新版方案",
+      "聊天确认平台介入后，平台队列显示同一原单",
+      "撤回及重复确认保留原单结果与审计",
+      "聊天回复补证并接受原单方案，金额采用店铺版本，接受不冒充已退款"
+    ],
+    "multi_connection": false
+  },
+  "browser": {
+    "full_three_role_suite": true,
+    "chat_actions": {
+      "passed": true,
+      "turns": 7,
+      "samples": [
+        {
+          "question": "主机插电完全没反应，少了一根数据线，我想退货退款，只退一件。",
+          "answer": "主机插电没反应和少一根数据线，这两项可以分别按质量问题和少件漏发处理；本次申请主原因按质量问题走退货退款，只退1件。\n目前还没有原售后单，申请也尚未提交；退货退款需在2026-12-22前申请，并需店铺核实。\n请核对下方确认卡，确认后再提交。",
+          "generation_status": "grounded",
+          "visible_ms": 12258,
+          "retrieval_routes": [
+            "scoped_bm25",
+            "milvus_bm25",
+            "milvus_dense",
+            "e5_dense",
+            "rrf",
+            "evidence_window_rerank",
+            "rrf_prior"
+          ]
+        },
+        {
+          "question": "数据线找到了，主机还是没反应，退货改成两件。",
+          "answer": "数据线找到了，那少件的问题就先不处理了；主机插电还是没反应，属于质量问题，可以申请退货退款。\n你这次要退两件，申请里按质量问题填写，说明写“主机还是没反应”就行。\n请核对下方确认卡里的商品、原因、件数和金额，确认无误后再提交。",
+          "generation_status": "grounded",
+          "visible_ms": 4000.600000023842,
+          "retrieval_routes": [
+            "scoped_bm25",
+            "milvus_bm25",
+            "milvus_dense",
+            "e5_dense",
+            "rrf",
+            "evidence_window_rerank",
+            "rrf_prior"
+          ]
+        },
+        {
+          "question": "这个故障退回去的运费谁承担？",
+          "answer": "这次按质量问题申请退货，寄回运费需你先垫付9元，店铺核实故障后由店铺承担并返还。\n若核实不属于质量问题，寄回运费可能需你自行承担，具体以核实结果为准。",
+          "generation_status": "grounded",
+          "visible_ms": 4815.899999976158,
+          "retrieval_routes": [
+            "scoped_bm25",
+            "milvus_bm25",
+            "milvus_dense",
+            "e5_dense",
+            "rrf",
+            "evidence_window_rerank",
+            "rrf_prior"
+          ]
+        },
+        {
+          "question": "先别办理了，故障还在，我先想一想。",
+          "answer": "好的，先不办理，你慢慢考虑。主机故障的售后问题，想好了随时找我。",
+          "generation_status": "grounded",
+          "visible_ms": 5915.400000035763,
+          "retrieval_routes": []
+        },
+        {
+          "question": "考虑好了，主机还是坏的，退两件。",
+          "answer": "好的，主机故障按质量问题退两件，这款桌面集线器支持退货退款，申请截止到2026-12-22。\n请核对下方确认卡里的商品、原因、件数和金额，确认后我再为你提交。",
+          "generation_status": "grounded",
+          "visible_ms": 4117.900000035763,
+          "retrieval_routes": [
+            "scoped_bm25",
+            "milvus_bm25",
+            "milvus_dense",
+            "e5_dense",
+            "rrf",
+            "evidence_window_rerank",
+            "rrf_prior"
+          ]
+        },
+        {
+          "question": "店铺的留货方案我不同意，请拒绝这个方案，我还是想退货。",
+          "answer": "好的，我理解你不同意店铺的留货方案，还是想退货退款。\n售后单 #142 目前待你确认方案，拒绝后仍按质量问题退货退款处理，数量两件。\n请核对下方确认卡，确认后我再为你拒绝这个方案。",
+          "generation_status": "grounded",
+          "visible_ms": 3968.800000011921,
+          "retrieval_routes": [
+            "scoped_bm25",
+            "milvus_bm25",
+            "milvus_dense",
+            "e5_dense",
+            "rrf",
+            "evidence_window_rerank",
+            "rrf_prior"
+          ]
+        },
+        {
+          "question": "双方没谈拢，请帮我申请平台介入。",
+          "answer": "你已拒绝店铺的留货方案，现在可以在原单填写说明，申请平台介入。\n请核对下方确认卡，确认后我再为你提交平台介入申请。",
+          "generation_status": "grounded",
+          "visible_ms": 3462.800000011921,
+          "retrieval_routes": []
+        }
+      ],
+      "case_no": "142",
+      "checks": [
+        "多问题与改件数",
+        "双击只发一个确认请求",
+        "同页展示与刷新恢复回执",
+        "旧申请表收起",
+        "店铺协商",
+        "聊天拒绝方案",
+        "同一原单平台介入"
+      ],
+      "database_rolled_back": true
+    },
+    "chat_actions_previous": {
+      "passed": true,
+      "turns": 6,
+      "samples": [
+        {
+          "question": "主机插电完全没反应，少了一根数据线，我想退货退款，只退一件。",
+          "answer": "主机插电完全没反应属于质量问题，少一根数据线属于少件漏发，这两个问题我会分别记录。\n你这单在签收后30天内，可以申请退货退款、换货或维修，本次按质量问题办理退货退款1件。\n请核对下方确认卡，确认后我再提交申请。",
+          "generation_status": "grounded",
+          "visible_ms": 5794.300000011921
+        },
+        {
+          "question": "数据线找到了，主机还是没反应，退货改成两件。",
+          "answer": "数据线找到就好，那少件这项已解决，这次按主机质量问题申请退货退款两件。\n目前还没有原售后单，请核对下方确认卡里的商品、原因和件数，确认后再提交。",
+          "generation_status": "grounded",
+          "visible_ms": 4200.300000011921
+        },
+        {
+          "question": "先别办理了，故障还在，我先想一想。",
+          "answer": "好的，先不办理，你慢慢考虑。主机没反应这个故障还在，等你想好了随时告诉我。",
+          "generation_status": "grounded",
+          "visible_ms": 4523.099999964237
+        },
+        {
+          "question": "考虑好了，主机还是坏的，退两件。",
+          "answer": "好的，主机故障属于质量问题，这款桌面集线器目前可以申请退货退款，签收后30天内都能办理。\n你这次要退两件，我先按这个数量准备申请，请核对下方确认卡。",
+          "generation_status": "grounded",
+          "visible_ms": 6208
+        },
+        {
+          "question": "店铺的留货方案我不同意，请拒绝这个方案，我还是想退货。",
+          "answer": "明白，你不同意店铺的留货方案，想拒绝这个方案并继续退货。\n请核对下方确认卡，确认后我再为你提交拒绝。",
+          "generation_status": "grounded",
+          "visible_ms": 4509.399999976158
+        },
+        {
+          "question": "双方没谈拢，请帮我申请平台介入。",
+          "answer": "你已拒绝店铺方案，现在可以在原单填写说明，申请平台介入。\n请核对下方确认卡，确认后即可提交平台介入申请。",
+          "generation_status": "grounded",
+          "visible_ms": 3560.800000011921
+        }
+      ],
+      "case_no": "132",
+      "checks": [
+        "多问题与改件数",
+        "双击只发一个确认请求",
+        "同页展示与刷新恢复回执",
+        "旧申请表收起",
+        "店铺协商",
+        "聊天拒绝方案",
+        "同一原单平台介入"
+      ],
+      "database_rolled_back": true
+    },
+    "semantic_with_persistent_retrieval": {
+      "passed": true,
+      "turns": 17,
+      "generated": 16,
+      "p50Ms": 4074.899999976158,
+      "p95Ms": 11076.699999988079,
+      "database_rolled_back": true,
+      "samples": [
+        {
+          "question": "围巾围起来有点紧，想换宽松一点的",
+          "answer": "围巾围起来偏紧的话，可以按“买错或不想要”申请换货，这款支持换货，申请截止到2026-12-07。\n你想换宽松一点的规格，请把目标规格写进申请说明，由店铺核对能否提供。\n这次要换几件呢？订单里还剩3件可申请。",
+          "generation_status": "grounded",
+          "generation_error": null,
+          "retrieval_routes": [
+            "scoped_bm25",
+            "milvus_bm25",
+            "milvus_dense",
+            "e5_dense",
+            "rrf",
+            "evidence_window_rerank",
+            "rrf_prior"
+          ]
+        },
+        {
+          "question": "那就换大一码吧",
+          "answer": "好的，换大一码可以申请换货，这款围巾目前还在换货时限内。\n请把目标规格“大一码”写进申请说明，店铺会核对能否提供。\n还需要你确认要换的数量，这单最多可换3件。",
+          "generation_status": "grounded",
+          "generation_error": null,
+          "retrieval_routes": [
+            "scoped_bm25",
+            "milvus_bm25",
+            "milvus_dense",
+            "e5_dense",
+            "rrf",
+            "evidence_window_rerank",
+            "rrf_prior"
+          ]
+        },
+        {
+          "question": "顺便看看这单快递的状态",
+          "answer": "这单针织围巾（银灰 · 4 口）显示已送达，承运商是浏览器验收，运单号TEST9877，送达时间2026-11-22 17:38。\n目前查不到承运商的实时物流轨迹，页面显示的就是这些信息。",
+          "generation_status": "grounded",
+          "generation_error": null,
+          "retrieval_routes": []
+        },
+        {
+          "question": "我刚才说想怎么处理来着？",
+          "answer": "你刚才说的是围巾围起来有点紧，想换大一码，属于买错或不想要。\n目前还没有提交过售后申请，换货需要退回原商品；你想换几件呢？",
+          "generation_status": "grounded",
+          "generation_error": null,
+          "retrieval_routes": []
+        },
+        {
+          "question": "我说错了，不是尺寸问题，是寄来的颜色不对，我想退掉",
+          "answer": "明白，是寄来的颜色不对，不是尺寸问题，你想退货退款。\n这单目前没有原售后单，之前只是咨询草稿，还没提交过申请。\n退货退款需要退回商品，且需店铺核实；请告诉我你要退几件，这单最多可退3件。",
+          "generation_status": "grounded",
+          "generation_error": null,
+          "retrieval_routes": [
+            "scoped_bm25",
+            "milvus_bm25",
+            "milvus_dense",
+            "e5_dense",
+            "rrf",
+            "evidence_window_rerank",
+            "rrf_prior"
+          ]
+        },
+        {
+          "question": "没有开箱录像还能申请吗？",
+          "answer": "没有开箱录像也可以申请，发错商品目前支持退货退款或换货，申请截止到2026-12-22。\n页面要求的是实收商品全貌、型号或规格标签、外包装及面单照片，最多3张；没有视频上传入口，你可以在申请说明里注明没有开箱录像。\n店铺可能还会要求补充材料，请以页面展示为准。",
+          "generation_status": "grounded",
+          "generation_error": null,
+          "retrieval_routes": [
+            "scoped_bm25",
+            "milvus_bm25",
+            "milvus_dense",
+            "e5_dense",
+            "rrf",
+            "evidence_window_rerank",
+            "rrf_prior"
+          ]
+        },
+        {
+          "question": "帮我写个旅游攻略吧",
+          "answer": "旅游攻略我这边帮不上忙，我主要负责订单商品的售后、物流和退款这些。你刚说围巾寄来的颜色不对想退掉，需要我帮你看看退货申请怎么处理吗？",
+          "generation_status": "grounded",
+          "generation_error": null,
+          "retrieval_routes": []
+        },
+        {
+          "question": "回到刚才，退回的快递费呢？",
+          "answer": "这单针织围巾的寄回运费，按页面报价是16.00元，需要你先垫付。\n如果店铺核实确实是发错商品，这笔寄回运费会由店铺承担并返还给你。",
+          "generation_status": "grounded",
+          "generation_error": null,
+          "retrieval_routes": [
+            "scoped_bm25",
+            "milvus_bm25",
+            "milvus_dense",
+            "e5_dense",
+            "rrf",
+            "evidence_window_rerank",
+            "rrf_prior"
+          ]
+        },
+        {
+          "question": "刚才退运费的依据给我看看",
+          "answer": "退运费依据是下单条款第3版：无理由退换由买家承担寄回运费，商城寄回报价¥16.00，该笔商品未使用的退货运费权益优先抵扣；核实为商品质量或发错时由店铺承担。\n你这单当前按“发错商品”处理，是否由店铺承担寄回运费，需以核实结果为准。",
+          "generation_status": "grounded",
+          "generation_error": null,
+          "retrieval_routes": [
+            "scoped_bm25",
+            "milvus_bm25",
+            "milvus_dense",
+            "e5_dense",
+            "rrf",
+            "evidence_window_rerank",
+            "rrf_prior"
+          ]
+        },
+        {
+          "question": "我申请的退货现在谁处理，别再让我重开一单",
+          "answer": "售后单 #141 待店铺响应。当前由店铺客服处理。\n本步截止 2026-11-25 17:38。",
+          "generation_status": "fallback",
+          "generation_error": "句中数字['34']不在所引用事实['F2']中，请引用包含它的事实或删去该数字",
+          "retrieval_routes": []
+        },
+        {
+          "question": "拆开快递，里面是空的，箱子也被挤烂了",
+          "answer": "收到你的反馈了，拆开是空的、箱子也挤烂了，这确实让人着急。这笔订单是栖禾数码桌面集线器（银灰·4口），目前没有原售后单。\n按少件漏发核实，可申请补发或仅退款，截止2026-12-22，无需寄回；店铺还需进一步核实。\n你想选补发还是仅退款？确认后我帮你继续处理。",
+          "generation_status": "grounded",
+          "generation_error": null,
+          "retrieval_routes": [
+            "scoped_bm25",
+            "milvus_bm25",
+            "milvus_dense",
+            "e5_dense",
+            "rrf",
+            "evidence_window_rerank",
+            "rrf_prior"
+          ]
+        },
+        {
+          "question": "我没留开箱视频，只有快递箱的照片",
+          "answer": "没有开箱视频也没关系，快递箱照片可以先作为凭证，少件漏发目前可以申请补发或仅退款。\n照片最多上传3张，建议拍外箱全貌和破损位置、开箱后的箱内物品和包装、面单与运单号（遮住手机号和地址）。\n你想选补发还是仅退款？告诉我后我再帮你核对确认。",
+          "generation_status": "grounded",
+          "generation_error": null,
+          "retrieval_routes": [
+            "scoped_bm25",
+            "milvus_bm25",
+            "milvus_dense",
+            "e5_dense",
+            "rrf",
+            "evidence_window_rerank",
+            "rrf_prior"
+          ]
+        },
+        {
+          "question": "东西找到了，之前的少件说错了，只是盒子变形",
+          "answer": "好的，东西找到了，那少件的问题就先按已解决处理，不再按少件申请。\n你这次主要反馈的是包装盒变形，目前还没有提交过售后申请，需要的话可以按包装问题来申请。\n你手上有快递箱照片，可以上传，最多3张；没有开箱视频也没关系，可以在说明里写清楚。",
+          "generation_status": "grounded",
+          "generation_error": null,
+          "retrieval_routes": []
+        },
+        {
+          "question": "盒子里面的东西其实完好，这样我先不申请了",
+          "answer": "好的，既然东西完好，那这次就先不申请了。\n后续如果盒子变形想反馈，可以再联系我，我帮你看看怎么处理。",
+          "generation_status": "grounded",
+          "generation_error": null,
+          "retrieval_routes": []
+        },
+        {
+          "question": "我以前买的针织围巾帮我找一下",
+          "answer": "帮你查到了，你买过的针织围巾订单号是CN-9870，2026-11-21购买，实付114元，店铺是栖禾数码。\n目前只查到这一条，历史记录可能不全；你要找的是不是这条？",
+          "generation_status": "grounded",
+          "generation_error": null,
+          "retrieval_routes": []
+        },
+        {
+          "question": "我还想回顾一下以前在这买过哪些东西",
+          "answer": "帮你查了购买记录，目前页面显示6笔，包括栖禾数码编织充电线、无线鼠标，以及云杉照明和星渡户外的商品。\n不过这份记录不是完整历史，你想回顾哪一笔或哪类商品，可以告诉我具体名称，我再帮你核对。",
+          "generation_status": "grounded",
+          "generation_error": null,
+          "retrieval_routes": []
+        },
+        {
+          "question": "就里面价格最便宜的那件",
+          "answer": "按价格最低筛选，找到的是栖禾数码编织充电线（雾白·1.5米），订单号CN-410004，实付29元，2026-11-22购买。\n这次搜索只展示这一条，不是完整历史；你要找的是不是这件？",
+          "generation_status": "grounded",
+          "generation_error": null,
+          "retrieval_routes": []
+        }
+      ]
+    }
+  },
+  "retrieval": {
+    "questions": 48,
+    "gold_scopes": 6,
+    "distractor_scopes": 100,
+    "question_fixture": "mall_terms_questions.json",
+    "unsupported_questions": 7,
+    "indexed_articles": 5300,
+    "scope_violations": 0,
+    "persistent_milvus": true,
+    "strategy_labels": {
+      "milvus_bm25": "Milvus BM25",
+      "milvus_e5": "Milvus E5"
+    },
+    "prepare_ms": 4390.023900021333,
+    "metrics": {
+      "milvus_bm25": {
+        "supported_questions": 41,
+        "all_aspects_hit_at_3": 23,
+        "mrr": 0.5748073065146236,
+        "ndcg_of_merged_top3": 0.5352367228969733,
+        "p95_ms": 27.65550004551187
+      },
+      "milvus_e5": {
+        "supported_questions": 41,
+        "all_aspects_hit_at_3": 34,
+        "mrr": 0.8034552845528455,
+        "ndcg_of_merged_top3": 0.7821647843604815,
+        "p95_ms": 106.81620001560077
+      },
+      "rrf": {
+        "supported_questions": 41,
+        "all_aspects_hit_at_3": 33,
+        "mrr": 0.7443089430894309,
+        "ndcg_of_merged_top3": 0.7233227766347915,
+        "p95_ms": 131.363200081978
+      },
+      "window_rerank": {
+        "supported_questions": 41,
+        "all_aspects_hit_at_3": 34,
+        "mrr": 0.8069396051103368,
+        "ndcg_of_merged_top3": 0.7821647843604815,
+        "p95_ms": 131.91790005657822
+      },
+      "window_prior_rerank": {
+        "supported_questions": 41,
+        "all_aspects_hit_at_3": 36,
+        "mrr": 0.8154471544715447,
+        "ndcg_of_merged_top3": 0.8024158236450806,
+        "p95_ms": 131.91790005657822
+      },
+      "three_route_rrf": {
+        "supported_questions": 41,
+        "all_aspects_hit_at_3": 33,
+        "mrr": 0.8262195121951219,
+        "ndcg_of_merged_top3": 0.7635904198419612,
+        "p95_ms": 131.9013001048006
+      },
+      "three_route_prior_rerank": {
+        "supported_questions": 41,
+        "all_aspects_hit_at_3": 37,
+        "mrr": 0.8713704994192799,
+        "ndcg_of_merged_top3": 0.8321882259361699,
+        "p95_ms": 132.1602000389248
+      }
+    },
+    "notes": [
+      "Hit@3按每个分问的前三名合并后要求覆盖所有问点；NDCG按去重合并列表计算。",
+      "无有效原文标签的问题单列，不放入有原文题的覆盖率分母。原始候选返回不等于业务答复承诺。",
+      "没有独立交叉编码器；窗口排序仍使用E5。",
+      "噪声范围复制相似条款，只验证范围隔离，不计作新增原创条款。"
+    ]
+  },
+  "deployment_flags": {
+    "MALL_PERSISTENT_DENSE": true,
+    "MALL_WINDOW_RERANK": true
+  },
+  "limits": [
+    "91/91是给定问法下的状态断言，并非所有自由文本正确率；88轮模型答复，3轮回退。",
+    "本批17轮浏览器语义咨询有1轮数字校验回退；7轮聊天办理全部使用模型答复。",
+    "这批问题已经执行并用于开发，后续是回归题，不再称为未见题。新增42题未放入提示词或检索扩词表，但不是外部独立机构评测。",
+    "5300条包含300段主语料及100个复制相似原文的干扰范围；复制记录不能冒充原创条款。",
+    "检索指标要求每个分问前三名合并后覆盖全部问点，不等于端到端回复准确率；13道无原文题不计入该分母，候选检索也不等于业务拒答。",
+    "窗口排序采用E5，仍非独立交叉编码器；新方案保留三路融合的原始名次。",
+    "主订单实际条款来自购买快照与审核补充，不能将基准集条数冒充每家店可引用条数。",
+    "并发验证只证明同卡两个数据库连接竞争的事务幂等，不是大规模吞吐压测。",
+    "模型未进行权重微调；线上支付与承运商服务未接入。"
+  ],
+  "postgres_concurrent": {
+    "checks": 9,
+    "passed": [
+      "跨买家和伪造确认卡被拒绝",
+      "两个独立连接并发确认返回同一回执",
+      "重复确认不新增售后单或审计事件，变更请求不能复用旧回执",
+      "改口后旧卡失效，新卡按两件办理",
+      "无效照片没有半张售后单，修正后同一卡片可重试",
+      "店铺修改方案后旧确认卡失效，买家可确认拒绝新版方案",
+      "聊天确认平台介入后，平台队列显示同一原单",
+      "撤回及重复确认保留原单结果与审计",
+      "聊天回复补证并接受原单方案，金额采用店铺版本，接受不冒充已退款"
+    ],
+    "multi_connection": true,
+    "concurrency_proof": [
+      {
+        "backend_pid": 61812,
+        "read_unconfirmed_source": true
+      },
+      {
+        "backend_pid": 61811,
+        "read_unconfirmed_source": true
+      }
+    ],
+    "database": "after_sales_v3_release_20261122",
+    "orders": [
+      "CN-8825778000",
+      "CN-8825808001",
+      "CN-8825817002",
+      "CN-8825822003"
+    ],
+    "data_retained": true,
+    "note": "验证真实业务事务与权限，不计为模型理解准确率。"
+  },
+  "postgres_persistence": {
+    "retained_orders": 4,
+    "case_numbers": [
+      137,
+      138,
+      139,
+      140
+    ],
+    "one_submission_per_order": true,
+    "statuses": [
+      "disputed",
+      "submitted",
+      "withdrawn",
+      "awaiting_outcome"
+    ],
+    "database": "after_sales_v3_release_20261122",
+    "read_only_recheck": true
+  },
+  "retrieval_holdout": {
+    "questions": 42,
+    "gold_scopes": 6,
+    "distractor_scopes": 100,
+    "question_fixture": "mall_terms_questions_holdout.json",
+    "unsupported_questions": 6,
+    "indexed_articles": 5300,
+    "scope_violations": 0,
+    "persistent_milvus": true,
+    "strategy_labels": {
+      "milvus_bm25": "Milvus BM25",
+      "milvus_e5": "Milvus E5"
+    },
+    "prepare_ms": 3733.4463000297546,
+    "metrics": {
+      "milvus_bm25": {
+        "supported_questions": 36,
+        "all_aspects_hit_at_3": 31,
+        "mrr": 0.853505291005291,
+        "ndcg_of_merged_top3": 0.8208303861743718,
+        "p95_ms": 30.20120004657656
+      },
+      "milvus_e5": {
+        "supported_questions": 36,
+        "all_aspects_hit_at_3": 35,
+        "mrr": 0.9490740740740741,
+        "ndcg_of_merged_top3": 0.948090714415952,
+        "p95_ms": 101.87260003294796
+      },
+      "rrf": {
+        "supported_questions": 36,
+        "all_aspects_hit_at_3": 34,
+        "mrr": 0.9175925925925926,
+        "ndcg_of_merged_top3": 0.9176639190837448,
+        "p95_ms": 132.14150007115677
+      },
+      "window_rerank": {
+        "supported_questions": 36,
+        "all_aspects_hit_at_3": 35,
+        "mrr": 0.9490740740740741,
+        "ndcg_of_merged_top3": 0.948090714415952,
+        "p95_ms": 132.46860005892813
+      },
+      "window_prior_rerank": {
+        "supported_questions": 36,
+        "all_aspects_hit_at_3": 35,
+        "mrr": 0.9444444444444444,
+        "ndcg_of_merged_top3": 0.9451126383246846,
+        "p95_ms": 132.46860005892813
+      },
+      "three_route_rrf": {
+        "supported_questions": 36,
+        "all_aspects_hit_at_3": 35,
+        "mrr": 0.9212962962962963,
+        "ndcg_of_merged_top3": 0.9315528079726337,
+        "p95_ms": 132.9089000937529
+      },
+      "three_route_prior_rerank": {
+        "supported_questions": 36,
+        "all_aspects_hit_at_3": 35,
+        "mrr": 0.9583333333333334,
+        "ndcg_of_merged_top3": 0.9553645896143663,
+        "p95_ms": 133.13390011899173
+      }
+    },
+    "notes": [
+      "Hit@3按每个分问的前三名合并后要求覆盖所有问点；NDCG按去重合并列表计算。",
+      "无有效原文标签的问题单列，不放入有原文题的覆盖率分母。原始候选返回不等于业务答复承诺。",
+      "没有独立交叉编码器；窗口排序仍使用E5。",
+      "噪声范围复制相似条款，只验证范围隔离，不计作新增原创条款。"
+    ]
+  },
+  "retrieval_live_order_probe": {
+    "passed": true,
+    "formal_database_read_only": true,
+    "checks": [
+      {
+        "shop_id": "cotton-home",
+        "order_id": "CN-1007",
+        "item_no": 1,
+        "terms_version": 2,
+        "scope": "8c365d6a72c6f07f0549d9fa393494dc72106095",
+        "indexed_articles": 4,
+        "question": "如果商家发错了商品，寄回运费谁承担？",
+        "routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ],
+        "evidence_ids": [
+          "freight"
+        ]
+      },
+      {
+        "shop_id": "cotton-home",
+        "order_id": "CN-1007",
+        "item_no": 1,
+        "terms_version": 2,
+        "scope": "8c365d6a72c6f07f0549d9fa393494dc72106095",
+        "indexed_articles": 4,
+        "question": "双方协商不成，如何申请平台介入？",
+        "routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ],
+        "evidence_ids": [
+          "response"
+        ]
+      },
+      {
+        "shop_id": "market-001",
+        "order_id": "CN-300001",
+        "item_no": 1,
+        "terms_version": 1,
+        "scope": "7d0fb1260a036a72f825058dbaf96ad1f246cb3a",
+        "indexed_articles": 4,
+        "question": "如果商家发错了商品，寄回运费谁承担？",
+        "routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ],
+        "evidence_ids": [
+          "freight"
+        ]
+      },
+      {
+        "shop_id": "market-001",
+        "order_id": "CN-300001",
+        "item_no": 1,
+        "terms_version": 1,
+        "scope": "7d0fb1260a036a72f825058dbaf96ad1f246cb3a",
+        "indexed_articles": 4,
+        "question": "双方协商不成，如何申请平台介入？",
+        "routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ],
+        "evidence_ids": [
+          "response"
+        ]
+      },
+      {
+        "shop_id": "market-002",
+        "order_id": "CN-300004",
+        "item_no": 1,
+        "terms_version": 1,
+        "scope": "99faaee9cd125490a15eb50eb4a30901fc7da884",
+        "indexed_articles": 4,
+        "question": "如果商家发错了商品，寄回运费谁承担？",
+        "routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ],
+        "evidence_ids": [
+          "freight"
+        ]
+      },
+      {
+        "shop_id": "market-002",
+        "order_id": "CN-300004",
+        "item_no": 1,
+        "terms_version": 1,
+        "scope": "99faaee9cd125490a15eb50eb4a30901fc7da884",
+        "indexed_articles": 4,
+        "question": "双方协商不成，如何申请平台介入？",
+        "routes": [
+          "scoped_bm25",
+          "milvus_bm25",
+          "milvus_dense",
+          "e5_dense",
+          "rrf",
+          "evidence_window_rerank",
+          "rrf_prior"
+        ],
+        "evidence_ids": [
+          "response"
+        ]
+      }
+    ],
+    "collection": "mall_policy_hybrid_e5_v3"
+  },
+  "retrieval_selected_strategy": "three_route_prior_rerank",
+  "authorized_writes": [
+    {
+      "action": "创建并写入Milvus集合",
+      "objects": [
+        "mall_policy_hybrid_e5_v3",
+        "mall_policy_hybrid_benchmark_v3"
+      ],
+      "executed": true
+    },
+    {
+      "action": "持久化保留4笔CN-88订单及其咨询、售后和审计记录，测试两个数据库连接并发确认",
+      "database": "after_sales_v3_release_20261122",
+      "executed": true
+    }
+  ],
+  "milvus_observed_records": {
+    "mall_policy_hybrid_e5_v3": 20,
+    "mall_policy_hybrid_benchmark_v3": 5300
+  },
+  "metric_correction": "旧主题集把6道空标签题误计入有原文题分母，已从47改为41；两组共13道无原文题单列。旧原始报告保留。",
+  "deployment_verification": {
+    "restarted": true,
+    "base_url": "http://127.0.0.1:8765",
+    "login_http_status": 200,
+    "react_js_http_status": 200,
+    "react_css_http_status": 200,
+    "chat_confirmation_route_present": true,
+    "new_flags_enabled": true,
+    "deleted_files_or_collections": false
+  }
+}

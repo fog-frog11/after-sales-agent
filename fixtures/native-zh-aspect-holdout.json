@@ -1,0 +1,14 @@
+[
+  {"id":"HOLD-01","scope":"self","question":"京东自营的订单，我买错了也没开 PLUS，寄回去谁负担运费？选上门取件的话，收费是另外交还是从退款里扣？","expected_items":[["JDS-1A"],["JDS-2.1"]]},
+  {"id":"HOLD-02","scope":"self","question":"自营电器正常使用突然坏了，保修期内寄修运费算谁的？另外它要是因为我自己摔坏的，寄修运费又怎么算？","expected_items":[["JDS-1B"],["JDS-1B"]]},
+  {"id":"HOLD-03","scope":"market","question":"京东第三方店没跟我谈拢，我可以申请平台介入吗，介入后他们通知我举证该怎么交？","expected_items":[["JDM-4.1"],["JDM-4.2"]]},
+  {"id":"HOLD-04","scope":"market","question":"第三方订单想改收货人，商家需要同意吗？另外另一单我根本没收到，闹纠纷时谁得给证据？","expected_items":[["JDM-2.2A"],["JDM-3"]]},
+  {"id":"HOLD-05","scope":"general","question":"无理由退货要从签收当天还是第二天开始计时？卖家收到完好退回的商品之后，最晚什么时候退我钱？","expected_items":[["SAMR-10"],["SAMR-13"]]},
+  {"id":"HOLD-06","scope":"general","question":"当时用了银行卡和另一种方式一起付，退款能只退到银行卡吗？另外用掉的优惠券应该怎么处理？","expected_items":[["SAMR-14"],["SAMR-15"]]},
+  {"id":"HOLD-07","scope":"self","question":"自营退货的上门取件如果收费，会扣我退款吗？另外能把公司电子发票抬头改掉吗？","expected_items":[["JDS-2.1"],[]]},
+  {"id":"HOLD-08","scope":"market","question":"第三方店已经通过了我的退货申请，寄给商家能到付吗？另外能把我账户里的京豆送给朋友用吗？","expected_items":[["JDM-2.3A"],[]]},
+  {"id":"HOLD-09","scope":"market","question":"第三方退货申请已经通过，我能改账号绑定的手机号吗？另外能把会员权益转给朋友吗？","expected_items":[[],[]]},
+  {"id":"HOLD-10","scope":"general","question":"网购退后的快递凭证我应该保留吗？","expected_items":[["SAMR-11"]]},
+  {"id":"HOLD-11","scope":"self","question":"如果京东承担运费，我选快递寄回自营商品时钱还得自己先垫吗？","expected_items":[["JDS-2.2"]]},
+  {"id":"HOLD-12","scope":"market","question":"店里卖的是第三方包邮商品，我不想留了，寄回的时候该谁掏运费？","expected_items":[["JDM-2.4A"]]}
+]

@@ -1,0 +1,98 @@
+<!doctype html>
+<!-- 买家按登录账号浏览订单，并从详情进入对应的售后对话。 -->
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>我的订单 · 售后工作台</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/session.js" defer></script>
+  <script src="/order-items.js" defer></script>
+  <script src="/order-catalog.js" defer></script>
+</head>
+<body data-order-role="buyer">
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="/orders"><span class="mark" aria-hidden="true">↶</span>售后工作台</a>
+      <nav class="topbar-tools" aria-label="买家导航">
+        <a class="topbar-link" href="/mall/orders" id="catalog-mall" hidden>返回商城</a>
+        <a class="topbar-link current-link" href="/orders" aria-current="page">我的订单</a>
+        <a class="topbar-link" href="/conversations">售后对话</a>
+        <a class="topbar-link" href="/service-requests" id="catalog-service-link">我的售后</a>
+        <span id="access-identity"></span>
+        <button id="access-logout" class="text-button" type="button" hidden>退出</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap catalog-workbench">
+    <header class="intro catalog-intro">
+      <div>
+        <h1>我的订单</h1>
+        <p>查订单、看物流和售后进度。</p>
+      </div>
+    </header>
+    <div class="catalog-layout">
+      <section class="card catalog-list" aria-labelledby="catalog-list-title">
+        <h2 id="catalog-list-title">订单列表</h2>
+        <form class="catalog-filter buyer-catalog-filter" action="/orders" method="get" role="search" aria-label="搜索我的订单">
+          <div>
+            <label for="catalog-order">订单号</label>
+            <input id="catalog-order" class="ticket-number" name="order_id" type="search" maxlength="15"
+                   placeholder="完整订单号或开头几位" autocomplete="off" spellcheck="false">
+          </div>
+          <div>
+            <label for="catalog-receipt">签收状态</label>
+            <select id="catalog-receipt" name="receipt" class="ticket-number">
+              <option value="all">全部状态</option>
+              <option value="signed">已签收</option>
+              <option value="unknown">签收记录缺失</option>
+              <option value="not_signed">未签收</option>
+              <option value="cancelled">已取消</option>
+            </select>
+          </div>
+          <button class="ticket-button" type="submit">搜索</button>
+          <a id="catalog-clear" class="text-button" href="/orders" hidden>清除条件</a>
+        </form>
+        <p id="catalog-list-feedback" class="ticket-feedback" role="status">正在读取订单…</p>
+        <div class="catalog-table-wrap" id="catalog-table" hidden>
+          <table class="catalog-table">
+            <caption class="visually-hidden">当前账号的订单</caption>
+            <thead><tr><th scope="col">订单号</th><th scope="col">状态</th><th scope="col">日期</th><th scope="col">操作</th></tr></thead>
+            <tbody id="catalog-rows"></tbody>
+          </table>
+        </div>
+        <nav class="catalog-pages" aria-label="订单分页" id="catalog-pages" hidden>
+          <a id="catalog-first" class="text-button" hidden>回到第一页</a>
+          <a id="catalog-next" class="text-button" hidden>下一页</a>
+        </nav>
+      </section>
+      <section class="card catalog-detail" id="catalog-detail" aria-labelledby="catalog-detail-title">
+        <div class="section-title">
+          <h2 id="catalog-detail-title">订单详情</h2>
+          <a href="/orders" class="catalog-link" id="catalog-back" hidden>返回列表</a>
+        </div>
+        <p class="ticket-feedback" id="catalog-detail-feedback" role="status">选择一笔订单，查看对应详情。</p>
+        <div id="catalog-record" hidden>
+          <strong class="catalog-order-number" id="catalog-record-order"></strong>
+          <dl class="facts" id="catalog-facts"></dl>
+          <div id="catalog-items" class="catalog-items"></div>
+          <div class="catalog-actions">
+            <a class="catalog-action" id="catalog-service-action" hidden>申请售后</a>
+            <a class="catalog-action catalog-action-secondary" id="catalog-action" hidden>就这笔订单咨询售后</a>
+          </div>
+          <section id="catalog-after-sales" class="ticket-panel" aria-labelledby="catalog-after-sales-title">
+            <div class="section-title">
+              <h3 id="catalog-after-sales-title">售后进度</h3>
+              <button class="text-button" id="catalog-refresh-progress" type="button">刷新进度</button>
+            </div>
+            <p id="catalog-progress-feedback" class="ticket-feedback" role="status"></p>
+            <ul id="catalog-service-progress" class="service-order-progress" hidden></ul>
+            <ol id="catalog-progress-steps" class="catalog-progress" aria-label="本订单售后记录" hidden></ol>
+          </section>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

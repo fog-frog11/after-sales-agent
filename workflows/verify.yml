@@ -1,0 +1,43 @@
+name: Verify workbench
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      MALL_TEST_CHROME: /usr/bin/google-chrome
+      MALL_DESKTOP_ONLY: "1"
+      MALL_BROWSER_JOURNEY: portfolio
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install project dependencies
+        run: |
+          python -m pip install -r requirements-dev.txt
+          npm ci --ignore-scripts
+          npm run build
+      - name: Check public source manifest
+        run: |
+          python -X utf8 -B -m scripts.check_public_release
+          docker compose --profile workbench config --quiet
+      - name: Initialize a new workbench
+        run: |
+          python -X utf8 -B -m scripts.init_workbench --prepare-config
+          docker pull postgres:17-alpine
+          docker compose up -d --wait --pull never postgres
+          python -X utf8 -B -m scripts.init_workbench
+      - name: Run Python and browser regression
+        run: |
+          python -X utf8 -B -m unittest discover -s tests
+          python -X utf8 -B -m scripts.check_chat_actions
+          node tests/browser/platform_review.mjs

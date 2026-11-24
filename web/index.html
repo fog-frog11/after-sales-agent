@@ -1,0 +1,126 @@
+<!doctype html>
+<!-- 售后工作台页面结构，包含订单查询、政策结果和人工工单。 -->
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>售后工作台</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/session.js" defer></script>
+  <script src="/ticket-handoff.js" defer></script>
+  <script src="/buyer-merchant.js" defer></script>
+  <script src="/order-items.js" defer></script>
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="/conversations"><span class="mark" aria-hidden="true">↶</span>售后工作台</a>
+      <div class="topbar-tools">
+        <a id="orders-link" class="topbar-link" href="/orders" hidden>我的订单</a>
+        <a class="topbar-link current-link" href="/conversations">售后对话</a>
+        <a id="after-sales-link" class="topbar-link" href="/orders" hidden>售后进度</a>
+        <a id="staff-link" class="topbar-link" href="/staff" hidden>客服处理</a>
+        <span id="access-identity"></span>
+        <button id="access-logout" class="text-button" type="button" hidden>退出</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap buyer-workbench">
+    <section class="intro buyer-intro" aria-labelledby="title">
+      <div>
+        <h1 id="title">订单售后</h1>
+        <p>查询订单和售后条款，向店铺提交售后申请。</p>
+      </div>
+    </section>
+
+    <div class="workspace buyer-layout">
+      <section class="card dialogue-card" aria-labelledby="query-title">
+        <header class="dialogue-heading">
+          <div>
+            <h2 id="query-title">售后助手</h2>
+            <p id="active-order" class="active-order" hidden>
+              <span id="active-order-label">当前订单</span> <strong id="active-order-id"></strong> <span id="active-order-status"></span>
+            </p>
+            <p id="dialogue-assistant-note" class="dialogue-note" hidden>售后助手自动回复，店铺答复在售后申请中查看。</p>
+          </div>
+          <div class="dialogue-header-actions">
+            <a id="chat-service-action" class="text-button" hidden>申请售后</a>
+            <button id="new-query" class="text-button switch-order" type="button" hidden>选择订单</button>
+          </div>
+        </header>
+        <div id="dialogue-scroll" class="dialogue-scroll" tabindex="0" aria-label="售后对话记录">
+          <div id="dialogue-empty" class="dialogue-empty">
+            <h3 id="dialogue-empty-title">需要处理哪笔订单？</h3>
+            <p id="dialogue-empty-hint">先说遇到的问题，或者输入订单号。</p>
+          </div>
+          <ol id="conversation-history" class="conversation-history" aria-label="对话消息"></ol>
+        </div>
+        <section id="order-share-prompt" class="order-share-prompt" aria-labelledby="order-share-title" hidden>
+          <div id="order-share-card"></div>
+          <div class="dialogue-composer-actions">
+            <p id="order-share-feedback" class="ticket-feedback" role="status"></p>
+            <button id="order-share-submit" class="submit" type="button">发送订单</button>
+          </div>
+        </section>
+        <form id="query-form" class="dialogue-composer">
+          <label id="question-label" for="question">订单号或售后问题</label>
+          <textarea id="question" rows="2" maxlength="300" required placeholder="例如：这单怎么还没收到？我买了几件？"></textarea>
+          <div class="dialogue-composer-actions">
+            <p id="dialogue-feedback" class="ticket-feedback" role="status"></p>
+            <button id="human-review-button" class="text-button" type="button" aria-controls="human-review-panel"
+                    aria-expanded="false" hidden>转人工</button>
+            <button id="submit" class="submit" type="submit"><span id="submit-label">发送</span><span aria-hidden="true">→</span></button>
+          </div>
+        </form>
+      </section>
+
+      <aside id="buyer-sidebar" class="buyer-sidebar" aria-label="售后处理">
+        <section id="human-review-panel" class="card human-review-card" aria-labelledby="human-review-title" hidden>
+          <header class="human-review-head">
+            <div>
+              <h2 id="human-review-title">人工服务</h2>
+              <p id="human-review-order"></p>
+            </div>
+            <button id="human-review-close" class="text-button human-review-close" type="button" aria-label="收起人工服务" title="收起人工服务">×</button>
+          </header>
+          <section id="merchant-panel" class="ticket-panel" aria-labelledby="merchant-title" hidden>
+            <div class="section-title">
+              <h3 id="merchant-title">向店铺申请售后</h3>
+              <button id="merchant-refresh" class="text-button" type="button">刷新进度</button>
+            </div>
+            <form id="merchant-form" hidden>
+              <label for="merchant-reason">遇到了什么问题？</label>
+              <textarea id="merchant-reason" rows="2" maxlength="300" required placeholder="例如：包装破损，想申请换货"></textarea>
+              <div class="ticket-actions"><button id="merchant-submit" class="ticket-button" type="submit">提交给店铺</button></div>
+            </form>
+            <p id="merchant-feedback" class="ticket-feedback" role="status"></p>
+          </section>
+          <section id="ticket-panel" class="ticket-panel" aria-labelledby="ticket-title" hidden>
+            <div class="section-title">
+              <h3 id="ticket-title">申请平台客服介入</h3>
+              <button id="ticket-refresh" class="text-button" type="button" hidden>刷新人工进度</button>
+            </div>
+            <form id="ticket-form">
+              <div id="ticket-editor">
+                <label for="ticket-reason">需要平台协助的问题</label>
+                <textarea id="ticket-reason" rows="2" maxlength="300" required placeholder="例如：想请客服复核退货期限"></textarea>
+              </div>
+              <p id="ticket-preview" class="ticket-preview" hidden></p>
+              <section id="ticket-handoff" class="ticket-handoff" aria-label="随工单提交的交接内容" hidden></section>
+              <div class="ticket-actions">
+                <button id="ticket-submit" class="ticket-button" type="submit">预览工单</button>
+                <button id="ticket-edit" class="new-query" type="button" hidden>修改原因</button>
+              </div>
+            </form>
+            <p id="ticket-feedback" class="ticket-feedback" role="status"></p>
+            <a id="ticket-order-progress" class="catalog-link" hidden>查看这笔订单的售后进度</a>
+          </section>
+        </section>
+      </aside>
+    </div>
+
+  </main>
+</body>
+</html>
