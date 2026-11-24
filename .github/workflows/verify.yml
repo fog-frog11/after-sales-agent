@@ -26,13 +26,14 @@ jobs:
           python -m pip install -r requirements-dev.txt
           npm ci --ignore-scripts
           npm run build
+      - name: Prepare local configuration
+        run: python -X utf8 -B -m scripts.init_workbench --prepare-config
       - name: Check public source manifest
         run: |
           python -X utf8 -B -m scripts.check_public_release
           docker compose --profile workbench config --quiet
       - name: Initialize a new workbench
         run: |
-          python -X utf8 -B -m scripts.init_workbench --prepare-config
           docker pull postgres:17-alpine
           docker compose up -d --wait --pull never postgres
           python -X utf8 -B -m scripts.init_workbench
@@ -41,3 +42,4 @@ jobs:
           python -X utf8 -B -m unittest discover -s tests
           python -X utf8 -B -m scripts.check_chat_actions
           node tests/browser/platform_review.mjs
+
