@@ -583,6 +583,11 @@ async function portfolioJourney() {
     "已回答的一半应使用当前鼠标订单");
   const candidate = ".order-search-results a[href=" + JSON.stringify(page(edition.orders[1].id)) + "]";
   const pendingLink = "#mall-dialogue li.chat-reply:last-child " + candidate;
+  if (!await evaluate(`Boolean(document.querySelector(${JSON.stringify(pendingLink)}))`)) {
+    console.error("混合咨询诊断", JSON.stringify({reshipId, editionId: edition.orders[1].id,
+      splitAnswer: mixed.answer, visible: await evaluate(`document.querySelector('#mall-dialogue li.chat-reply:last-child')?.textContent`),
+      links: await evaluate(`Array.from(document.querySelectorAll('#mall-dialogue li.chat-reply:last-child a')).map(a=>({href:a.getAttribute('href'),text:a.textContent}))`)}));
+  }
   const resumePath = "/api/buyer/mall/orders/" + reshipId + "/items/1/consult/continue";
   const resume = turn => evaluate(`fetch(${JSON.stringify(resumePath)}, {
     method:"POST", headers:{"Content-Type":"application/json"},
@@ -1944,3 +1949,4 @@ try {
   chrome?.kill();
   host.kill();
 }
+
