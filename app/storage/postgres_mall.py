@@ -1040,23 +1040,25 @@ class PostgresMall:
     @staticmethod
     def _search_buyer_items(conn, buyer: str, term: str, *, recent: bool = False) -> dict:
         """按登录买家查找可咨询的商品行，每张卡绑定实际订单与商品。"""
+        limit = 6 if recent else 50
         rows = conn.execute("""SELECT o.order_id,i.item_no,i.title,i.variant,s.name AS shop_name,i.paid_unit::text AS paid_unit,
                 (o.ordered_at AT TIME ZONE 'Asia/Shanghai')::date AS purchased
             FROM public.mall_orders o JOIN public.mall_shops s USING (shop_id)
             JOIN public.mall_items i USING (order_id)
             WHERE o.buyer_id=%s AND strpos(lower(concat_ws(' ',o.order_id,s.name,i.title,i.variant)),lower(%s))>0
-            ORDER BY o.ordered_at DESC,o.order_id DESC,i.item_no LIMIT 7""", (buyer, term)).fetchall() if term or recent else []
+            ORDER BY o.ordered_at DESC,o.order_id DESC,i.item_no LIMIT %s""", (buyer, term, limit + 1)).fetchall() if term or recent else []
         if recent:
             message = "这是你最近买过的商品。完整记录可以在「我的订单」里看。" if rows else "你的账号还没有购买记录。"
         elif not term:
             message = "你想找哪件商品？可以发「找订单：无线鼠标」，也可以填店名或订单号尾号。"
         elif not rows:
             message = "你的订单里没找到匹配商品。可以换个关键词试试，比如「找订单：鼠标」。"
-        elif len(rows) > 6:
-            message = "还有更多匹配结果，先列出最近的 6 件。"
+        elif len(rows) > limit:
+            message = f"还有更多匹配结果，先列出最近的 {limit} 件。可换更具体的关键词，或在我的订单中查看全部。"
         else:
             message = "找到了匹配的商品。"
-        return {"answer": message, "order_candidates": rows[:6], "purchase_history": recent}
+        return {"answer": message, "order_candidates": rows[:limit], "purchase_history": recent,
+                "search_has_more": len(rows) > limit}
 
     @staticmethod
     def _filter_buyer_candidates(conn, buyer: str, candidates: list[dict], filters: dict) -> list[dict]:
@@ -1294,4 +1296,5 @@ class PostgresMall:
                     result["pending_turn"] = str(row["turn_no"])
                 turns.append({"question": row["question"], "result": result})
             return {"turns": turns,'current_case':current}
+
 
