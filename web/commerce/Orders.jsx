@@ -490,7 +490,7 @@ function Turn({turn, action, caseLabel, apply, reply, showTrace, continueOn,conf
                 href={orderUrl(item.order_id, item.item_no)}>咨询这件商品</a>}
           </li>)}
         </ul>}
-        {response.purchase_history && response.order_candidates.length > 0 &&
+        {(response.purchase_history || response.search_has_more) && response.order_candidates.length > 0 &&
           <a className="button button-soft" href="/mall/orders">查看全部订单</a>}
         {response.evidence_requested && response.evidence?.length > 0 &&
           <blockquote className="consult-citation" aria-label="本单条款原文">
@@ -529,3 +529,4 @@ function Turn({turn, action, caseLabel, apply, reply, showTrace, continueOn,conf
     </li>
   </>;
 }
+
